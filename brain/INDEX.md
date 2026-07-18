@@ -2,6 +2,14 @@
 
 One line per entry. Format: `- [title](domain/slug.md) — type · JP range · hook`
 
+## iot
+- [Docker container can't reach the GPU on Jetson after Docker install/update — re-register nvidia runtime, set default-runtime](iot/docker-gpu-lost-runtime-nvidia.md) — fix · JP 5.x–6.x · nvidia-ctk runtime configure + default-runtime nvidia; prefer --runtime nvidia over --gpus
+- [Fleet OTA on Jetson — apt package OTA vs image-based OTA, and what survives each](iot/fleet-ota-apt-vs-image-based.md) — matrix · JP 5.x–6.x · apt can't cross majors and isn't failsafe; image-based A/B replaces rootfs
+- [Headless Jetson setup with no monitor — USB device mode serial oem-config, then ssh to 192.168.55.1](iot/headless-setup-usb-device-mode.md) — recipe · JP all · /dev/ttyACM0 115200 for oem-config, then ssh over l4tbr0
+- [Connect a Jetson to AWS IoT Core over MQTT with mutual TLS (paho-mqtt / mosquitto, port 8883 or 443 ALPN)](iot/mqtt-tls-aws-iot-core.md) — recipe · JP all · ATS endpoint + per-device certs; Errno 104 is policy, not TLS
+- [Jetson boots with clock in the past after power-off (TLS/apt breaks) — RTC battery is on rtc0, but boot time comes from rtc1](iot/rtc-clock-reset-breaks-tls.md) — fix · JP 5.x–6.x · hwclock -f /dev/rtc0 -s at boot; battery alone isn't enough
+- [Wi-Fi drops on an idle Jetson and never reconnects — disable wifi.powersave / iw power_save](iot/wifi-drops-on-idle-powersave.md) — fix · JP all · wifi.powersave = 2 plus iw fallback unit for stubborn drivers
+
 ## ml-stack
 - [ImportError: libcudnn.so after pip-installing PyTorch on Jetson](ml-stack/pytorch-wheel-libcudnn-import-error.md) — fix · JP 5.x–6.x · wheel/JetPack mismatch breaks import or CUDA
 - [Known-working PyTorch wheel source for JetPack 6.x (CUDA 12.6)](ml-stack/pytorch-jetpack6-working-wheels.md) — config · JP 6.x · jp6/cu126 pip index, no source builds
