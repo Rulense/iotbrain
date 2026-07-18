@@ -22,3 +22,11 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [JetPack 6 SD image stuck at first boot / End-user configuration on Orin Nano — QSPI firmware too old](setup/jetpack6-first-boot-hang-qspi-firmware.md) — fix · JP 6.x · firmware <36.0 can't boot JP6; JP5.1.3 bridge + qspi-updater or full flash
 - [Correct board-config names for flashing Orin devkits on L4T r36.x (stale names break boot)](setup/orin-flash-board-config-names.md) — matrix · JP 6.x · jetson-orin-nano-devkit covers Orin NX too; r35-era names flash but don't boot
 - [Recover an unbootable Jetson after a failed apt/OTA upgrade (forced recovery + reflash)](setup/recover-unbootable-after-apt-ota-upgrade.md) — recipe · JP all · forced recovery always works; reflash matching BSP, apt-mark hold to prevent
+
+## vision
+- [nvarguscamerasrc 'No cameras available' with IMX219/IMX477 — apply CSI overlay with jetson-io](vision/nvarguscamerasrc-no-cameras-available-jetson-io.md) — fix · JP 5.x–6.x · JP6 needs jetson-io overlay; i2c -121 means reseat the ribbon
+- [CSI camera frames into OpenCV as BGR — nvvidconv to BGRx, then videoconvert (VIC can't output BGR)](vision/csi-camera-opencv-bgr-gstreamer-pipeline.md) — recipe · JP all · canonical appsink pipeline; OpenCV must be built with GStreamer
+- [v4l2-ctl captures frames but nvarguscamerasrc/Argus fails — the ISP path needs more than a working V4L2 driver](vision/v4l2-works-nvargus-fails-isp-path.md) — gotcha · JP all · Argus needs full DT + live CID controls; real errors in the daemon journal
+- [nvarguscamerasrc in Docker: mount /tmp/argus_socket — and remount after any nvargus-daemon restart](vision/nvargus-docker-argus-socket-mount.md) — fix · JP all · client/daemon split; stale socket bind-mount after daemon restart
+- [RTSP streaming from a Jetson camera with the hardware encoder (nvv4l2h264enc + gst-rtsp-server test-launch)](vision/rtsp-stream-nvv4l2h264enc-test-launch.md) — recipe · JP 4.x–6.x · test-launch pipeline; Orin Nano has no NVENC
+- [Camera worked before, now every Argus open fails/times out — restart nvargus-daemon first](vision/restart-nvargus-daemon-first-line-recovery.md) — fix · JP all · daemon owns all Argus state; journalctl -u nvargus-daemon for the real error
