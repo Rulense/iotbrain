@@ -22,7 +22,7 @@ Jetson Brain is a **Claude Code plugin** with two parts:
 | `gotcha` | A trap to avoid proactively | nvarguscamerasrc quirk on JP6.0 that silently drops frames |
 | `fix` | An error and its verified solution | `libcudnn.so.8` import failure → exact resolution |
 
-**The Skills** — how the agent puts the brain to work: a main Jetson development skill that consults the brain for *any* Jetson task, domain skills for major workflows (vision pipelines, IoT/edge connectivity, SDK and library development), and a distiller skill that grows the brain.
+**The Skills** — how the agent puts the brain to work: a main Jetson development skill that consults the brain for *any* Jetson task, and a distiller skill that grows the brain. Domain skills for the major workflows (vision pipelines, IoT/edge connectivity, SDK and library development) arrive in v0.2.
 
 ## The loop — for every task, not just broken ones
 
@@ -51,9 +51,9 @@ Building a vision pipeline that works produces a `recipe`. Finding a wheel combo
 ## How it works
 
 - **No infrastructure.** The brain is plain markdown in this repo. Retrieval is grep — exact error strings, package names, and device models are the search keys, which is what agents search best. No vector database, no Docker, no index to go stale.
-- **Version-aware.** Every entry is scoped to JetPack/L4T versions and device models. The agent checks applicability before trusting knowledge, so nothing stale gets confidently misapplied.
-- **Human-reviewed growth.** The only write path into the shared brain is a pull request. The distiller formats entries; the community reviews truth. Nothing is published without the contributing user approving the exact content first.
-- **Verified-only knowledge.** Recipes, configs, and fixes are only written after they worked on real hardware.
+- **Version-aware.** Every entry is scoped to JetPack/L4T versions and device models. The agent checks applicability before trusting knowledge, so nothing stale gets confidently misapplied. Entries also carry a `company` field — v0.1 content is NVIDIA Jetson, and the brain broadens to other edge-IoT vendors over time.
+- **Human-reviewed growth.** The only write path into the shared brain is a pull request. The distiller formats entries; the community reviews truth. Nothing is published without the contributing user approving the exact content first. Knowledge you choose not to contribute stays in a private local overlay at `~/.jetson-brain/local/`.
+- **Transparent verification.** An entry is `verified` only when it worked on real hardware (confirmed by the contributor or the cited thread's author) or is stated by current official NVIDIA docs, cited with a check date — everything else is honestly marked `unverified` until confirmed. Junk doesn't get in, and provenance is always transparent.
 
 ## What's inside
 
@@ -62,9 +62,9 @@ jetson-brain/
 ├── skills/
 │   ├── jetson-dev/            # the companion: brain consultation for any Jetson task
 │   ├── brain-distill/         # turns verified learnings into brain entries + PRs
-│   ├── vision-pipeline/       # cameras, GStreamer, DeepStream
-│   ├── iot-connect/           # MQTT, cloud backends, fleet/edge deployment
-│   └── sdk-build/             # building libraries & SDKs for aarch64/L4T
+│   ├── vision-pipeline/       # (v0.2 — coming) cameras, GStreamer, DeepStream
+│   ├── iot-connect/           # (v0.2 — coming) MQTT, cloud backends, fleet/edge deployment
+│   └── sdk-build/             # (v0.2 — coming) building libraries & SDKs for aarch64/L4T
 └── brain/
     ├── INDEX.md               # one line per entry — the map of what the brain knows
     ├── setup/                 # flashing, boot, JetPack install, recovery
@@ -77,9 +77,11 @@ jetson-brain/
 
 ## Install
 
-```bash
-# one command via the Claude Code plugin marketplace (coming soon)
-claude plugin install jetson-brain
+Two steps inside Claude Code once the repo is public (repo URL coming soon):
+
+```
+/plugin marketplace add <owner>/jetson-brain
+/plugin install jetson-brain@jetson-brain
 ```
 
 Works whether Claude Code runs on the Jetson itself or on a host machine reaching the device over SSH.
@@ -92,7 +94,7 @@ Works whether Claude Code runs on the Jetson itself or on a host machine reachin
 
 ## Contributing
 
-The brain only gets smarter if verified knowledge flows back. `CONTRIBUTING.md` defines the entry format and the verification bar: real hardware, exact version/device frontmatter, sources linked. The `brain-distill` skill drafts a compliant entry and PR for you — review it, approve it, done.
+The brain only gets smarter if verified knowledge flows back. `CONTRIBUTING.md` defines the entry format and the verification bar: real hardware or current official docs, exact version/device frontmatter, sources linked. The `brain-distill` skill drafts a compliant entry and PR for you — review it, approve it, done.
 
 ---
 

@@ -46,7 +46,7 @@ After adding an entry, add one line to `brain/INDEX.md`:
 
 A PR is mergeable when the entry:
 
-1. **Worked on real hardware** — `status: verified` means you (or the cited thread's author, confirmed resolved) ran it on a physical Jetson. Otherwise use `status: unverified`.
+1. **Worked on real hardware — or doc-verified** — `status: verified` means you (or the cited thread's author, with the resolution confirmed) ran it on a physical Jetson, OR the behavior is stated by current official NVIDIA documentation — in that case cite the doc page in `sources` and use a `verified_on` of the form `"doc checked <YYYY-MM-DD>"`. Otherwise use `status: unverified` — the honest fallback.
 2. **Has verbatim keys** — copy-paste the exact error text / package / element names. Paraphrased keys break grep retrieval.
 3. **Is version-scoped** — `jetpack`, `l4t`, `devices` filled honestly. "Works everywhere" claims need `["all"]` and a reason in Context.
 4. **Cites sources** — forum thread, GitHub issue, doc page, or "verified locally" plus your `verified_on`.

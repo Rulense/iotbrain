@@ -5,8 +5,8 @@ description: Use for ANY NVIDIA Jetson / JetPack / L4T / Tegra task — building
 
 # Jetson Development Companion
 
-You have the Jetson Brain: community-verified knowledge at `<skill-base-dir>/../../brain/`
-(the plugin root's `brain/` directory — resolve it from this skill's base directory),
+You have the Jetson Brain: community-verified knowledge at `${CLAUDE_PLUGIN_ROOT}/brain/`
+(`${CLAUDE_PLUGIN_ROOT}` is the env var Claude Code sets to the plugin's install root),
 plus the user's private overlay at `~/.jetson-brain/local/`. Entry types: `recipe`
 (how to accomplish a task), `config` (known-working setup), `matrix` (version
 compatibility), `gotcha` (trap to avoid), `fix` (error → solution).
@@ -37,7 +37,7 @@ unreachable, ask the user for JetPack version and device model before proceeding
 2. Grep both stores for task keywords, package names, and (when debugging)
    VERBATIM error strings:
 ```bash
-grep -ril "<verbatim error or keyword>" <plugin-root>/brain/ ~/.jetson-brain/local/ 2>/dev/null
+grep -ril "<verbatim error or keyword>" "${CLAUDE_PLUGIN_ROOT}/brain/" ~/.jetson-brain/local/ 2>/dev/null
 ```
 3. Read every hit's full entry before acting.
 

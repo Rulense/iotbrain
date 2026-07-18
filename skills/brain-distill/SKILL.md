@@ -10,7 +10,8 @@ into one entry.
 
 ## Step 1 — Dedup check
 
-Grep the shipped brain (`<skill-base-dir>/../../brain/`) and the local overlay
+Grep the shipped brain (`${CLAUDE_PLUGIN_ROOT}/brain/` — `${CLAUDE_PLUGIN_ROOT}`
+is the env var Claude Code sets to the plugin's install root) and the local overlay
 (`~/.jetson-brain/local/`) for the entry's would-be keys. If an existing entry
 covers the same knowledge, prepare an UPDATE to that file (extend `jetpack`
 ranges, revise steps, or set the old entry `status: outdated` with the version
@@ -51,9 +52,10 @@ Show the user the COMPLETE entry content, then ask exactly one question:
 ## Step 5 — Open the PR (only after approval)
 
 ```bash
-gh repo fork <brain-repo-url> --clone /tmp/jetson-brain-pr 2>/dev/null \
-  || git clone <fork-url> /tmp/jetson-brain-pr
-cd /tmp/jetson-brain-pr
+workdir=$(mktemp -d)
+gh repo fork <brain-repo-url> --clone -- "$workdir/jetson-brain" \
+  || git clone <your-fork-url> "$workdir/jetson-brain"
+cd "$workdir/jetson-brain"
 git checkout -b brain/<domain>-<slug>
 # copy entry to brain/<domain>/<slug>.md
 # add the INDEX.md line: - [<title>](<domain>/<slug>.md) — <type> · JP <range> · <hook>
