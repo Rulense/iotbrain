@@ -30,7 +30,9 @@ prebuilt-wheel ecosystem. Applies to all JetPack versions.
 - **piwheels is useless on Jetson.** piwheels.org builds only 32-bit
   `armv6l`/`armv7l` wheels for Raspberry Pi OS (its FAQ: no aarch64 support,
   no guarantees off Raspberry Pi). Adding the piwheels index to a Jetson
-  changes nothing — pip can never match those tags.
+  buys you nothing: its compiled wheels are armv6l/armv7l-tagged and can't
+  match aarch64, and its pure-Python `py3-none-any` wheels are the same
+  ones PyPI already serves.
 - **PyPI aarch64 coverage is partial.** Most pure-Python and CPU packages now
   ship `manylinux2014_aarch64`/`manylinux_2_28_aarch64` wheels, but
   CUDA-touching packages are the exception: they're CPU-only builds, missing

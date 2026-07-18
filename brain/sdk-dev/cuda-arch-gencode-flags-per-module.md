@@ -18,7 +18,7 @@ sources:
   - "https://github.com/bitsandbytes-foundation/bitsandbytes/issues/1930"
   - "https://arnon.dk/matching-sm-architectures-arch-and-gencode-for-various-nvidia-cards/"
   - "https://proventusnova.com/blog/opencv-cuda-jetson-installation-guide/"
-  - "https://developer.ridgerun.com/wiki/index.php/NVIDIA_Jetson_AGX_Thor/Blackwell_GPU"
+  - "https://developer.nvidia.com/cuda-gpus"
 ---
 ## Context
 You are compiling CUDA code (your own kernels, OpenCV, bitsandbytes, any
@@ -36,7 +36,7 @@ release because the arch is a hardware property of the module.
 | Xavier NX / AGX Xavier | 7.2 | `-gencode arch=compute_72,code=sm_72` | `72` | `7.2` |
 | TX2 | 6.2 | `-gencode arch=compute_62,code=sm_62` | `62` | `6.2` |
 | Nano / TX1 | 5.3 | `-gencode arch=compute_53,code=sm_53` | `53` | `5.3` |
-| AGX Thor | 11.0 (CUDA 13; was named sm_101 in CUDA 12.8/12.9) | `-gencode arch=compute_110,code=sm_110` | `110` | `11.0` |
+| AGX Thor (Jetson T5000/T4000 modules) | 11.0 — per NVIDIA's CUDA GPUs page (sm_110 needs CUDA 13; briefly named sm_101 in CUDA 12.8/12.9) | `-gencode arch=compute_110,code=sm_110` | `110` | `11.0` |
 
 - CMake >= 3.18: `cmake -DCMAKE_CUDA_ARCHITECTURES=87 ..` (or
   `set(CMAKE_CUDA_ARCHITECTURES 87)` before enabling the CUDA language).
