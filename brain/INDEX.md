@@ -23,6 +23,14 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 ## runtime
 - [Default power mode silently caps Jetson performance](runtime/default-power-mode-caps-performance.md) — gotcha · JP all · nvpmodel + jetson_clocks before benchmarking
 
+## sdk-dev
+- [CUDA gencode/arch flags per Jetson module — Orin is sm_87, Xavier is sm_72 (wrong arch = no kernel image)](sdk-dev/cuda-arch-gencode-flags-per-module.md) — matrix · JP all · sm table + CMake/OpenCV flags; missing arch fails at first kernel launch
+- [Cross-compiling for Jetson — Bootlin toolchain + L4T sysroot on x86, vs just building on-device](sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md) — recipe · JP 5.x–6.x · CROSS_COMPILE=aarch64-buildroot-linux-gnu-, sysroot from rootfs clone; match toolchain to release
+- [Big on-device builds on Jetson — cc1plus killed by OOM: disable zram, add NVMe swap, max clocks, lower -j](sdk-dev/on-device-builds-swap-and-clocks.md) — recipe · JP all · nvzramconfig off, 16G swap on NVMe, nvpmodel/jetson_clocks, cap -j
+- [Python wheels on Jetson (aarch64) — piwheels doesn't serve you, cp-tag mismatches, and pip's silent source builds](sdk-dev/python-wheels-aarch64-no-piwheels.md) — gotcha · JP all · piwheels is 32-bit-only; wheels are cp-tag specific; no match = hours-long source build
+- [cannot find -lnvbuf_utils — linking against the Jetson Multimedia API (tegra/nvidia lib dirs, JP5 NvBufSurface migration)](sdk-dev/multimedia-api-linking-nvbuf-utils.md) — fix · JP 4.x–6.x · -L the tegra/nvidia lib dir; nvbuf_utils removed in JP 5.1.2, port to NvBufSurface
+- [Shipping Jetson apps as containers — since JetPack 5, l4t-base no longer mounts CUDA from the host (l4t.csv mounts BSP only)](sdk-dev/l4t-base-container-csv-mounts.md) — gotcha · JP 4.x–6.x · JP5+ needs CUDA in the image (l4t-cuda/l4t-jetpack); l4t.csv mounts BSP libs only
+
 ## setup
 - [Jetson in forced recovery mode not detected by host lsusb (cable, port, VM passthrough)](setup/recovery-mode-device-not-detected-lsusb.md) — fix · JP all · USB-C flashing port, data cable, no VMs; expect 0955:xxxx APX
 - [Flash Jetson Orin Nano devkit to NVMe SSD with l4t_initrd_flash.sh](setup/orin-nano-nvme-initrd-flash.md) — recipe · JP 6.x · exact initrd-flash command, r36 QSPI cfg path change
