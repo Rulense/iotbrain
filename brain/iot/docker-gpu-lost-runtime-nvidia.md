@@ -10,8 +10,7 @@ keys:
 jetpack: ["5.x", "6.x"]
 l4t: ["35.x", "36.x"]
 devices: [all]
-status: verified
-verified_on: "Orin Nano, JetPack 6.2 (L4T 36.4.3), 2025-06 (forum thread: containers ran with GPU after nvidia-ctk runtime configure + default-runtime nvidia)"
+status: unverified
 sources:
   - "https://forums.developer.nvidia.com/t/running-ai-docker-containers-on-jetson-orin-nano-with-gpu-support/335561"
   - "https://github.com/dusty-nv/jetson-containers/blob/master/docs/setup.md"
@@ -32,10 +31,12 @@ Error response from daemon: unknown or invalid runtime name: nvidia
 ## Knowledge
 ### Root cause
 On Jetson, GPU access in containers goes through the NVIDIA container runtime
-(nvidia-container-toolkit, CSV-mode mounts of the L4T libs). A fresh or
-upgraded docker-ce ships a `daemon.json` that doesn't register the `nvidia`
-runtime, so Docker no longer knows how to inject the GPU — the toolkit being
-installed isn't enough; it must be registered in Docker's config.
+(nvidia-container-toolkit, CSV-mode mounts of the L4T libs). A fresh docker-ce
+install ships **no** `/etc/docker/daemon.json` at all, and a reinstall/re-image
+can leave one without the `nvidia` runtime entry — either way Docker doesn't
+know the `nvidia` runtime exists, so it can't inject the GPU. Having the
+toolkit installed isn't enough; the runtime must be registered in Docker's
+config.
 
 ### Fix
 ```bash

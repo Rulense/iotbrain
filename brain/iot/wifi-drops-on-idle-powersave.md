@@ -51,11 +51,13 @@ path badly and the association dies instead of resuming.
 
    [Service]
    Type=oneshot
-   ExecStart=/usr/sbin/iw dev wlan0 set power_save off
+   ExecStart=/usr/bin/env iw dev wlan0 set power_save off
 
    [Install]
    WantedBy=multi-user.target
    ```
+   (`/usr/bin/env` sidesteps the `iw` path difference: `/sbin/iw` on
+   JetPack 4 / Ubuntu 18.04, `/usr/sbin/iw` on newer releases.)
 
 ## Verify
 `iw dev wlan0 get power_save` reports `Power save: off` and the device stays

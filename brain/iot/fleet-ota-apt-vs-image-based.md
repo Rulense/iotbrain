@@ -27,12 +27,13 @@ wrong is how fleets end up with hand-reflashed units.
 | Delivery | NVIDIA apt repo: `deb https://repo.download.nvidia.com/jetson/common <release> main` + `.../jetson/t234 <release> main` (in `/etc/apt/sources.list.d/nvidia-l4t-apt-source.list`) | OTA payload built on a host with `ota_tools` (`l4t_generate_ota_package.sh`), pushed to the device by you/your fleet tool, applied on reboot |
 | Scope | Point/minor releases within the same major only (e.g. 36.2 → 36.3: edit `<release>` in the sources list, then `sudo apt dist-upgrade`). **35.x → 36.x is not supported via apt.** | Full BSP partition update; supports major upgrades (e.g. 35.x → 36.x) and partition-layout changes |
 | What it updates | Individual debs: kernel, L4T userspace libs, and QSPI **bootloader firmware** | Bootloader, kernel, and rootfs partitions, rewritten from the payload |
-| What survives | Everything you didn't install via those debs — user data, your app, configs stay in place | Only what's in the payload's rootfs (or on partitions the payload doesn't touch). User data on the rootfs does **not** survive unless you use A/B rootfs or keep it on a separate data partition |
-| Failure mode | Not failsafe: power loss / interrupted `dist-upgrade` can leave the unit unbootable — see [../setup/recover-unbootable-after-apt-ota-upgrade.md](../setup/recover-unbootable-after-apt-ota-upgrade.md) | Failsafe by design: A/B chains — update is written to the inactive slot, roles swap only on success; a failed update can't brick the device |
+| What survives | Everything you didn't install via those debs — user data, your app, configs stay in place | Only what's in the payload's rootfs (or on partitions the payload doesn't touch). User data on the rootfs does **not** survive unless you keep it on a separate data partition (A/B rootfs protects bootability/rollback, not your data) |
+| Failure mode | Not failsafe: power loss / interrupted `dist-upgrade` can leave the unit unbootable — see [../setup/recover-unbootable-after-apt-ota-upgrade.md](../setup/recover-unbootable-after-apt-ota-upgrade.md) | Failsafe by design: an interrupted update resumes via the OTA recovery kernel (even with A/B disabled); with A/B rootfs enabled, the update goes to the inactive slot and roles swap only on success |
 
 Rule of thumb: dev benches and small same-major bumps → apt OTA. Real fleets →
 image-based OTA from a golden rootfs, with application state on a separate data
-partition (or A/B rootfs enabled) so device identity/config survives the swap.
+partition so device identity/config survives the swap (add A/B rootfs for
+rollback safety).
 
 ## Verify
 - After apt OTA: `cat /etc/nv_tegra_release` shows the new L4T revision and the

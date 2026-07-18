@@ -23,8 +23,9 @@ setup). You need to finish first-boot configuration (oem-config: EULA, user
 account, locale) and get an ssh session — using only a USB cable to a host PC.
 
 ## Knowledge
-Jetson devkits run USB *device mode* on their flashing port (USB-C next to the
-40-pin header on Orin devkits; micro-USB on Nano/Xavier NX). One cable gives you:
+Jetson devkits run USB *device mode* on their flashing port (AGX Orin: the
+USB-C port next to the 40-pin header; Orin Nano/NX devkit: the USB-C port on
+the rear I/O panel; Nano/Xavier NX: the micro-USB port). One cable gives you:
 
 1. **Virtual UART for headless oem-config.** After the Jetson boots, the host
    sees a CDC-ACM serial device. On the host:

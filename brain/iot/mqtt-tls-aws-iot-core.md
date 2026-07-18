@@ -45,12 +45,16 @@ plain userspace and aarch64-clean: `paho-mqtt` is pure Python and
 4. Python client:
    ```python
    import paho.mqtt.client as mqtt   # pip3 install paho-mqtt
-   c = mqtt.Client(client_id="my-jetson-01")
+   c = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id="my-jetson-01")
    c.tls_set(ca_certs="AmazonRootCA1.pem",
              certfile="device.pem.crt", keyfile="private.pem.key")
    c.connect("xxxxxxxx-ats.iot.<region>.amazonaws.com", 8883)
    c.publish("jetson/test", "hello")
    ```
+   paho-mqtt >= 2.0 (what `pip3 install paho-mqtt` installs today) requires the
+   `CallbackAPIVersion` first argument — omitting it raises `ValueError`. If
+   you're pinned to paho 1.x, drop that argument
+   (`mqtt.Client(client_id="my-jetson-01")`).
 5. If outbound 8883 is blocked (common on guest/corporate networks), use MQTT
    over port 443 with the ALPN protocol name `x-amzn-mqtt-ca` (ssl context with
    `set_alpn_protocols(["x-amzn-mqtt-ca"])`, see the AWS port-443 blog), or
@@ -68,6 +72,8 @@ appears in the AWS IoT console MQTT test client subscribed to `jetson/test`.
   matches the ATS endpoint) or the device clock is wrong — Jetsons without an
   RTC battery boot in the past and fail every TLS handshake; see
   [rtc-clock-reset-breaks-tls.md](rtc-clock-reset-breaks-tls.md).
-- Don't bake one certificate into a fleet image; AWS IoT limits a cert to one
-  concurrent connection per client ID — duplicate client IDs knock each other
-  offline in a connect/disconnect loop.
+- Don't bake one identity into a fleet image: AWS IoT allows one live
+  connection per MQTT **client ID**, and a new connect with the same ID bumps
+  the existing session — cloned devices with the same client ID knock each
+  other offline in a connect/disconnect loop. Give every unit its own client ID
+  (and, for revocability, its own certificate).
