@@ -35,8 +35,9 @@ lives in boot ROM and always works.
    `lsusb` for `0955:xxxx NVIDIA Corp. APX` (e.g. `0955:7e19` = Xavier NX).
 2. **Save data first if needed.** Rootfs contents will be erased by a reflash —
    from recovery you can back up with
-   `l4t_initrd_flash.sh --backup-image` / RCM-boot tricks, or pull the
-   SD/NVMe and mount it on another machine.
+   `sudo ./tools/backup_restore/l4t_backup_restore.sh -b <board>` (e.g.
+   `jetson-orin-nano-devkit`; restore later with `-r`), or pull the SD/NVMe
+   and mount it on another machine.
 3. **Reflash with a matching release.** Easiest: SDK Manager, choosing
    **Manual** setup mode (device already in recovery, no auto-reset), and the
    JetPack version you want to land on. Equivalent CLI: matching L4T BSP +
