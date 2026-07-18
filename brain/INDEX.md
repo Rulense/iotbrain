@@ -5,6 +5,12 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 ## ml-stack
 - [ImportError: libcudnn.so after pip-installing PyTorch on Jetson](ml-stack/pytorch-wheel-libcudnn-import-error.md) — fix · JP 5.x–6.x · wheel/JetPack mismatch breaks import or CUDA
 - [Known-working PyTorch wheel source for JetPack 6.x (CUDA 12.6)](ml-stack/pytorch-jetpack6-working-wheels.md) — config · JP 6.x · jp6/cu126 pip index, no source builds
+- [RuntimeError: operator torchvision::nms does not exist — torch/torchvision pairing on Jetson](ml-stack/torch-torchvision-version-pairing.md) — matrix · JP 5.x–6.x · pairing table; install both from the same Jetson index
+- [TensorRT engine plan files are not portable — rebuild per device and per TensorRT version](ml-stack/tensorrt-engines-not-portable.md) — gotcha · JP all · ship ONNX, trtexec on target; JetPack upgrade invalidates cached engines
+- [onnxruntime-gpu wheels for Jetson — PyPI installs are CPU-only, use Jetson AI Lab / Jetson Zoo wheels](ml-stack/onnxruntime-gpu-jetson-wheels.md) — config · JP 5.x–6.x · jp6/cu126 index or Jetson Zoo wheel per JetPack; check providers list
+- [Illegal instruction (core dumped) importing numpy/torch on Jetson — OPENBLAS_CORETYPE=ARMV8](ml-stack/numpy-illegal-instruction-openblas-coretype.md) — fix · JP 4.x · numpy 1.19.5 OpenBLAS core misdetect; env var or pin 1.19.4
+- [Don't apt-install Ubuntu's nvidia-cuda-toolkit on Jetson — JetPack CUDA lives in /usr/local/cuda](ml-stack/cuda-toolkit-apt-vs-jetpack-cuda.md) — gotcha · JP 5.x–6.x · nvcc is a PATH problem; upgrade CUDA via NVIDIA's Jetson repo instead
+- [jetson-containers — prebuilt CUDA ML containers as the escape hatch for on-device dependency hell](ml-stack/jetson-containers-dependency-escape-hatch.md) — recipe · JP 6.x–7.x · autotag matches your L4T; run wrapper sets --runtime nvidia
 
 ## runtime
 - [Default power mode silently caps Jetson performance](runtime/default-power-mode-caps-performance.md) — gotcha · JP all · nvpmodel + jetson_clocks before benchmarking
