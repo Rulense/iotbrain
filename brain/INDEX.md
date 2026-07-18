@@ -22,6 +22,12 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 
 ## runtime
 - [Default power mode silently caps Jetson performance](runtime/default-power-mode-caps-performance.md) — gotcha · JP all · nvpmodel + jetson_clocks before benchmarking
+- [System throttled due to Over-current on Jetson Orin — read the OC event counters, size the supply, expect it under MAXN stress](runtime/over-current-throttling-warning.md) — fix · JP 5.x–6.x · grep oc*_event_cnt; Orin Nano devkit wants 19V/4A+; OC in MAXN stress is expected, don't raise INA3221 limits
+- [Reading tegrastats output — RAM/lfb, SWAP, CPU %@MHz, EMC_FREQ, GR3D_FREQ, temps, VDD power rails](runtime/tegrastats-fields-decoder.md) — matrix · JP all · field-by-field decoder; CPU % is relative to current DVFS clock; RAM includes GPU
+- [Change the Jetson Orin fan profile (quiet vs cool) — edit /etc/nvfancontrol.conf AND delete /var/lib/nvfancontrol/status](runtime/nvfancontrol-fan-profile-change.md) — config · JP 5.x–6.x · Orin Nano/NX default quiet; conf edits are ignored until the status file is removed
+- [Jetson Orin thermal throttling under sustained load — clocks drop near 99°C, soft shutdown at 104.5°C (thermal_zone temps)](runtime/thermal-throttling-trip-points.md) — gotcha · JP 5.x–6.x · silent throttle overrides jetson_clocks; read thermal_zone*/temp; cool profile + airflow first
+- [Process 'Killed' loading a model on Jetson — GPU shares system RAM (unified memory): swap strategy, GUI off, zram trade-offs](runtime/oom-killed-unified-memory.md) — gotcha · JP all · no VRAM, one budget; GUI off ~800MB, NVMe swap over zram; CUDA allocations can't page out
+- [Move a running Jetson's rootfs from SD to NVMe without reflashing — copy rootfs, point extlinux.conf root= at /dev/nvme0n1p1](runtime/rootfs-redirect-sd-to-nvme.md) — recipe · JP 4.x–6.x · rsync -ax to SSD, edit root= on the SD's extlinux.conf; kernel updates still land on SD /boot
 
 ## sdk-dev
 - [CUDA gencode/arch flags per Jetson module — Orin is sm_87, Xavier is sm_72 (wrong arch = no kernel image)](sdk-dev/cuda-arch-gencode-flags-per-module.md) — matrix · JP all · sm table + CMake/OpenCV flags; missing arch fails at first kernel launch
