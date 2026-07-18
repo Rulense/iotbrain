@@ -88,6 +88,15 @@ def test_index_dead_link_fails(tmp_path):
     assert any("ghost.md" in e for e in errs)
 
 
+def test_index_ignores_links_in_code_spans(tmp_path):
+    brain = tmp_path / "brain"
+    write(brain / "ml-stack" / "example.md", VALID)
+    write(brain / "INDEX.md",
+          "Format: `- [title](domain/slug.md) — type · JP range · hook`\n"
+          "- [Example fix entry](ml-stack/example.md) — fix · JP 6.1 · example\n")
+    assert check_index(brain) == []
+
+
 def test_main_on_valid_brain(tmp_path):
     brain = tmp_path / "brain"
     write(brain / "ml-stack" / "example.md", VALID)

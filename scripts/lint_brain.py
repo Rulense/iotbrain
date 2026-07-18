@@ -64,7 +64,9 @@ def check_index(brain_dir: Path) -> list[str]:
     index = brain_dir / "INDEX.md"
     if not index.exists():
         return [f"{index}: INDEX.md missing"]
-    indexed = set(INDEX_LINK.findall(index.read_text(encoding="utf-8")))
+    # Ignore links inside inline code spans (e.g. the format example in the header).
+    text = re.sub(r"`[^`\n]*`", "", index.read_text(encoding="utf-8"))
+    indexed = set(INDEX_LINK.findall(text))
     actual = {
         str(p.relative_to(brain_dir))
         for p in brain_dir.rglob("*.md")
