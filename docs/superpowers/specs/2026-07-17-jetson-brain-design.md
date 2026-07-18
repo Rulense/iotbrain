@@ -73,6 +73,7 @@ One markdown file per entry. Frontmatter schema:
 ---
 title: <one-line, specific, includes key terms>
 type: recipe | config | matrix | gotcha | fix
+company: nvidia           # device vendor (nvidia | raspberry-pi | qualcomm | ...) — added 2026-07-17: brain broadens to all edge-IoT scenarios over time
 keys:                     # verbatim grep targets: error strings, package names, element names
   - "ImportError: libcudnn.so.8: cannot open shared object file"
 jetpack: ["6.0", "6.1"]   # applicable JetPack versions

@@ -13,7 +13,8 @@
 - Brain domains (exact directory names): `setup`, `ml-stack`, `vision`, `iot`, `sdk-dev`, `runtime`
 - Entry types (exact enum): `recipe`, `config`, `matrix`, `gotcha`, `fix`
 - Entry status (exact enum): `verified`, `unverified`, `outdated`; `verified_on` is required when status is `verified`
-- Required frontmatter fields for every entry: `title`, `type`, `keys` (non-empty list), `jetpack` (list), `l4t` (list), `devices` (list), `status`, `sources` (list)
+- Required frontmatter fields for every entry: `title`, `type`, `keys` (non-empty list), `company` (device vendor string, e.g. `nvidia`), `jetpack` (list), `l4t` (list), `devices` (list), `status`, `sources` (list)
+- Scope note (2026-07-17 change): the brain targets all edge-IoT scenarios over time; `company` future-proofs entries for non-NVIDIA vendors. v0.1 content remains Jetson/`nvidia`.
 - Skill names (exact): `jetson-dev`, `brain-distill`
 - Local overlay path (exact): `~/.jetson-brain/local/` mirroring the `brain/` domain structure
 - brain-distill NEVER opens a PR, pushes, or publishes without showing the user the exact entry content and receiving explicit approval
@@ -95,6 +96,7 @@ VALID = textwrap.dedent("""\
     ---
     title: Example fix entry
     type: fix
+    company: nvidia
     keys:
       - "ImportError: libexample.so.1"
     jetpack: ["6.1"]
@@ -208,7 +210,7 @@ DOMAINS = {"setup", "ml-stack", "vision", "iot", "sdk-dev", "runtime"}
 TYPES = {"recipe", "config", "matrix", "gotcha", "fix"}
 STATUSES = {"verified", "unverified", "outdated"}
 LIST_FIELDS = ("keys", "jetpack", "l4t", "devices", "sources")
-REQUIRED = ("title", "type", "keys", "jetpack", "l4t", "devices", "status", "sources")
+REQUIRED = ("title", "type", "keys", "company", "jetpack", "l4t", "devices", "status", "sources")
 INDEX_LINK = re.compile(r"\]\(([^)]+\.md)\)")
 
 
@@ -340,6 +342,7 @@ Filename: short kebab-case slug, e.g. `pytorch-wheel-libcudnn-import-error.md`.
 ---
 title: <one line, specific, includes key terms>
 type: recipe | config | matrix | gotcha | fix     # pick ONE
+company: nvidia             # device vendor: nvidia | raspberry-pi | qualcomm | nxp | ...
 keys:                       # verbatim grep targets — error strings, package names, element names
   - "<exact string an agent would search for>"
 jetpack: ["6.1"]            # applicable JetPack versions, or ["all"]
@@ -417,6 +420,7 @@ git commit -m "docs: add contributing guide with entry template and verification
 ---
 title: "ImportError: libcudnn.so after pip-installing PyTorch on Jetson"
 type: fix
+company: nvidia
 keys:
   - "ImportError: libcudnn.so.8: cannot open shared object file"
   - "ImportError: libcudnn.so.9: cannot open shared object file"
@@ -465,6 +469,7 @@ Save as `brain/ml-stack/pytorch-wheel-libcudnn-import-error.md`.
 ---
 title: Known-working PyTorch wheel source for JetPack 6.x (CUDA 12.6)
 type: config
+company: nvidia
 keys:
   - "pypi.jetson-ai-lab"
   - "torch jetpack 6"
@@ -508,6 +513,7 @@ Save as `brain/ml-stack/pytorch-jetpack6-working-wheels.md`.
 ---
 title: Default power mode silently caps Jetson performance
 type: gotcha
+company: nvidia
 keys:
   - "nvpmodel"
   - "jetson_clocks"
