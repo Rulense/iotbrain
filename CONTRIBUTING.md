@@ -12,6 +12,7 @@ Filename: short kebab-case slug, e.g. `pytorch-wheel-libcudnn-import-error.md`.
 ---
 title: <one line, specific, includes key terms>
 type: recipe | config | matrix | gotcha | fix     # pick ONE
+company: nvidia             # device vendor: nvidia | raspberry-pi | qualcomm | nxp | ...
 keys:                       # verbatim grep targets — error strings, package names, element names
   - "<exact string an agent would search for>"
 jetpack: ["6.1"]            # applicable JetPack versions, or ["all"]

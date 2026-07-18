@@ -9,6 +9,7 @@ VALID = textwrap.dedent("""\
     ---
     title: Example fix entry
     type: fix
+    company: nvidia
     keys:
       - "ImportError: libexample.so.1"
     jetpack: ["6.1"]
@@ -48,6 +49,13 @@ def test_bad_type_fails(tmp_path):
     p = write(tmp_path / "brain" / "ml-stack" / "bad.md", VALID.replace("type: fix", "type: banana"))
     errs = validate_entry(parse_entry(p), p)
     assert any("type" in e for e in errs)
+
+
+def test_missing_company_fails(tmp_path):
+    text = VALID.replace("company: nvidia\n", "")
+    p = write(tmp_path / "brain" / "ml-stack" / "bad.md", text)
+    errs = validate_entry(parse_entry(p), p)
+    assert any("company" in e for e in errs)
 
 
 def test_verified_requires_verified_on(tmp_path):

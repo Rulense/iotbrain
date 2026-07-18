@@ -16,7 +16,7 @@ DOMAINS = {"setup", "ml-stack", "vision", "iot", "sdk-dev", "runtime"}
 TYPES = {"recipe", "config", "matrix", "gotcha", "fix"}
 STATUSES = {"verified", "unverified", "outdated"}
 LIST_FIELDS = ("keys", "jetpack", "l4t", "devices", "sources")
-REQUIRED = ("title", "type", "keys", "jetpack", "l4t", "devices", "status", "sources")
+REQUIRED = ("title", "type", "keys", "company", "jetpack", "l4t", "devices", "status", "sources")
 INDEX_LINK = re.compile(r"\]\(([^)]+\.md)\)")
 
 
