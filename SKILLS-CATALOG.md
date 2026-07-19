@@ -41,3 +41,69 @@ CC-BY-4.0), and the vendored skills' scripts and instructions passed a security 
 (no non-NVIDIA network calls, no pipe-to-shell execution, no credential exfiltration,
 no unguarded destructive commands, no prompt-injection content). See `ATTRIBUTION.md`
 for vendoring provenance.
+
+## Ecosystem catalog — researched & vetted 2026-07-18
+
+A deep-research sweep across GitHub (filename:SKILL.md × hardware keywords, org-by-org
+sweeps of 40+ vendor orgs) and vendor announcements. Legitimacy bar: publisher
+verification, content reads, safety scan, license, activity.
+
+### Newly bundled (vendored into `skills/`; see `ATTRIBUTION.md` for pinned commits)
+
+- **ee-datasheet-master** — [Seeed-Studio/ai-skills](https://github.com/Seeed-Studio/ai-skills) — Seeed Studio (official) — MIT — datasheet extraction with strict PDF-only rules, board-agnostic — all.
+- **schematic-analyzer** — [Seeed-Studio/ai-skills](https://github.com/Seeed-Studio/ai-skills) — Seeed Studio (official) — MIT — KiCad/Cadence schematic analysis, board-agnostic — all.
+- **rdk-peripheral-cookbook** — [D-Robotics/moss](https://github.com/D-Robotics/moss) — D-Robotics/Horizon (official) — MIT — cross-platform GPIO/I2C/CAN peripheral guidance incl. RPi/Jetson/Rockchip mapping — d-robotics, nvidia, raspberry-pi, rockchip.
+- **espdl-operator** — [espressif/esp-dl](https://github.com/espressif/esp-dl) `tools/agents/skills/` — Espressif (official) — MIT — implement NN operators for ESP32-S3/P4 — espressif.
+- **espdl-quantize** — [espressif/esp-dl](https://github.com/espressif/esp-dl) `tools/agents/skills/` — Espressif (official) — MIT — quantize NN models for ESP-DL — espressif.
+- **devicetree** — [beriberikix/zephyr-agent-skills](https://github.com/beriberikix/zephyr-agent-skills) — Jonathan Beri (Golioth CEO) — Apache-2.0 — Zephyr RTOS devicetree work, any Zephyr board — zephyr (nordic, nxp, st, espressif).
+- **hardware-io** — [beriberikix/zephyr-agent-skills](https://github.com/beriberikix/zephyr-agent-skills) — Jonathan Beri — Apache-2.0 — Zephyr hardware I/O, any Zephyr board — zephyr (nordic, nxp, st, espressif).
+
+### Tier 1 — official vendor/foundation (reference, install from upstream)
+
+- **NVIDIA/skills** — NVIDIA (official) — Apache-2.0 + CC-BY-4.0 — canonical ~250-skill catalog (jetson-*, deepstream-*, vss-*, holoscan-*, tao-*, doca-*, physical-ai-*), daily-synced, docs.nvidia.com/skills; mirrors our three source repos — nvidia.
+- **NVIDIA-AI-IOT/jetson-ai-lab** (`.agents/skills`) — NVIDIA (official) — jetson-ai-lab code-samples/verify-build/model-catalog-inference — nvidia.
+- **NVIDIA-AI-IOT/inference_builder** — NVIDIA (official) — Apache-2.0 — generates Python inference pipelines — nvidia.
+- **NVIDIA-AI-IOT/DeepStream_Coding_Agent** + **NVIDIA/DeepStream** `skills/` + **NVIDIA-TAO/tao-skill-bank** — NVIDIA (official) — Apache-2.0 — DeepStream coding agent; 60+ TAO skills — nvidia.
+- **espressif/esp-claw** + **esp-claw-skills-lab** — Espressif (official) — Apache-2.0/MIT — on-device ESP32 agent skills (1833★); note: espressif/skills catalog repo is currently an empty placeholder — watch it — espressif.
+- **anthropics/claude-plugins-official** → cwc-makers plugin (m5-onboard, cardputer-buddy) — Anthropic (official) — M5Stack/ESP32 detect/flash/provision — espressif, m5stack.
+- **Seeed-Projects/Seeed-Jetson-DevelopTool** — Seeed (official) — MIT — largest third-party Jetson set (~95 skills): BSP build, JetPack flash incl. WSL2, OTA (Allxon), Frigate/Ollama/YOLO/DeepStream/GR00T deploy — nvidia, seeed.
+- **Seeed-Studio/ai-skills** (rest) — Seeed Studio (official) — MIT — also cv181x-media, onnx-to-cvimodel (reCamera CV181x) — seeed, sophgo.
+- **qualcomm/qai-appbuilder** (`tools/skills`) — Qualcomm (official) — verify LICENSE text before vendoring — QAIRT/QNN/SNPE conversion/quantization/NPU inference on Snapdragon; also qualcomm/cpp-aarch64-build-agent-skill (BSD-3) — qualcomm.
+- **airockchip/clawchips** — Rockchip (official) — MIT — rk-asr/tts/vl/rag/benchmark/adb (Chinese-language; assumes on-device ModelHub) — rockchip.
+- **D-Robotics/moss** (rest) — D-Robotics (official) — MIT — 20 skills: RDK X5/S100 board skills + jetson/rpi/rk knowledge packs — d-robotics.
+- **luxonis/skills** — Luxonis (official) — Apache-2.0 — OAK/DepthAI bring-up→PoC→troubleshoot, ships as Claude Code plugin — luxonis.
+- **hailo-ai/hailo-apps** + **hailo-media-library** — Hailo (official) — MIT — hl-build-* app skills, cross-compile (RPi AI Kit/HAT) — hailo, raspberry-pi.
+- **TexasInstruments/tinyml-tensorlab** — TI (official) — BSD-3 — tinyml-workflow-agent: train→compile→CCS flash — ti.
+- **renesas/renesas-skills** — Renesas (official) — BSD-3 — configure-renesas-debug — renesas.
+- **analogdevicesinc/analog-attach** — Analog Devices (official) — Apache-2.0 — DTS/DTSO editing + remote deploy — analog-devices.
+- **MicrosoftDocs/Agent-Skills** — Microsoft (official) — CC-BY-4.0 — azure-iot-edge/hub/operations/central/defender-for-iot subset — microsoft.
+- Reference-only (repo-internal or ecosystem): **pigweed-project/pigweed** (Apache-2.0), **project-chip/connectedhomeip** Matter skills (Apache-2.0), **pytorch/executorch** executorch-kb, **alibaba/MNN** opencl-optimize, **edgeimpulse** example skills (BSD-3-Clear).
+
+### Tier 2 — credible community (reference; per-skill read before any vendoring)
+
+- **beriberikix/zephyr-agent-skills** — Jonathan Beri — Apache-2.0 — full 21-skill Zephyr catalog + zephyr-cli router (we vendor 2) — zephyr.
+- **SensorsIot/Universal-Embedded-Workbench** — Andreas Spiess — MIT — 14 ESP32 flash-test workbench skills — espressif.
+- **BrownFineSecurity/iothackbot** — Matt Brown (803★) — MIT — 13 IoT security-research skills; offensive by design — authorized security testing only — all.
+- **arpitg1304/robotics-agent-skills** — community — Apache-2.0 — production ROS2 patterns; also wimblerobotics/ros2-copilot-skills (Apache-2.0, 158 Nav2/TF/costmap skills) — ros2.
+- **andrewleech/claude-mpy-marketplace** — MicroPython core contributor — MIT — mpy-ci Docker CI — micropython.
+- **BenGardiner/bitbake-yocto-agent-skills** (Apache-2.0) + **Higangssh/yocto-agent-skills** (MIT) — community — Yocto/BitBake — yocto.
+- **easyzoom/aix-skills** — community — MIT — 75+ MCU library-integration skills (stm32-hal, nrf-connect, tflite-micro, lvgl, mcuboot…) — per-skill read before use — st, nordic.
+- **wedsamuel1230/arduino-skills** — community — MIT — arduino-cli workflows — arduino.
+- **sammcj/agentic-coding** — community — Apache-2.0 — raspberry-pi admin skill — raspberry-pi.
+
+### Reference-only: unlicensed and GPL sources
+
+- Unlicensed (reference-only until licensed; filing license-request issues recommended): **adafruit/Agent_Skills** (CircuitPython/I2C — official Adafruit!), **m5stack/AIFlow**, **themactep/thingino-skills**, **klutchell/claude-skills** (balenify), **mpous/ai-skills**, **pedrominatel/esp-workshops**.
+- GPL — reference only, do not vendor: **sunfounder/pironman5** (GPL-2.0; also instructs curl|sudo bash from own repo), **wolfSSL/wolfHAL** (GPL-3.0), **ailyProject/aily-blockly** (GPL-3.0), **konosubakonoakua/xilinx-skills** (GPL-2.0).
+
+### Warning: rejected sources
+
+Do not install from aggregator/mirror skill collections without provenance (e.g. the
+43.5k★ "agentic-awesome-skills" and its ~15 scraper mirrors): Snyk's ToxicSkills research
+(2026) found prompt injection in ~36% of sampled aggregator skills. Watch for
+brand-squatting orgs ("NVIDIA-dev", created 2026-03, is not NVIDIA), fake Anthropic
+branding ("Anthropic-Cybersecurity-Skills" repos — no such skills exist in any anthropics
+org), namespace collisions (Zephyr-the-deploy-platform ≠ Zephyr RTOS; pi ≠ Raspberry Pi;
+pico ≠ RPi Pico), and unverifiable offensive-security bundles. Scraped marketplaces
+(mcpmarket, lobehub, skillsllm, agent-skills.cc) are listings, not publishers. Always
+resolve to the upstream publisher's own repository before installing anything.

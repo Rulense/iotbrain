@@ -62,3 +62,83 @@ Prior to vendoring, every script and SKILL.md body in the 9 skills was reviewed 
 network calls to non-NVIDIA hosts, pipe-to-shell patterns, credential exfiltration,
 unguarded destructive commands, and prompt-injection-style instructions. No issues were
 found; details are in the vendoring task report.
+
+## Seeed Studio ai-skills
+
+- **Upstream repository:** https://github.com/Seeed-Studio/ai-skills
+- **Pinned commit:** `2746e676e81d85dc073e523407235725efe2f8ca`
+- **Upstream copyright:** Copyright (c) 2026 Seeed Studio
+- **License:** MIT (verified in upstream `LICENSE` at the pinned commit)
+
+### What was vendored
+
+| Skill | Files vendored |
+|---|---|
+| `ee-datasheet-master` | SKILL.md, README.md, PDF_STRATEGY.md, TEMPLATES.md, scripts/ (pdf_tools.py, requirements.txt) |
+| `schematic-analyzer` | SKILL.md, README.md, SCHEMATIC_STRATEGY.md, patterns/ (i2c.yaml, usb.yaml), scripts/ (full tools tree + requirements.txt) |
+
+**All vendored files are unmodified — byte-identical to the upstream files at the pinned
+commit.** Excluded: `evals/` (evaluation fixtures) and `tests/` (upstream test suites) —
+not needed at runtime.
+
+## D-Robotics moss
+
+- **Upstream repository:** https://github.com/D-Robotics/moss
+- **Pinned commit:** `28fc435da4c0fcd7245fc85a0897d5039074190e`
+- **Upstream copyright:** Copyright (c) 2025-2026 D-Robotics
+- **License:** MIT (verified in upstream `LICENSE` at the pinned commit)
+
+### What was vendored
+
+| Skill | Files vendored |
+|---|---|
+| `rdk-peripheral-cookbook` | SKILL.md, references/ (gpio-commands.md, hardware-notes.md, rdk-can-and-board-io.md), scripts/can_mode.py |
+
+Upstream path: `packages/moss-agent/assets/rdk-knowledge/skills/rdk-peripheral-cookbook/`.
+**All vendored files are unmodified — byte-identical to the upstream files at the pinned
+commit.** The complete skill directory was vendored (no exclusions were needed).
+
+## Espressif esp-dl agent skills
+
+- **Upstream repository:** https://github.com/espressif/esp-dl
+- **Pinned commit:** `77a8a624a5c91c56a35e76ba5edc00fa32addd08`
+- **Upstream copyright:** Copyright (c) 2021 Espressif Systems (Shanghai) Co., Ltd.
+- **License:** MIT (verified in upstream `LICENSE` at the pinned commit)
+
+### What was vendored
+
+| Skill | Files vendored |
+|---|---|
+| `espdl-operator` | SKILL.md, references/ (esp-dl-templates.md, esp-ppq-checklist.md), assets/docker/ (Dockerfile, docker_requirements.txt) |
+| `espdl-quantize` | SKILL.md, references/ (contract.md, decision_playbook.md, ppq_methods.md, setting_json_schema.md), scripts/ (analysis_helpers.py, apply_setting.py, compare_iterations.py, run_iteration.py), assets/ (example contracts, extra_requirements.txt) |
+
+Upstream path: `tools/agents/skills/`. **All vendored files are unmodified —
+byte-identical to the upstream files at the pinned commit.** Excluded from
+`espdl-quantize`: `evals/` and `tests/` — not needed at runtime. Note: the two bundled
+example contracts under `espdl-quantize/assets/example_quantize_*/` download calibration
+data and pretrained weights from `dl.espressif.com`, pytorch.org, and Ultralytics/GitHub
+when run; the skill's own scripts perform no network I/O.
+
+## zephyr-agent-skills (Jonathan Beri)
+
+- **Upstream repository:** https://github.com/beriberikix/zephyr-agent-skills
+- **Pinned commit:** `ed63cdfb8cdfbeb5946ea39c33f4aa6bcf3a5cce`
+- **License:** Apache-2.0 (verified in upstream `LICENSE` at the pinned commit)
+
+### What was vendored
+
+| Skill | Files vendored |
+|---|---|
+| `devicetree` | SKILL.md, references/ (dt_syntax.md, dt_bindings.md, dt_overlays.md), scripts/overlay_include_check.py, assets/app_overlay_template.overlay |
+| `hardware-io` | SKILL.md, references/ (sensors.md, pinctrl_gpio.md, soc_config.md), scripts/gpio_alias_check.py, assets/sensor_poll_template.c |
+
+**All vendored files are unmodified — byte-identical to the upstream files at the pinned
+commit.** Excluded: `skill-meta.yaml` — matcher metadata for the upstream `zephyr-cli
+skills suggest` tool, not consumed by the Claude Code skill loader.
+
+### Security review (multi-vendor batch)
+
+Prior to vendoring, every file in all 7 skill directories above (~29,600 lines) was given
+a full-content security read for prompt-injection-style instructions, network calls to
+non-vendor hosts, pipe-to-shell execution, credential access, and unguarded destructive
+commands. All 7 skills passed; details are in the vendoring task report.

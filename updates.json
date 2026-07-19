@@ -1,6 +1,13 @@
 {
-  "stats": { "entries": 39, "skills": 11, "domains": 6, "platforms": 1 },
+  "stats": { "entries": 39, "skills": 18, "domains": 6, "platforms": 1 },
   "updates": [
+    { "title": "Vendored: ee-datasheet-master — PDF-only datasheet spec extraction", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-18" },
+    { "title": "Vendored: schematic-analyzer — KiCad/Cadence schematic analysis", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-18" },
+    { "title": "Vendored: rdk-peripheral-cookbook — cross-platform GPIO/I2C/CAN peripheral guidance", "type": "skill", "domain": "skills", "company": "d-robotics, nvidia, raspberry-pi, rockchip", "date": "2026-07-18" },
+    { "title": "Vendored: espdl-operator — implement NN operators for ESP32-S3/P4", "type": "skill", "domain": "skills", "company": "espressif", "date": "2026-07-18" },
+    { "title": "Vendored: espdl-quantize — quantize NN models for ESP-DL", "type": "skill", "domain": "skills", "company": "espressif", "date": "2026-07-18" },
+    { "title": "Vendored: devicetree — Zephyr devicetree overlays and bindings", "type": "skill", "domain": "skills", "company": "zephyr (nordic, nxp, st, espressif)", "date": "2026-07-18" },
+    { "title": "Vendored: hardware-io — Zephyr sensors, pinctrl, and GPIO", "type": "skill", "domain": "skills", "company": "zephyr (nordic, nxp, st, espressif)", "date": "2026-07-18" },
     { "title": "Vendored: jetson-diagnostic — read-only device health snapshot", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18" },
     { "title": "Vendored: jetson-memory-audit — memory audit + reclamation verify loop", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18" },
     { "title": "Vendored: jetson-headless-mode — reclaim GUI/daemon memory safely", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18" },
