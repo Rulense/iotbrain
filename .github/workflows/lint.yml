@@ -8,9 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history: gen_updates.py --check dates rows from git first-add.
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: python3 -m pip install -r requirements-dev.txt
       - run: python3 -m pytest tests/ -v
       - run: python3 scripts/lint_brain.py brain
+      - run: python3 scripts/gen_updates.py --check

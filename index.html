@@ -206,7 +206,7 @@ footer{padding-bottom:48px}
           <div class="mono counter-label">DOMAINS</div>
         </div>
         <div class="counter">
-          <div class="counter-num" id="n-platforms">01</div>
+          <div class="counter-num" id="n-platforms">05</div>
           <div class="mono counter-label">PLATFORMS</div>
         </div>
       </div>
@@ -456,49 +456,73 @@ optimize · debug
     }
   });
 
-  /* ---- stats + latest additions (fallback mirrors updates.json) ---- */
-  var FALLBACK = {
-    stats: { entries: 39, skills: 18, domains: 6, platforms: 1 },
-    updates: [
-      { title: 'Vendored: ee-datasheet-master — PDF-only datasheet spec extraction', type: 'skill', domain: 'skills', company: 'all', date: '2026-07-18' },
-      { title: 'Vendored: schematic-analyzer — KiCad/Cadence schematic analysis', type: 'skill', domain: 'skills', company: 'all', date: '2026-07-18' },
-      { title: 'Vendored: rdk-peripheral-cookbook — cross-platform GPIO/I2C/CAN peripheral guidance', type: 'skill', domain: 'skills', company: 'd-robotics, nvidia, raspberry-pi, rockchip', date: '2026-07-18' },
-      { title: 'Vendored: espdl-operator — implement NN operators for ESP32-S3/P4', type: 'skill', domain: 'skills', company: 'espressif', date: '2026-07-18' },
-      { title: 'Vendored: espdl-quantize — quantize NN models for ESP-DL', type: 'skill', domain: 'skills', company: 'espressif', date: '2026-07-18' },
-      { title: 'Vendored: devicetree — Zephyr devicetree overlays and bindings', type: 'skill', domain: 'skills', company: 'zephyr (nordic, nxp, st, espressif)', date: '2026-07-18' },
-      { title: 'Vendored: hardware-io — Zephyr sensors, pinctrl, and GPIO', type: 'skill', domain: 'skills', company: 'zephyr (nordic, nxp, st, espressif)', date: '2026-07-18' },
-      { title: 'Vendored: jetson-diagnostic — read-only device health snapshot', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Vendored: jetson-memory-audit — memory audit + reclamation verify loop', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Vendored: jetson-headless-mode — reclaim GUI/daemon memory safely', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Vendored: jetson-inference-mem-tune — runtime + memory flag picker', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Vendored: jetson-llm-serve — vLLM/SGLang serving recipes per Jetson family', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Vendored: jetson-llm-benchmark — reproducible LLM benchmarks with JSON output', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Vendored: jetson-package — Jetson-compatible containers and PyPI indexes', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Vendored: jetson-speculative-decoding — EAGLE-3/draft-model TPOT tuning', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Vendored: jetson-print-device-info — baseline device info report', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Move a running rootfs from SD to NVMe without reflashing', type: 'recipe', domain: 'runtime', company: 'nvidia', date: '2026-07-18' },
-      { title: "Process 'Killed' loading a model — GPU shares system RAM", type: 'gotcha', domain: 'runtime', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Thermal throttling under sustained load — Orin trip points', type: 'gotcha', domain: 'runtime', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Change the Orin fan profile — nvfancontrol.conf + status file', type: 'config', domain: 'runtime', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Reading tegrastats output, field by field', type: 'matrix', domain: 'runtime', company: 'nvidia', date: '2026-07-18' },
-      { title: 'System throttled due to Over-current on Orin', type: 'fix', domain: 'runtime', company: 'nvidia', date: '2026-07-18' },
-      { title: 'Default power mode silently caps performance', type: 'gotcha', domain: 'runtime', company: 'nvidia', date: '2026-07-17' },
-      { title: 'jetson-containers — the escape hatch for dependency hell', type: 'recipe', domain: 'ml-stack', company: 'nvidia', date: '2026-07-17' },
-      { title: "Don't apt-install Ubuntu's nvidia-cuda-toolkit on Jetson", type: 'gotcha', domain: 'ml-stack', company: 'nvidia', date: '2026-07-17' },
-      { title: 'onnxruntime-gpu wheels — PyPI installs are CPU-only', type: 'config', domain: 'ml-stack', company: 'nvidia', date: '2026-07-17' },
-      { title: 'torch × torchvision version pairing on Jetson', type: 'matrix', domain: 'ml-stack', company: 'nvidia', date: '2026-07-17' },
-      { title: 'TensorRT engine plan files are not portable', type: 'gotcha', domain: 'ml-stack', company: 'nvidia', date: '2026-07-17' },
-      { title: 'Known-working PyTorch wheels for JetPack 6.x (CUDA 12.6)', type: 'config', domain: 'ml-stack', company: 'nvidia', date: '2026-07-17' },
-      { title: 'ImportError: libcudnn.so after pip-installing PyTorch', type: 'fix', domain: 'ml-stack', company: 'nvidia', date: '2026-07-17' },
-      { title: "nvarguscamerasrc 'No cameras available' — CSI overlay via jetson-io", type: 'fix', domain: 'vision', company: 'nvidia', date: '2026-07-17' },
-      { title: 'CSI camera frames into OpenCV as BGR — the canonical pipeline', type: 'recipe', domain: 'vision', company: 'nvidia', date: '2026-07-17' },
-      { title: 'Connect a Jetson to AWS IoT Core over MQTT with mutual TLS', type: 'recipe', domain: 'iot', company: 'nvidia', date: '2026-07-17' },
-      { title: 'Flash Orin Nano devkit to NVMe with l4t_initrd_flash.sh', type: 'recipe', domain: 'setup', company: 'nvidia', date: '2026-07-17' },
-      { title: 'CUDA gencode/arch flags per Jetson module — Orin is sm_87', type: 'matrix', domain: 'sdk-dev', company: 'nvidia', date: '2026-07-17' },
-      { title: 'jetson-dev — consult the brain for any Jetson task', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-17' },
-      { title: 'brain-distill — session learnings → entries + PRs', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-17' }
+  /* ---- stats + latest additions (fallback mirrors updates.json) ----
+     Everything between the sentinels is regenerated by scripts/gen_updates.py
+     — do not edit by hand. */
+  /*__IOTBRAIN_DATA_START__*/
+  const FALLBACK = {
+    "stats": {"entries": 39, "skills": 18, "domains": 6, "platforms": 5},
+    "updates": [
+      {"title": "Change the Jetson Orin fan profile (quiet vs cool) — edit /etc/nvfancontrol.conf AND delete /var/lib/nvfancontrol/status", "type": "config", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "Jetson Orin thermal throttling under sustained load — clocks drop near 99°C, soft shutdown at 104.5°C (thermal_zone temps)", "type": "gotcha", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "Move a running Jetson's rootfs from SD to NVMe without reflashing — copy rootfs, point extlinux.conf root= at /dev/nvme0n1p1", "type": "recipe", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "Process 'Killed' loading a model on Jetson — GPU shares system RAM (unified memory): swap strategy, GUI off, zram trade-offs", "type": "gotcha", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "Reading tegrastats output — RAM/lfb, SWAP, CPU %@MHz, EMC_FREQ, GR3D_FREQ, temps, VDD power rails", "type": "matrix", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "System throttled due to Over-current on Jetson Orin — read the OC event counters, size the supply, expect it under MAXN stress", "type": "fix", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "devicetree — Devicetree management for Zephyr RTOS", "type": "skill", "domain": "skills", "company": "zephyr", "date": "2026-07-18"},
+      {"title": "ee-datasheet-master — Use when user has/is reading a component datasheet or spec sheet to find chip…", "type": "skill", "domain": "skills", "company": "seeed", "date": "2026-07-18"},
+      {"title": "espdl-operator — End-to-end guide for implementing, testing, and optimizing neural network…", "type": "skill", "domain": "skills", "company": "espressif", "date": "2026-07-18"},
+      {"title": "espdl-quantize — Iteratively tune esp-ppq QuantizationSetting to recover post-quantization…", "type": "skill", "domain": "skills", "company": "espressif", "date": "2026-07-18"},
+      {"title": "hardware-io — Hardware interfacing and peripheral management for Zephyr RTOS", "type": "skill", "domain": "skills", "company": "zephyr", "date": "2026-07-18"},
+      {"title": "jetson-diagnostic — Read-only Jetson health snapshot for identity, memory, GPU, thermal, power…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "jetson-headless-mode — Plan and apply safe Jetson headless-mode changes to reclaim GUI and daemon…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "jetson-inference-mem-tune — Pick the serving stack and per-runtime memory flags (vLLM, SGLang, llama.cpp…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "jetson-llm-benchmark — Benchmark Jetson LLM/VLM serving performance across vLLM, llama.cpp, and Ollama…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "jetson-llm-serve — Stand up vLLM or SGLang serving on Jetson, using upstream vLLM on Thor and Orin…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "jetson-memory-audit — Measure Jetson DRAM/NvMap usage and verify before/after memory reclamation with…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "jetson-package — Pick Jetson-compatible containers, vLLM runtime images, and Jetson AI Lab PyPI…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "jetson-print-device-info — Use when you need to print Jetson device info (module model, L4T version…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "jetson-speculative-decoding — Add EAGLE-3 or draft-model speculative decoding to a Jetson vLLM server when…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18"},
+      {"title": "rdk-peripheral-cookbook — Hands-on peripheral driving on RDK boards — GPIO/I2C/SPI/UART/PWM, servos…", "type": "skill", "domain": "skills", "company": "d-robotics", "date": "2026-07-18"},
+      {"title": "schematic-analyzer — Use when analyzing KiCad schematics (.kicad_sch) or Cadence OrCAD/Allegro…", "type": "skill", "domain": "skills", "company": "seeed", "date": "2026-07-18"},
+      {"title": "Big on-device builds on Jetson — cc1plus killed by OOM: disable zram, add NVMe swap, max clocks, lower -j", "type": "recipe", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "CSI camera frames into OpenCV as BGR — nvvidconv to BGRx, then videoconvert (VIC can't output BGR)", "type": "recipe", "domain": "vision", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "CUDA gencode/arch flags per Jetson module — Orin is sm_87, Xavier is sm_72 (wrong arch = no kernel image)", "type": "matrix", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Camera worked before, now every Argus open fails/times out — restart nvargus-daemon first", "type": "fix", "domain": "vision", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Connect a Jetson to AWS IoT Core over MQTT with mutual TLS (paho-mqtt / mosquitto, port 8883 or 443 ALPN)", "type": "recipe", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Correct board-config names for flashing Orin devkits on L4T r36.x (stale names break boot)", "type": "matrix", "domain": "setup", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Cross-compiling for Jetson — Bootlin toolchain + L4T sysroot on x86, vs just building on-device", "type": "recipe", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Default power mode silently caps Jetson performance", "type": "gotcha", "domain": "runtime", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Docker container can't reach the GPU on Jetson after Docker install/update — re-register nvidia runtime, set default-runtime", "type": "fix", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Don't apt-install Ubuntu's nvidia-cuda-toolkit on Jetson — JetPack CUDA lives in /usr/local/cuda", "type": "gotcha", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Flash Jetson Orin Nano devkit to NVMe SSD with l4t_initrd_flash.sh", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Fleet OTA on Jetson — apt package OTA vs image-based OTA, and what survives each", "type": "matrix", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Headless Jetson setup with no monitor — USB device mode serial oem-config, then ssh to 192.168.55.1", "type": "recipe", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Illegal instruction (core dumped) importing numpy/torch on Jetson — OPENBLAS_CORETYPE=ARMV8", "type": "fix", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "ImportError: libcudnn.so after pip-installing PyTorch on Jetson", "type": "fix", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "JetPack 6 SD image stuck at first boot / End-user configuration on Orin Nano — QSPI firmware too old", "type": "fix", "domain": "setup", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Jetson boots with clock in the past after power-off (TLS/apt breaks) — RTC battery is on rtc0, but boot time comes from rtc1", "type": "fix", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Jetson in forced recovery mode not detected by host lsusb (cable, port, VM passthrough)", "type": "fix", "domain": "setup", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Known-working PyTorch wheel source for JetPack 6.x (CUDA 12.6)", "type": "config", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Python wheels on Jetson (aarch64) — piwheels doesn't serve you, cp-tag mismatches, and pip's silent source builds", "type": "gotcha", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "RTSP streaming from a Jetson camera with the hardware encoder (nvv4l2h264enc + gst-rtsp-server test-launch)", "type": "recipe", "domain": "vision", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Recover an unbootable Jetson after a failed apt/OTA upgrade (forced recovery + reflash)", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "RuntimeError: operator torchvision::nms does not exist — torch/torchvision pairing on Jetson", "type": "matrix", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "SDK Manager hangs at 'Determining the IP address of the target' — OEM configuration not completed", "type": "fix", "domain": "setup", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Shipping Jetson apps as containers — since JetPack 5, l4t-base no longer mounts CUDA from the host (l4t.csv mounts BSP only)", "type": "gotcha", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "TensorRT engine plan files are not portable — rebuild per device and per TensorRT version", "type": "gotcha", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "Wi-Fi drops on an idle Jetson and never reconnects — disable wifi.powersave / iw power_save", "type": "fix", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "brain-distill — Use after a Jetson learning has been VERIFIED on real hardware — a fix…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "cannot find -lnvbuf_utils — linking against the Jetson Multimedia API (tegra/nvidia lib dirs, JP5 NvBufSurface migration)", "type": "fix", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "jetson-containers — prebuilt CUDA ML containers as the escape hatch for on-device dependency hell", "type": "recipe", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "jetson-dev — Use for ANY NVIDIA Jetson / JetPack / L4T / Tegra task — building, deploying…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "nvarguscamerasrc 'No cameras available' with IMX219/IMX477 — apply CSI overlay with jetson-io", "type": "fix", "domain": "vision", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "nvarguscamerasrc in Docker: mount /tmp/argus_socket — and remount after any nvargus-daemon restart", "type": "fix", "domain": "vision", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "onnxruntime-gpu wheels for Jetson — PyPI installs are CPU-only, use Jetson AI Lab / Jetson Zoo wheels", "type": "config", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "v4l2-ctl captures frames but nvarguscamerasrc/Argus fails — the ISP path needs more than a working V4L2 driver", "type": "gotcha", "domain": "vision", "company": "nvidia", "date": "2026-07-17"}
     ]
   };
+  /*__IOTBRAIN_DATA_END__*/
 
   function pad2(n) { return String(n).padStart(2, '0'); }
 
