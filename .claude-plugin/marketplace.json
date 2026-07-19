@@ -1,0 +1,19 @@
+{
+  "name": "iotbrain",
+  "owner": {
+    "name": "iotbrain community",
+    "url": "https://github.com/Rulense/iotbrain"
+  },
+  "plugins": [
+    {
+      "name": "iotbrain",
+      "source": "./",
+      "description": "The collective brain for edge-IoT development — skills plus a community-grown, grep-able knowledge base of recipes, configs, version matrices, gotchas, and fixes.",
+      "author": { "name": "iotbrain community" },
+      "homepage": "https://rulense.github.io/iotbrain/",
+      "repository": "https://github.com/Rulense/iotbrain",
+      "license": "Apache-2.0",
+      "keywords": ["iot", "edge", "jetson", "embedded", "knowledge-base", "skills"]
+    }
+  ]
+}
