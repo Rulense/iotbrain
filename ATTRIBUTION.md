@@ -142,3 +142,7 @@ Prior to vendoring, every file in all 7 skill directories above (~29,600 lines) 
 a full-content security read for prompt-injection-style instructions, network calls to
 non-vendor hosts, pipe-to-shell execution, credential access, and unguarded destructive
 commands. All 7 skills passed; details are in the vendoring task report.
+
+## License texts
+
+Verbatim license texts for all vendored upstreams are included in `third_party_licenses/`. This repository itself is licensed under Apache-2.0 (see `LICENSE`).
