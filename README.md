@@ -22,7 +22,7 @@ Jetson Brain is a **Claude Code plugin** with two parts:
 | `gotcha` | A trap to avoid proactively | nvarguscamerasrc quirk on JP6.0 that silently drops frames |
 | `fix` | An error and its verified solution | `libcudnn.so.8` import failure → exact resolution |
 
-**The Skills** — how the agent puts the brain to work: a main Jetson development skill that consults the brain for *any* Jetson task, and a distiller skill that grows the brain. Domain skills for the major workflows (vision pipelines, IoT/edge connectivity, SDK and library development) arrive in v0.2.
+**The Skills** — how the agent puts the brain to work: a main Jetson development skill that consults the brain for *any* Jetson task, and a distiller skill that grows the brain. Domain skills for the major workflows (vision pipelines, IoT/edge connectivity, SDK and library development) arrive in v0.2. Bundled & companion skills: nine NVIDIA device skills ship vendored in `skills/`, with the full ecosystem (including companion installs) catalogued in `SKILLS-CATALOG.md`.
 
 ## The loop — for every task, not just broken ones
 
@@ -62,6 +62,7 @@ jetson-brain/
 ├── skills/
 │   ├── jetson-dev/            # the companion: brain consultation for any Jetson task
 │   ├── brain-distill/         # turns verified learnings into brain entries + PRs
+│   ├── jetson-* (9)           # vendored NVIDIA device skills — see ATTRIBUTION.md
 │   ├── vision-pipeline/       # (v0.2 — coming) cameras, GStreamer, DeepStream
 │   ├── iot-connect/           # (v0.2 — coming) MQTT, cloud backends, fleet/edge deployment
 │   └── sdk-build/             # (v0.2 — coming) building libraries & SDKs for aarch64/L4T

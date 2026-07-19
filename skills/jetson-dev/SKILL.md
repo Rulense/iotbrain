@@ -54,6 +54,12 @@ grep -ril "<verbatim error or keyword>" "${CLAUDE_PLUGIN_ROOT}/brain/" ~/.jetson
 
 ## Step 4 — Do the work
 
+When a more specific installed skill covers the task — `jetson-diagnostic`,
+`jetson-memory-audit`, or another vendored `jetson-*` skill bundled with this
+plugin, or a companion skill from `SKILLS-CATALOG.md` — use that skill for the
+doing. Consult the brain first either way (Steps 2–3): brain entries tell you
+which knowledge applies to this device before the specialist skill acts.
+
 - Apply matching `recipe`/`config`/`fix` entries.
 - Proactively surface matching `gotcha` entries BEFORE hitting them ("the brain
   warns that X on this JetPack — avoiding it by Y").

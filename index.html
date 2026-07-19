@@ -198,7 +198,7 @@ footer{padding-bottom:48px}
           <div class="mono counter-label">BRAIN ENTRIES</div>
         </div>
         <div class="counter">
-          <div class="counter-num" id="n-skills">02</div>
+          <div class="counter-num" id="n-skills">11</div>
           <div class="mono counter-label">SKILLS</div>
         </div>
         <div class="counter">
@@ -458,8 +458,17 @@ optimize · debug
 
   /* ---- stats + latest additions (fallback mirrors updates.json) ---- */
   var FALLBACK = {
-    stats: { entries: 39, skills: 2, domains: 6, platforms: 1 },
+    stats: { entries: 39, skills: 11, domains: 6, platforms: 1 },
     updates: [
+      { title: 'Vendored: jetson-diagnostic — read-only device health snapshot', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
+      { title: 'Vendored: jetson-memory-audit — memory audit + reclamation verify loop', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
+      { title: 'Vendored: jetson-headless-mode — reclaim GUI/daemon memory safely', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
+      { title: 'Vendored: jetson-inference-mem-tune — runtime + memory flag picker', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
+      { title: 'Vendored: jetson-llm-serve — vLLM/SGLang serving recipes per Jetson family', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
+      { title: 'Vendored: jetson-llm-benchmark — reproducible LLM benchmarks with JSON output', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
+      { title: 'Vendored: jetson-package — Jetson-compatible containers and PyPI indexes', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
+      { title: 'Vendored: jetson-speculative-decoding — EAGLE-3/draft-model TPOT tuning', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
+      { title: 'Vendored: jetson-print-device-info — baseline device info report', type: 'skill', domain: 'skills', company: 'nvidia', date: '2026-07-18' },
       { title: 'Move a running rootfs from SD to NVMe without reflashing', type: 'recipe', domain: 'runtime', company: 'nvidia', date: '2026-07-18' },
       { title: "Process 'Killed' loading a model — GPU shares system RAM", type: 'gotcha', domain: 'runtime', company: 'nvidia', date: '2026-07-18' },
       { title: 'Thermal throttling under sustained load — Orin trip points', type: 'gotcha', domain: 'runtime', company: 'nvidia', date: '2026-07-18' },
