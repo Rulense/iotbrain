@@ -1,10 +1,14 @@
 # tests/test_gen_updates.py
+import pytest
+
 from scripts.gen_updates import (
     UPDATES_CAP,
     build_stats,
     build_updates,
     first_sentence,
     main,
+    patch_readme,
+    render_readme_stats,
     skill_company,
 )
 
@@ -37,6 +41,19 @@ def test_build_stats_empty():
     }
 
 
+def test_build_stats_excludes_all_from_platforms():
+    # "all" marks vendor-neutral skills (iot-dev, brain-distill) — it is not
+    # a platform and must not inflate the distinct-platforms count.
+    entries = [row("a", "2026-07-01")]
+    skills = [
+        row("iot-dev", "2026-07-01", type="skill", domain="skills", company="all"),
+        row("s2", "2026-07-01", type="skill", domain="skills", company="zephyr"),
+    ]
+    stats = build_stats(entries, skills)
+    assert stats["platforms"] == 2  # nvidia + zephyr, not "all"
+    assert stats["skills"] == 2
+
+
 def test_build_updates_newest_first_tiebreak_alphabetical():
     entries = [row("beta", "2026-07-01"), row("alpha", "2026-07-01")]
     skills = [row("zeta", "2026-07-02", type="skill", domain="skills")]
@@ -61,9 +78,65 @@ def test_first_sentence_truncates_long():
 
 def test_skill_company_mapping():
     assert skill_company("jetson-llm-serve") == "nvidia"
-    assert skill_company("brain-distill") == "nvidia"
+    assert skill_company("iot-dev") == "all"
+    assert skill_company("brain-distill") == "all"
     assert skill_company("rdk-peripheral-cookbook") == "d-robotics"
     assert skill_company("totally-unknown-skill") is None
+
+
+README_DATA = {
+    "stats": {"entries": 2, "skills": 1, "domains": 2, "platforms": 1},
+    "updates": [row("newer", "2026-07-18"), row("older", "2026-07-01")],
+}
+README_TMPL = (
+    "# proj\n\nintro paragraph\n\n"
+    "<!-- IOTBRAIN_STATS_START -->\nstale hand-written line\n"
+    "<!-- IOTBRAIN_STATS_END -->\n\nrest of the file\n"
+)
+
+
+def test_readme_stats_line_uses_newest_row_date_not_wall_clock():
+    assert render_readme_stats(README_DATA) == (
+        "**2** brain entries · **1** skills · **2** domains · **1** platforms"
+        " — last updated 2026-07-18"
+    )
+
+
+def test_patch_readme_replaces_sentinel_region():
+    out = patch_readme(README_TMPL, README_DATA)
+    assert "stale hand-written line" not in out
+    assert render_readme_stats(README_DATA) in out
+    assert out.startswith("# proj\n\nintro paragraph\n\n<!-- IOTBRAIN_STATS_START -->\n")
+    assert out.endswith("<!-- IOTBRAIN_STATS_END -->\n\nrest of the file\n")
+    assert patch_readme(out, README_DATA) == out  # idempotent
+
+
+def test_patch_readme_missing_sentinels_raises():
+    with pytest.raises(RuntimeError):
+        patch_readme("# no markers here\n", README_DATA)
+
+
+def _mini_repo(tmp_path):
+    (tmp_path / "brain").mkdir()
+    skill = tmp_path / "skills" / "iot-dev"
+    skill.mkdir(parents=True)
+    (skill / "SKILL.md").write_text(
+        "---\nname: iot-dev\ndescription: Edge-IoT companion. More text.\n---\nbody\n")
+    (tmp_path / "index.html").write_text(
+        "<script>\n/*__IOTBRAIN_DATA_START__*/ x /*__IOTBRAIN_DATA_END__*/\n</script>\n")
+    (tmp_path / "README.md").write_text(README_TMPL)
+    return tmp_path
+
+
+def test_check_flags_stale_readme(tmp_path, capsys):
+    repo = _mini_repo(tmp_path)
+    assert main(["--repo-root", str(repo)]) == 0            # generate all files
+    assert main(["--check", "--repo-root", str(repo)]) == 0  # now clean
+    readme = repo / "README.md"
+    readme.write_text(readme.read_text().replace("brain entries", "brain entriez"))
+    capsys.readouterr()
+    assert main(["--check", "--repo-root", str(repo)]) == 1
+    assert "README.md" in capsys.readouterr().out
 
 
 def test_unmapped_skill_fails(tmp_path, capsys):

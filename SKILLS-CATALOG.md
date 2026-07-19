@@ -1,14 +1,14 @@
 # Skills Catalog
 
-The Jetson skills ecosystem, in three tiers: what ships in this plugin, what to install
+The edge-IoT skills ecosystem, in three tiers: what ships in this plugin, what to install
 alongside it, and how everything was vetted.
 
 ## Bundled (ship with this plugin, under `skills/`)
 
-Jetson Brain's own skills:
+iotbrain's own skills:
 
-- **jetson-dev** — the companion: collects device facts, consults the brain before any Jetson task, applies version-matched knowledge, distills learnings back — Jetson Brain (this repo).
-- **brain-distill** — turns a hardware-verified session learning into a brain entry and (with approval) a community PR — Jetson Brain (this repo).
+- **iot-dev** — the companion: identifies the device and vendor, consults the brain before any edge-IoT task, applies version-matched knowledge, distills learnings back — iotbrain (this repo).
+- **brain-distill** — turns a hardware-verified session learning into a brain entry and (with approval) a community PR — iotbrain (this repo).
 
 Vendored NVIDIA device skills (from [NVIDIA-AI-IOT/jetson-device-skills](https://github.com/NVIDIA-AI-IOT/jetson-device-skills) @ `0a803703`; see `ATTRIBUTION.md`):
 

@@ -14,9 +14,9 @@ INDEX.md first); a device (or honest simulation) where the fix can be verified.
 **Pass criteria:**
 - Agent greps the brain first and correctly reports a miss.
 - After the fix is VERIFIED (not merely found), brain-distill runs.
-- Entry appears under `~/.jetson-brain/local/<domain>/` with verbatim keys and
+- Entry appears under `~/.iotbrain/local/<domain>/` with verbatim keys and
   correct device/JetPack frontmatter.
-- `python3 scripts/lint_brain.py ~/.jetson-brain/local` reports no
+- `python3 scripts/lint_brain.py ~/.iotbrain/local` reports no
   frontmatter/schema errors; a single `INDEX.md missing` error (and exit
   code 1) is expected for the overlay — the distill flow never creates an
   overlay INDEX — and does not fail this scenario.

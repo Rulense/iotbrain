@@ -1,4 +1,4 @@
-# Jetson Brain Index
+# iotbrain Index
 
 One line per entry. Format: `- [title](domain/slug.md) — type · JP range · hook`
 

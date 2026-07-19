@@ -1,4 +1,4 @@
-# Contributing to Jetson Brain
+# Contributing to iotbrain
 
 The brain only gets smarter if verified knowledge flows back. Two ways to contribute: let the `brain-distill` skill draft an entry + PR for you, or write one by hand using the template below.
 

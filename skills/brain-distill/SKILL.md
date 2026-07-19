@@ -1,6 +1,6 @@
 ---
 name: brain-distill
-description: Use after a Jetson learning has been VERIFIED on real hardware — a fix confirmed working, a recipe run end-to-end, a config proven, a gotcha reproduced. Distills it into a Jetson Brain entry, saves it locally, and (with explicit user approval only) opens a community PR.
+description: Use after an edge-IoT learning has been VERIFIED on real hardware — a fix confirmed working, a recipe run end-to-end, a config proven, a gotcha reproduced. Distills it into an iotbrain entry, saves it locally, and (with explicit user approval only) opens a community PR.
 ---
 
 # Brain Distiller
@@ -12,7 +12,7 @@ into one entry.
 
 Grep the shipped brain (`${CLAUDE_PLUGIN_ROOT}/brain/` — `${CLAUDE_PLUGIN_ROOT}`
 is the env var Claude Code sets to the plugin's install root) and the local overlay
-(`~/.jetson-brain/local/`) for the entry's would-be keys. If an existing entry
+(`~/.iotbrain/local/`) for the entry's would-be keys. If an existing entry
 covers the same knowledge, prepare an UPDATE to that file (extend `jetpack`
 ranges, revise steps, or set the old entry `status: outdated` with the version
 boundary noted in its Gotchas) instead of creating a duplicate.
@@ -36,7 +36,7 @@ company-internal references, proprietary code. Replace with placeholders like
 ## Step 3 — Save to the local overlay immediately
 
 ```bash
-mkdir -p ~/.jetson-brain/local/<domain>
+mkdir -p ~/.iotbrain/local/<domain>
 # write the entry file there
 ```
 The knowledge is now retrievable in future sessions regardless of what happens next.
@@ -44,18 +44,21 @@ The knowledge is now retrievable in future sessions regardless of what happens n
 ## Step 4 — User approval gate (MANDATORY)
 
 Show the user the COMPLETE entry content, then ask exactly one question:
-"Contribute this entry to the public Jetson Brain repo as a PR?"
+"Contribute this entry to the public iotbrain repo as a PR?"
 - Never open a PR, push, fork, or publish without an explicit yes to the shown
   content. If the user edits it, show the final version again.
 - If no: stop here. The entry stays in the local overlay. Do not ask again.
 
 ## Step 5 — Open the PR (only after approval)
 
+`<brain-repo-url>` below resolves to the public iotbrain repo URL once it is
+published.
+
 ```bash
 workdir=$(mktemp -d)
-gh repo fork <brain-repo-url> --clone -- "$workdir/jetson-brain" \
-  || git clone <your-fork-url> "$workdir/jetson-brain"
-cd "$workdir/jetson-brain"
+gh repo fork <brain-repo-url> --clone -- "$workdir/iotbrain" \
+  || git clone <your-fork-url> "$workdir/iotbrain"
+cd "$workdir/iotbrain"
 git checkout -b brain/<domain>-<slug>
 # copy entry to brain/<domain>/<slug>.md
 # add the INDEX.md line: - [<title>](<domain>/<slug>.md) — <type> · JP <range> · <hook>
@@ -76,5 +79,5 @@ EOF
 ```
 
 If `gh` is missing or unauthenticated: tell the user the entry is saved at
-`~/.jetson-brain/local/<domain>/<slug>.md` and give them the repo URL to
+`~/.iotbrain/local/<domain>/<slug>.md` and give them the repo URL to
 contribute manually. Do not attempt workarounds.

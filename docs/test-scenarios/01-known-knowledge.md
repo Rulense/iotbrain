@@ -2,7 +2,7 @@
 
 **Verifies:** a seeded entry is found by grep and applied with version filtering.
 
-**Setup:** Claude Code session with the jetson-brain plugin installed; network
+**Setup:** Claude Code session with the iotbrain plugin installed; network
 access to forums BLOCKED or unused (watch the transcript); any Orin device or a
 mocked device-facts response (JetPack 6.1, Orin Nano).
 

@@ -1,5 +1,5 @@
 # scripts/lint_brain.py
-"""Lint Jetson Brain entries: frontmatter schema + INDEX.md consistency.
+"""Lint iotbrain brain entries: frontmatter schema + INDEX.md consistency.
 
 Usage: python3 scripts/lint_brain.py <brain-dir>
 Exit 0 when clean, 1 with one error per line otherwise.

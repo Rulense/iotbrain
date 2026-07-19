@@ -1,6 +1,6 @@
 {
-  "name": "jetson-brain",
+  "name": "iotbrain",
   "version": "0.1.0",
-  "description": "The collective brain for NVIDIA Jetson development — skills plus a community-grown, grep-able knowledge base of recipes, configs, version matrices, gotchas, and fixes.",
-  "author": { "name": "Jetson Brain community" }
+  "description": "The collective brain for edge-IoT development — skills plus a community-grown, grep-able knowledge base of recipes, configs, version matrices, gotchas, and fixes. NVIDIA Jetson is the first fully seeded platform.",
+  "author": { "name": "iotbrain community" }
 }

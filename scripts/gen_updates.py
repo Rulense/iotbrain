@@ -8,10 +8,13 @@ Collects brain entries (brain/<domain>/*.md frontmatter) and skills
   - updates.json                        — fetched by index.html at runtime
   - index.html fallback region          — the baked-in copy between the
     /*__IOTBRAIN_DATA_START__*/ ... /*__IOTBRAIN_DATA_END__*/ sentinels
+  - README.md stats region              — the one-line stats summary between
+    <!-- IOTBRAIN_STATS_START --> ... <!-- IOTBRAIN_STATS_END --> (the
+    "last updated" date is the newest update row's date, not wall-clock)
 
 Usage:
-  python3 scripts/gen_updates.py            # regenerate both files in place
-  python3 scripts/gen_updates.py --check    # exit 1 if either file is stale
+  python3 scripts/gen_updates.py            # regenerate all three files in place
+  python3 scripts/gen_updates.py --check    # exit 1 if any file is stale
 
 Requires full git history for correct dates (CI: checkout fetch-depth: 0).
 Stdlib + pyyaml only.
@@ -33,12 +36,15 @@ except ImportError:  # run directly: python3 scripts/gen_updates.py
     from lint_brain import LintError, parse_entry
 
 # --- Skill → company map ------------------------------------------------------
-# Company attribution for vendored skills. Skills named jetson-* — plus our own
-# jetson-dev and brain-distill — are NVIDIA's; every OTHER vendored skill MUST
-# have an explicit entry below. `gen_updates.py --check` (run in CI) fails and
-# lists any skills/<name>/ directory that has no mapping, so add new vendored
-# skills here when you vendor them.
-OUR_SKILLS = {"jetson-dev", "brain-distill"}
+# Company attribution for skills. Our own companion skills (iot-dev,
+# brain-distill) are vendor-neutral and carry the special company value "all",
+# which is EXCLUDED from the distinct-platforms stat. Vendored skills named
+# jetson-* are NVIDIA's; every OTHER vendored skill MUST have an explicit entry
+# below. `gen_updates.py --check` (run in CI) fails and lists any
+# skills/<name>/ directory that has no mapping, so add new vendored skills here
+# when you vendor them.
+OUR_SKILLS = {"iot-dev", "brain-distill"}
+OUR_SKILLS_COMPANY = "all"
 VENDOR_COMPANY = {
     "ee-datasheet-master": "seeed",
     "schematic-analyzer": "seeed",
@@ -53,6 +59,8 @@ UPDATES_CAP = 60
 TITLE_SENTENCE_LIMIT = 80
 START_MARK = "/*__IOTBRAIN_DATA_START__*/"
 END_MARK = "/*__IOTBRAIN_DATA_END__*/"
+README_START_MARK = "<!-- IOTBRAIN_STATS_START -->"
+README_END_MARK = "<!-- IOTBRAIN_STATS_END -->"
 
 
 class UnmappedSkillError(Exception):
@@ -60,7 +68,9 @@ class UnmappedSkillError(Exception):
 
 
 def skill_company(skill_dir: str) -> "str | None":
-    if skill_dir.startswith("jetson-") or skill_dir in OUR_SKILLS:
+    if skill_dir in OUR_SKILLS:
+        return OUR_SKILLS_COMPANY
+    if skill_dir.startswith("jetson-"):
         return "nvidia"
     return VENDOR_COMPANY.get(skill_dir)
 
@@ -166,12 +176,14 @@ def collect_skills(repo_root: Path) -> "list[dict]":
 
 
 def build_stats(entries: "list[dict]", skills: "list[dict]") -> dict:
+    # The special company value "all" (vendor-neutral skills) is not a
+    # platform and is excluded from the distinct-platforms count.
     companies = set()
     for row in entries + skills:
         company = row.get("company")
         if isinstance(company, list):
-            companies.update(str(c) for c in company)
-        elif company:
+            companies.update(str(c) for c in company if str(c) != OUR_SKILLS_COMPANY)
+        elif company and str(company) != OUR_SKILLS_COMPANY:
             companies.add(str(company))
     return {
         "entries": len(entries),
@@ -212,6 +224,31 @@ def patch_index_html(html: str, data: dict) -> str:
     return head + START_MARK + region + END_MARK + tail
 
 
+def render_readme_stats(data: dict) -> str:
+    """One-line stats summary for the README sentinel region. The date is the
+    newest update row's date (not wall-clock)."""
+    stats = data["stats"]
+    line = ("**%d** brain entries · **%d** skills · **%d** domains · "
+            "**%d** platforms" % (stats["entries"], stats["skills"],
+                                  stats["domains"], stats["platforms"]))
+    dates = [str(row["date"]) for row in data["updates"] if row.get("date")]
+    if dates:
+        line += " — last updated %s" % max(dates)
+    return line
+
+
+def patch_readme(md: str, data: dict) -> str:
+    """Replace the stats line between the README sentinel comments."""
+    if README_START_MARK not in md or README_END_MARK not in md:
+        raise RuntimeError(
+            "README.md: sentinel markers %s / %s not found"
+            % (README_START_MARK, README_END_MARK))
+    head, rest = md.split(README_START_MARK, 1)
+    _, tail = rest.split(README_END_MARK, 1)
+    return (head + README_START_MARK + "\n" + render_readme_stats(data)
+            + "\n" + README_END_MARK + tail)
+
+
 def _diff_summary(name: str, old: str, new: str, max_lines: int = 20) -> str:
     diff = list(difflib.unified_diff(
         old.splitlines(), new.splitlines(),
@@ -226,7 +263,8 @@ def _diff_summary(name: str, old: str, new: str, max_lines: int = 20) -> str:
 def main(argv: "list[str] | None" = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true",
-                        help="exit 1 if updates.json or the index.html fallback is stale")
+                        help="exit 1 if updates.json, the index.html fallback, "
+                             "or the README.md stats line is stale")
     parser.add_argument("--repo-root", default=None,
                         help="repo root (default: parent of scripts/)")
     args = parser.parse_args(argv)
@@ -246,10 +284,13 @@ def main(argv: "list[str] | None" = None) -> int:
 
     updates_path = repo_root / "updates.json"
     index_path = repo_root / "index.html"
+    readme_path = repo_root / "README.md"
     new_json = render_json(data)
     old_html = index_path.read_text(encoding="utf-8")
+    old_readme = readme_path.read_text(encoding="utf-8")
     try:
         new_html = patch_index_html(old_html, data)
+        new_readme = patch_readme(old_readme, data)
     except RuntimeError as e:
         print("error: %s" % e, file=sys.stderr)
         return 1
@@ -261,6 +302,8 @@ def main(argv: "list[str] | None" = None) -> int:
             stale.append(_diff_summary("updates.json", old_json, new_json))
         if old_html != new_html:
             stale.append(_diff_summary("index.html", old_html, new_html))
+        if old_readme != new_readme:
+            stale.append(_diff_summary("README.md", old_readme, new_readme))
         if stale:
             print("stale generated data — run: python3 scripts/gen_updates.py")
             for block in stale:
@@ -270,8 +313,9 @@ def main(argv: "list[str] | None" = None) -> int:
 
     updates_path.write_text(new_json, encoding="utf-8")
     index_path.write_text(new_html, encoding="utf-8")
-    print("wrote %s and patched %s (%d entries, %d skills, %d update rows)" % (
-        updates_path, index_path, data["stats"]["entries"],
+    readme_path.write_text(new_readme, encoding="utf-8")
+    print("wrote %s and patched %s + %s (%d entries, %d skills, %d update rows)" % (
+        updates_path, index_path, readme_path, data["stats"]["entries"],
         data["stats"]["skills"], len(data["updates"])))
     return 0
 

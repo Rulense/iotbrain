@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>IoT Brain — the collective brain for IoT development</title>
-<meta name="description" content="IoT Brain is a Claude Code plugin: skills plus a community-grown, grep-able knowledge base of verified recipes, configs, version matrices, gotchas, and fixes — so your agent starts every IoT task with what the community already knows. NVIDIA Jetson first.">
+<title>iotbrain — the collective brain for IoT development</title>
+<meta name="description" content="iotbrain is a Claude Code plugin: skills plus a community-grown, grep-able knowledge base of verified recipes, configs, version matrices, gotchas, and fixes — so your agent starts every IoT task with what the community already knows. NVIDIA Jetson first.">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:#faf8f3}
@@ -150,7 +150,7 @@ footer{padding-bottom:48px}
   <header>
     <div class="wrap header-in">
       <div class="brand">
-        <div class="brand-name">iot brain</div>
+        <div class="brand-name">iotbrain</div>
         <div class="mono brand-tag">CLAUDE CODE PLUGIN</div>
       </div>
       <nav class="mono">
@@ -159,7 +159,7 @@ footer{padding-bottom:48px}
         <a href="#loop">THE LOOP</a>
         <a href="#inside">INSIDE</a>
         <a href="#roadmap">ROADMAP</a>
-        <a class="gh-link" href="https://github.com/ORG/iot-brain" target="_blank" rel="noreferrer">GITHUB ↗</a>
+        <a class="gh-link" href="https://github.com/OWNER/iotbrain" target="_blank" rel="noreferrer">GITHUB ↗</a>
       </nav>
     </div>
   </header>
@@ -171,7 +171,7 @@ footer{padding-bottom:48px}
         <h1>Your agent starts with everything we know.</h1>
         <p class="hero-p">Install it into Claude Code and your agent begins every IoT task with what the community has already verified — on any device, from any vendor. Everything it learns in your sessions flows back into the brain for everyone.</p>
         <div class="hero-cta">
-          <a class="btn gh-link" href="https://github.com/ORG/iot-brain" target="_blank" rel="noreferrer">View the repo</a>
+          <a class="btn gh-link" href="https://github.com/OWNER/iotbrain" target="_blank" rel="noreferrer">View the repo</a>
           <a class="mono link-underline" href="#loop">HOW THE LOOP WORKS ↓</a>
         </div>
       </div>
@@ -180,10 +180,10 @@ footer{padding-bottom:48px}
           <span class="install-label">INSTALL</span>
           <button id="copyBtn" type="button" aria-label="Copy install commands">COPY</button>
         </div>
-        <div><span class="prompt">&gt; </span>/plugin marketplace add &lt;owner&gt;/jetson-brain</div>
-        <div><span class="prompt">&gt; </span>/plugin install jetson-brain@jetson-brain</div>
-        <div class="install-note">via the Claude Code plugin marketplace — coming soon</div>
-        <div class="install-loaded">loaded → jetson-dev · brain-distill · vendored device skills</div>
+        <div><span class="prompt">&gt; </span>/plugin marketplace add OWNER/iotbrain</div>
+        <div><span class="prompt">&gt; </span>/plugin install iotbrain@iotbrain</div>
+        <div class="install-note">via the Claude Code plugin marketplace — link coming soon</div>
+        <div class="install-loaded">installs → iot-dev · brain-distill · vendored device skills</div>
         <div class="install-foot">works on the device itself or from a host over ssh</div>
       </div>
     </div>
@@ -262,7 +262,7 @@ footer{padding-bottom:48px}
           <div class="row-ex">A shared-library import failure → the exact resolution, per platform</div>
         </div>
       </div>
-      <p class="body-p" style="margin-top:32px;font-size:15px">The skills put it to work: a main <span class="inline-code">jetson-dev</span> skill consults the brain for any task, the <span class="inline-code">brain-distill</span> skill grows it, and domain packs for the major workflows arrive in v0.2.</p>
+      <p class="body-p" style="margin-top:32px;font-size:15px">The skills put it to work: a main <span class="inline-code">iot-dev</span> skill consults the brain for any task, the <span class="inline-code">brain-distill</span> skill grows it, and domain packs for the major workflows arrive in v0.2.</p>
     </section>
 
     <section id="loop" class="wrap sec">
@@ -344,11 +344,11 @@ optimize · debug
         <div>
           <h2 class="h2" style="max-width:14ch;text-wrap:balance">What&rsquo;s inside</h2>
           <p class="inside-p"><span class="inline-code">skills/</span> is how the agent works — the companion, the distiller, and the domain packs arriving in v0.2. <span class="inline-code">brain/</span> is what it knows — organized by domain, mapped by a one-line-per-entry INDEX.</p>
-          <p class="inside-p">Entries carry a <span class="inline-code">company</span> field today — nvidia first. Knowledge that can&rsquo;t go public lives in the <span class="inline-code">~/.jetson-brain/local/</span> overlay on your machine, consulted right beside the shared brain. Platform trees are the growth path: as entries land from more vendors, the brain splits by platform — so a Jetson entry never pollutes a Pi session.</p>
+          <p class="inside-p">Entries carry a <span class="inline-code">company</span> field today — nvidia first. Knowledge that can&rsquo;t go public lives in the <span class="inline-code">~/.iotbrain/local/</span> overlay on your machine, consulted right beside the shared brain. Platform trees are the growth path: as entries land from more vendors, the brain splits by platform — so a Jetson entry never pollutes a Pi session.</p>
         </div>
-        <div class="mono tree">iot-brain/
+        <div class="mono tree">iotbrain/
 ├── skills/
-│   ├── jetson-dev/       brain consultation, any task
+│   ├── iot-dev/          brain consultation, any task
 │   ├── brain-distill/    learnings → entries + PRs
 │   ├── …                 vendored NVIDIA device skills arriving
 │   ├── vision-pipeline/  cameras, capture, inference (v0.2)
@@ -374,7 +374,7 @@ optimize · debug
       <div class="roadmap-grid">
         <div>
           <div class="mono roadmap-label">V0.1 — THE CORE</div>
-          <p class="roadmap-p">Plugin scaffold, jetson-dev + distiller skills, brain seeded across six domains with battle-tested entries on the first platform.</p>
+          <p class="roadmap-p">Plugin scaffold, iot-dev + distiller skills, brain seeded across six domains with battle-tested entries on the first platform.</p>
         </div>
         <div>
           <div class="mono roadmap-label">V0.2 — DOMAIN SKILLS</div>
@@ -400,16 +400,16 @@ optimize · debug
         <div>
           <h2 class="h2 contrib-h2">The brain only gets smarter if verified knowledge flows back.</h2>
           <p class="contrib-p">CONTRIBUTING.md defines the entry format and the verification bar. The brain-distill skill drafts a compliant entry and PR for you — review it, approve it, done. Whatever device you build on, the fix you found today belongs here.</p>
-          <a class="btn gh-link" href="https://github.com/ORG/iot-brain" target="_blank" rel="noreferrer">Contribute on GitHub</a>
+          <a class="btn gh-link" href="https://github.com/OWNER/iotbrain" target="_blank" rel="noreferrer">Contribute on GitHub</a>
         </div>
       </div>
     </section>
 
     <footer class="wrap">
       <div class="mono footer-in">
-        <div>IOT BRAIN · THE COLLECTIVE BRAIN FOR IOT DEVELOPMENT</div>
+        <div>IOTBRAIN · THE COLLECTIVE BRAIN FOR IOT DEVELOPMENT</div>
         <div style="display:flex;gap:28px">
-          <a class="gh-link" href="https://github.com/ORG/iot-brain" target="_blank" rel="noreferrer">GITHUB ↗</a>
+          <a class="gh-link" href="https://github.com/OWNER/iotbrain" target="_blank" rel="noreferrer">GITHUB ↗</a>
         </div>
       </div>
     </footer>
@@ -422,13 +422,13 @@ optimize · debug
   'use strict';
 
   /* ---- single source of truth for the repo URL: change it here once ---- */
-  var GITHUB_URL = 'https://github.com/ORG/iot-brain';
+  var GITHUB_URL = 'https://github.com/OWNER/iotbrain';
   document.querySelectorAll('.gh-link').forEach(function (a) { a.href = GITHUB_URL; });
 
   var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---- copy button ---- */
-  var CMD = '/plugin marketplace add <owner>/jetson-brain\n/plugin install jetson-brain@jetson-brain';
+  var CMD = '/plugin marketplace add OWNER/iotbrain\n/plugin install iotbrain@iotbrain';
   var copyBtn = document.getElementById('copyBtn');
   var copyTimer = null;
   function legacyCopy() {
@@ -474,6 +474,7 @@ optimize · debug
       {"title": "espdl-operator — End-to-end guide for implementing, testing, and optimizing neural network…", "type": "skill", "domain": "skills", "company": "espressif", "date": "2026-07-18"},
       {"title": "espdl-quantize — Iteratively tune esp-ppq QuantizationSetting to recover post-quantization…", "type": "skill", "domain": "skills", "company": "espressif", "date": "2026-07-18"},
       {"title": "hardware-io — Hardware interfacing and peripheral management for Zephyr RTOS", "type": "skill", "domain": "skills", "company": "zephyr", "date": "2026-07-18"},
+      {"title": "iot-dev — Use for ANY edge-IoT device task — building, deploying, integrating…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-18"},
       {"title": "jetson-diagnostic — Read-only Jetson health snapshot for identity, memory, GPU, thermal, power…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18"},
       {"title": "jetson-headless-mode — Plan and apply safe Jetson headless-mode changes to reclaim GUI and daemon…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18"},
       {"title": "jetson-inference-mem-tune — Pick the serving stack and per-runtime memory flags (vLLM, SGLang, llama.cpp…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-18"},
@@ -512,10 +513,9 @@ optimize · debug
       {"title": "Shipping Jetson apps as containers — since JetPack 5, l4t-base no longer mounts CUDA from the host (l4t.csv mounts BSP only)", "type": "gotcha", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-17"},
       {"title": "TensorRT engine plan files are not portable — rebuild per device and per TensorRT version", "type": "gotcha", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
       {"title": "Wi-Fi drops on an idle Jetson and never reconnects — disable wifi.powersave / iw power_save", "type": "fix", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "brain-distill — Use after a Jetson learning has been VERIFIED on real hardware — a fix…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-17"},
+      {"title": "brain-distill — Use after an edge-IoT learning has been VERIFIED on real hardware — a fix…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-17"},
       {"title": "cannot find -lnvbuf_utils — linking against the Jetson Multimedia API (tegra/nvidia lib dirs, JP5 NvBufSurface migration)", "type": "fix", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-17"},
       {"title": "jetson-containers — prebuilt CUDA ML containers as the escape hatch for on-device dependency hell", "type": "recipe", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "jetson-dev — Use for ANY NVIDIA Jetson / JetPack / L4T / Tegra task — building, deploying…", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-17"},
       {"title": "nvarguscamerasrc 'No cameras available' with IMX219/IMX477 — apply CSI overlay with jetson-io", "type": "fix", "domain": "vision", "company": "nvidia", "date": "2026-07-17"},
       {"title": "nvarguscamerasrc in Docker: mount /tmp/argus_socket — and remount after any nvargus-daemon restart", "type": "fix", "domain": "vision", "company": "nvidia", "date": "2026-07-17"},
       {"title": "onnxruntime-gpu wheels for Jetson — PyPI installs are CPU-only, use Jetson AI Lab / Jetson Zoo wheels", "type": "config", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
