@@ -1,0 +1,26 @@
+{
+  "stats": { "entries": 39, "skills": 2, "domains": 6, "platforms": 1 },
+  "updates": [
+    { "title": "Move a running rootfs from SD to NVMe without reflashing", "type": "recipe", "domain": "runtime", "company": "nvidia", "date": "2026-07-18" },
+    { "title": "Process 'Killed' loading a model — GPU shares system RAM", "type": "gotcha", "domain": "runtime", "company": "nvidia", "date": "2026-07-18" },
+    { "title": "Thermal throttling under sustained load — Orin trip points", "type": "gotcha", "domain": "runtime", "company": "nvidia", "date": "2026-07-18" },
+    { "title": "Change the Orin fan profile — nvfancontrol.conf + status file", "type": "config", "domain": "runtime", "company": "nvidia", "date": "2026-07-18" },
+    { "title": "Reading tegrastats output, field by field", "type": "matrix", "domain": "runtime", "company": "nvidia", "date": "2026-07-18" },
+    { "title": "System throttled due to Over-current on Orin", "type": "fix", "domain": "runtime", "company": "nvidia", "date": "2026-07-18" },
+    { "title": "Default power mode silently caps performance", "type": "gotcha", "domain": "runtime", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "jetson-containers — the escape hatch for dependency hell", "type": "recipe", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "Don't apt-install Ubuntu's nvidia-cuda-toolkit on Jetson", "type": "gotcha", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "onnxruntime-gpu wheels — PyPI installs are CPU-only", "type": "config", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "torch × torchvision version pairing on Jetson", "type": "matrix", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "TensorRT engine plan files are not portable", "type": "gotcha", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "Known-working PyTorch wheels for JetPack 6.x (CUDA 12.6)", "type": "config", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "ImportError: libcudnn.so after pip-installing PyTorch", "type": "fix", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "nvarguscamerasrc 'No cameras available' — CSI overlay via jetson-io", "type": "fix", "domain": "vision", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "CSI camera frames into OpenCV as BGR — the canonical pipeline", "type": "recipe", "domain": "vision", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "Connect a Jetson to AWS IoT Core over MQTT with mutual TLS", "type": "recipe", "domain": "iot", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "Flash Orin Nano devkit to NVMe with l4t_initrd_flash.sh", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "CUDA gencode/arch flags per Jetson module — Orin is sm_87", "type": "matrix", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "jetson-dev — consult the brain for any Jetson task", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-17" },
+    { "title": "brain-distill — session learnings → entries + PRs", "type": "skill", "domain": "skills", "company": "nvidia", "date": "2026-07-17" }
+  ]
+}
