@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+html,body{margin:0;padding:0;background:#faf8f3;}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+a{color:#1a1914;text-decoration:none;}
+a:hover{color:#757266;}
+::selection{background:#1a1914;color:#faf8f3;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1a1914;background:#faf8f3;min-height:100vh">
+  <canvas ref="{{ canvasRef }}" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none"></canvas>
+  <div style="position:relative;z-index:1">
+
+    <header data-screen-label="Header" style="border-bottom:1px solid rgba(26,25,20,0.14);background:rgba(250,248,243,0.92)">
+      <div style="max-width:1160px;margin:0 auto;padding:20px 48px;display:flex;align-items:baseline;justify-content:space-between;gap:24px">
+        <div style="display:flex;align-items:baseline;gap:14px">
+          <div style="font-weight:600;font-size:15px;letter-spacing:-0.01em">iot brain</div>
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.18em;color:#8b887c">CLAUDE CODE PLUGIN</div>
+        </div>
+        <nav style="display:flex;gap:26px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.18em">
+          <a href="#why">WHY</a>
+          <a href="#brain">THE BRAIN</a>
+          <a href="#loop">THE LOOP</a>
+          <a href="#inside">INSIDE</a>
+          <a href="#roadmap">ROADMAP</a>
+          <a href="https://github.com/ORG/iot-brain" target="_blank" rel="noreferrer">GITHUB ↗</a>
+        </nav>
+      </div>
+    </header>
+
+    <section data-screen-label="Hero" style="background:linear-gradient(90deg, rgba(250,248,243,0.94) 0%, rgba(250,248,243,0.6) 60%, rgba(250,248,243,0.2) 100%)">
+      <div style="max-width:1160px;margin:0 auto;padding:90px 48px 80px;display:grid;grid-template-columns:minmax(300px,1.1fr) minmax(340px,1fr);gap:64px;align-items:start">
+        <div>
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:0.22em;color:#757266;animation:fadeUp 0.6s ease both">THE COLLECTIVE BRAIN FOR IOT DEVELOPMENT</div>
+          <h1 style="margin:22px 0 0;font-size:clamp(40px,4.8vw,68px);line-height:1.02;font-weight:600;letter-spacing:-0.03em;max-width:14ch;text-wrap:balance;animation:fadeUp 0.6s 0.06s ease both">Your agent starts with everything we know.</h1>
+          <p style="margin:26px 0 0;max-width:48ch;font-size:16px;line-height:1.65;color:#5c5a51;animation:fadeUp 0.6s 0.12s ease both">Install it into Claude Code and your agent begins every IoT task with what the community has already verified — on any device, from any vendor. Everything it learns in your sessions flows back into the brain for everyone.</p>
+          <div style="margin-top:36px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;animation:fadeUp 0.6s 0.18s ease both">
+            <a href="https://github.com/ORG/iot-brain" target="_blank" rel="noreferrer" style="display:inline-block;background:#1a1914;color:#faf8f3;padding:13px 24px;border-radius:3px;font-size:14px;font-weight:600" style-hover="background:#3a382f;color:#faf8f3">View the repo</a>
+            <a href="#loop" style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:0.16em;border-bottom:1px solid rgba(26,25,20,0.3);padding-bottom:3px">HOW THE LOOP WORKS ↓</a>
+          </div>
+        </div>
+        <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12.5px;line-height:2;background:rgba(250,248,243,0.85);border:1px solid rgba(26,25,20,0.16);border-radius:4px;padding:26px 28px;animation:fadeUp 0.6s 0.2s ease both">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px">
+            <span style="font-size:10px;letter-spacing:0.2em;color:#a3a094">INSTALL</span>
+            <button onClick="{{ copyCmd }}" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:9px;letter-spacing:0.18em;color:#8b887c;padding:0" style-hover="color:#1a1914">{{ copyLabel }}</button>
+          </div>
+          <div><span style="color:#a3a094">$ </span>claude plugin install iot-brain</div>
+          <div style="margin-top:6px;color:#a3a094;font-size:11px">via the Claude Code plugin marketplace — coming soon</div>
+          <div style="margin-top:14px;color:#757266">loaded → iot-dev · brain-distill · domain skills</div>
+          <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(26,25,20,0.12);color:#757266;font-size:11px">works on the device itself or from a host over ssh</div>
+        </div>
+      </div>
+    </section>
+
+    <div style="background:rgba(250,248,243,0.93)">
+      <section data-screen-label="Counters" style="max-width:1160px;margin:0 auto;padding:0 48px;border-top:1px solid rgba(26,25,20,0.14)">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0">
+          <div style="padding:36px 24px 36px 0;border-right:1px solid rgba(26,25,20,0.1)">
+            <div style="font-size:clamp(40px,4.5vw,64px);font-weight:600;letter-spacing:-0.03em;line-height:1">{{ entriesCount }}</div>
+            <div style="margin-top:10px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.2em;color:#757266">BRAIN ENTRIES</div>
+          </div>
+          <div style="padding:36px 24px;border-right:1px solid rgba(26,25,20,0.1)">
+            <div style="font-size:clamp(40px,4.5vw,64px);font-weight:600;letter-spacing:-0.03em;line-height:1">{{ skillsCount }}</div>
+            <div style="margin-top:10px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.2em;color:#757266">SKILLS</div>
+          </div>
+          <div style="padding:36px 24px;border-right:1px solid rgba(26,25,20,0.1)">
+            <div style="font-size:clamp(40px,4.5vw,64px);font-weight:600;letter-spacing:-0.03em;line-height:1">{{ domainsCount }}</div>
+            <div style="margin-top:10px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.2em;color:#757266">DOMAINS</div>
+          </div>
+          <div style="padding:36px 0 36px 24px">
+            <div style="font-size:clamp(40px,4.5vw,64px);font-weight:600;letter-spacing:-0.03em;line-height:1">{{ platformsCount }}</div>
+            <div style="margin-top:10px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.2em;color:#757266">PLATFORMS</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="why" data-screen-label="Why this exists" style="max-width:1160px;margin:0 auto;padding:80px 48px;border-top:1px solid rgba(26,25,20,0.14)">
+        <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:0.22em;color:#757266">WHY</div>
+        <h2 style="margin:22px 0 0;font-size:clamp(34px,4vw,56px);font-weight:600;letter-spacing:-0.025em;line-height:1.05;max-width:22ch;text-wrap:balance">IoT knowledge is scattered and perishable.</h2>
+        <p style="margin:26px 0 0;max-width:55ch;font-size:16px;line-height:1.65;color:#5c5a51">How to deploy a model with TensorRT on a Jetson Orin. Which kernel and driver combination gets a CSI camera working on a Raspberry Pi 5. How to do OTA updates on an ESP32 fleet without bricking it. How to cross-compile a library for an ARM target. What breaks along the way, and how to get past it.</p>
+        <p style="margin:18px 0 0;max-width:55ch;font-size:16px;line-height:1.65;color:#5c5a51">All of it exists — spread across vendor forums, sample repos, release notes, and the hard-won experience of engineers. None of it is in one place an agent, or a human, can reliably draw on. So every team relearns its devices from scratch.</p>
+      </section>
+
+      <section id="brain" data-screen-label="The brain — entry types" style="max-width:1160px;margin:0 auto;padding:70px 48px 80px;border-top:1px solid rgba(26,25,20,0.14)">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px">
+          <h2 style="margin:0;font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-0.02em">What the brain holds</h2>
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.2em;color:#8b887c">5 ENTRY TYPES · PLAIN MARKDOWN</div>
+        </div>
+        <p style="margin:0 0 36px;max-width:55ch;font-size:15px;line-height:1.65;color:#5c5a51">Not a troubleshooting database — a general knowledge store covering the whole IoT development lifecycle, scoped per device and platform.</p>
+        <div style="display:flex;flex-direction:column">
+          <div style="border-top:1px solid rgba(26,25,20,0.12);padding:18px 0;display:grid;grid-template-columns:110px minmax(200px,300px) 1fr;gap:24px;align-items:baseline">
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:700">recipe</div>
+            <div style="font-size:14px;line-height:1.55;color:#1a1914">A verified way to accomplish a task</div>
+            <div style="font-size:13px;line-height:1.55;color:#8b887c">Deploy YOLO with TensorRT on a Jetson Orin Nano, end to end</div>
+          </div>
+          <div style="border-top:1px solid rgba(26,25,20,0.12);padding:18px 0;display:grid;grid-template-columns:110px minmax(200px,300px) 1fr;gap:24px;align-items:baseline">
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:700">config</div>
+            <div style="font-size:14px;line-height:1.55;color:#1a1914">A known-working configuration</div>
+            <div style="font-size:13px;line-height:1.55;color:#8b887c">The exact wheel + runtime combo that imports cleanly on a given OS image</div>
+          </div>
+          <div style="border-top:1px solid rgba(26,25,20,0.12);padding:18px 0;display:grid;grid-template-columns:110px minmax(200px,300px) 1fr;gap:24px;align-items:baseline">
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:700">matrix</div>
+            <div style="font-size:14px;line-height:1.55;color:#1a1914">Version compatibility knowledge</div>
+            <div style="font-size:13px;line-height:1.55;color:#8b887c">SDK &times; driver &times; framework support across a platform&rsquo;s releases</div>
+          </div>
+          <div style="border-top:1px solid rgba(26,25,20,0.12);padding:18px 0;display:grid;grid-template-columns:110px minmax(200px,300px) 1fr;gap:24px;align-items:baseline">
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:700">gotcha</div>
+            <div style="font-size:14px;line-height:1.55;color:#1a1914">A trap to avoid proactively</div>
+            <div style="font-size:13px;line-height:1.55;color:#8b887c">A camera driver quirk that silently drops frames on one firmware release</div>
+          </div>
+          <div style="border-top:1px solid rgba(26,25,20,0.12);border-bottom:1px solid rgba(26,25,20,0.12);padding:18px 0;display:grid;grid-template-columns:110px minmax(200px,300px) 1fr;gap:24px;align-items:baseline">
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;font-weight:700">fix</div>
+            <div style="font-size:14px;line-height:1.55;color:#1a1914">An error and its verified solution</div>
+            <div style="font-size:13px;line-height:1.55;color:#8b887c">A shared-library import failure → the exact resolution, per platform</div>
+          </div>
+        </div>
+        <p style="margin:32px 0 0;max-width:55ch;font-size:15px;line-height:1.65;color:#5c5a51">The skills put it to work: a main <span style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px">iot-dev</span> skill consults the brain for any IoT task, domain skills cover the major workflows, and a distiller grows the brain.</p>
+      </section>
+
+      <section id="loop" data-screen-label="The loop" style="max-width:1160px;margin:0 auto;padding:70px 48px 80px;border-top:1px solid rgba(26,25,20,0.14)">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px">
+          <h2 style="margin:0;font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-0.02em">The loop</h2>
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.2em;color:#8b887c">FOR EVERY TASK, NOT JUST BROKEN ONES</div>
+        </div>
+        <p style="margin:0 0 40px;max-width:55ch;font-size:15px;line-height:1.65;color:#5c5a51">Build, deploy, integrate, optimize, debug — every task starts by consulting the brain and can end by growing it.</p>
+        <div style="display:grid;grid-template-columns:minmax(300px,1fr) minmax(340px,1.1fr);gap:56px;align-items:start">
+          <div style="display:flex;flex-direction:column">
+            <div style="border-top:1px solid rgba(26,25,20,0.12);padding:18px 0;display:grid;grid-template-columns:110px 1fr;gap:20px;align-items:baseline">
+              <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.18em;color:#757266">01 CONSULT</div>
+              <div style="font-size:14px;line-height:1.6;color:#5c5a51">Any IoT task begins with a device- and version-aware grep of the brain.</div>
+            </div>
+            <div style="border-top:1px solid rgba(26,25,20,0.12);padding:18px 0;display:grid;grid-template-columns:110px 1fr;gap:20px;align-items:baseline">
+              <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.18em;color:#757266">02 APPLY</div>
+              <div style="font-size:14px;line-height:1.6;color:#5c5a51">Brain knows: apply known recipes and configs, step around gotchas before hitting them.</div>
+            </div>
+            <div style="border-top:1px solid rgba(26,25,20,0.12);padding:18px 0;display:grid;grid-template-columns:110px 1fr;gap:20px;align-items:baseline">
+              <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.18em;color:#757266">03 FIGURE OUT</div>
+              <div style="font-size:14px;line-height:1.6;color:#5c5a51">Brain is silent: research the internet, experiment, and verify on real hardware.</div>
+            </div>
+            <div style="border-top:1px solid rgba(26,25,20,0.12);border-bottom:1px solid rgba(26,25,20,0.12);padding:18px 0;display:grid;grid-template-columns:110px 1fr;gap:20px;align-items:baseline">
+              <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.18em;color:#757266">04 DISTILL</div>
+              <div style="font-size:14px;line-height:1.6;color:#5c5a51">Learned something new and verified? The distiller writes the entry and drafts a community PR.</div>
+            </div>
+            <p style="margin:28px 0 0;font-size:15px;line-height:1.6;color:#1a1914;font-weight:600;max-width:40ch">A working vision pipeline produces a recipe. A clean build combo produces a config. A lost hour produces a gotcha. Debugging is just one way the brain grows.</p>
+          </div>
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;line-height:1.9;background:rgba(250,248,243,0.85);border:1px solid rgba(26,25,20,0.16);border-radius:4px;padding:26px 28px;color:#5c5a51;white-space:pre">{{ loopDiagram }}</div>
+        </div>
+      </section>
+
+      <section id="how" data-screen-label="How it works" style="max-width:1160px;margin:0 auto;padding:70px 48px 80px;border-top:1px solid rgba(26,25,20,0.14)">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px">
+          <h2 style="margin:0;font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-0.02em">How it works</h2>
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.2em;color:#8b887c">FOUR DESIGN BETS</div>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <div style="border-top:1px solid rgba(26,25,20,0.12);padding:20px 0;display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:baseline">
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:0.16em">NO INFRASTRUCTURE</div>
+            <div style="font-size:14px;line-height:1.6;color:#5c5a51;max-width:60ch">Plain markdown in the repo, retrieved by grep. Exact error strings, package names, and device models are the search keys — what agents search best. No vector database, no Docker, no index to go stale.</div>
+          </div>
+          <div style="border-top:1px solid rgba(26,25,20,0.12);padding:20px 0;display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:baseline">
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:0.16em">DEVICE- &amp; VERSION-SCOPED</div>
+            <div style="font-size:14px;line-height:1.6;color:#5c5a51;max-width:60ch">Every entry is pinned to device models and platform/SDK versions. The agent checks applicability before trusting knowledge, so nothing stale — or from the wrong device — gets confidently misapplied.</div>
+          </div>
+          <div style="border-top:1px solid rgba(26,25,20,0.12);padding:20px 0;display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:baseline">
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:0.16em">HUMAN-REVIEWED GROWTH</div>
+            <div style="font-size:14px;line-height:1.6;color:#5c5a51;max-width:60ch">The only write path into the shared brain is a pull request. The distiller formats entries; the community reviews truth. Nothing is published without the contributing user approving the exact content first.</div>
+          </div>
+          <div style="border-top:1px solid rgba(26,25,20,0.12);border-bottom:1px solid rgba(26,25,20,0.12);padding:20px 0;display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:baseline">
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:0.16em">VERIFIED-ONLY</div>
+            <div style="font-size:14px;line-height:1.6;color:#5c5a51;max-width:60ch">Recipes, configs, and fixes are only written after they worked on real hardware.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="inside" data-screen-label="What's inside" style="max-width:1160px;margin:0 auto;padding:70px 48px 80px;border-top:1px solid rgba(26,25,20,0.14)">
+        <div style="display:grid;grid-template-columns:minmax(280px,1fr) minmax(340px,1.2fr);gap:56px;align-items:start">
+          <div>
+            <h2 style="margin:0;font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-0.02em;max-width:14ch;text-wrap:balance">What&rsquo;s inside</h2>
+            <p style="margin:20px 0 0;max-width:44ch;font-size:15px;line-height:1.65;color:#5c5a51"><span style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px">skills/</span> is how the agent works — the companion, the distiller, and domain packs for vision, connectivity, and SDK building. <span style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px">brain/</span> is what it knows — organized by platform, then domain, mapped by a one-line-per-entry INDEX.</p>
+            <p style="margin:18px 0 0;max-width:44ch;font-size:15px;line-height:1.65;color:#5c5a51">Platform trees grow independently — a Jetson entry never pollutes a Pi session. Your company&rsquo;s custom hardware can live in a private platform tree beside the public ones.</p>
+          </div>
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;line-height:1.9;border-left:1px solid rgba(26,25,20,0.18);padding:6px 0 6px 32px;color:#5c5a51;white-space:pre">{{ repoTree }}</div>
+        </div>
+      </section>
+
+      <section id="roadmap" data-screen-label="Roadmap" style="max-width:1160px;margin:0 auto;padding:70px 48px 80px;border-top:1px solid rgba(26,25,20,0.14)">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px">
+          <h2 style="margin:0;font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-0.02em">Roadmap</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:44px;border-top:1px solid rgba(26,25,20,0.12);padding-top:26px">
+          <div>
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.2em;color:#757266">V0.1 — THE CORE</div>
+            <p style="margin:14px 0 0;font-size:14px;line-height:1.6;color:#5c5a51">Plugin scaffold, iot-dev + distiller skills, brain seeded with battle-tested entries on the first platforms.</p>
+          </div>
+          <div>
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.2em;color:#757266">V0.2 — DOMAIN SKILLS</div>
+            <p style="margin:14px 0 0;font-size:14px;line-height:1.6;color:#5c5a51">Vision pipeline, connectivity, and SDK-building skills wired into the brain.</p>
+          </div>
+          <div>
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.2em;color:#757266">V1.0 — COMMUNITY SCALE</div>
+            <p style="margin:14px 0 0;font-size:14px;line-height:1.6;color:#5c5a51">Contribution tooling, entry lifecycle automation on new platform releases, coverage across vendors and device families.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contribute" data-screen-label="Contribute" style="max-width:1160px;margin:0 auto;padding:70px 48px 90px;border-top:1px solid rgba(26,25,20,0.14)">
+        <div style="display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.3fr);gap:56px;align-items:start">
+          <div>
+            <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:0.22em;color:#757266">THE BAR</div>
+            <div style="margin-top:16px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;line-height:2.1;color:#5c5a51">
+              <div>real hardware</div>
+              <div>exact device/version frontmatter</div>
+              <div>sources linked</div>
+            </div>
+          </div>
+          <div>
+            <h2 style="margin:0;font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-0.02em;text-wrap:balance">The brain only gets smarter if verified knowledge flows back.</h2>
+            <p style="margin:20px 0 0;max-width:50ch;font-size:15px;line-height:1.65;color:#5c5a51">CONTRIBUTING.md defines the entry format and the verification bar. The brain-distill skill drafts a compliant entry and PR for you — review it, approve it, done. Whatever device you build on, the fix you found today belongs here.</p>
+            <a href="https://github.com/ORG/iot-brain" target="_blank" rel="noreferrer" style="display:inline-block;margin-top:32px;background:#1a1914;color:#faf8f3;padding:13px 24px;border-radius:3px;font-size:14px;font-weight:600" style-hover="background:#3a382f;color:#faf8f3">Contribute on GitHub</a>
+          </div>
+        </div>
+      </section>
+
+      <footer data-screen-label="Footer" style="max-width:1160px;margin:0 auto;padding:0 48px 48px">
+        <div style="border-top:1px solid rgba(26,25,20,0.14);padding-top:24px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:10px;letter-spacing:0.16em;color:#8b887c">
+          <div>IOT BRAIN · THE COLLECTIVE BRAIN FOR IOT DEVELOPMENT</div>
+          <div style="display:flex;gap:28px">
+            <a href="https://github.com/ORG/iot-brain" target="_blank" rel="noreferrer" style="color:#8b887c">GITHUB ↗</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;entriesCount&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 0, &quot;min&quot;: 0, &quot;max&quot;: 9999, &quot;section&quot;: &quot;Counters&quot;, &quot;tsType&quot;: &quot;number&quot;},
+  &quot;skillsCount&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 5, &quot;min&quot;: 0, &quot;max&quot;: 999, &quot;section&quot;: &quot;Counters&quot;, &quot;tsType&quot;: &quot;number&quot;},
+  &quot;domainsCount&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 6, &quot;min&quot;: 0, &quot;max&quot;: 99, &quot;section&quot;: &quot;Counters&quot;, &quot;tsType&quot;: &quot;number&quot;},
+  &quot;platformsCount&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 4, &quot;min&quot;: 0, &quot;max&quot;: 99, &quot;section&quot;: &quot;Counters&quot;, &quot;tsType&quot;: &quot;number&quot;},
+  &quot;columnCount&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 14, &quot;min&quot;: 6, &quot;max&quot;: 24, &quot;section&quot;: &quot;Ledger rain&quot;, &quot;tsType&quot;: &quot;number&quot;},
+  &quot;flowSpeed&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 1, &quot;min&quot;: 0.2, &quot;max&quot;: 3, &quot;step&quot;: 0.1, &quot;section&quot;: &quot;Ledger rain&quot;, &quot;tsType&quot;: &quot;number&quot;},
+  &quot;cursorField&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;section&quot;: &quot;Ledger rain&quot;, &quot;tsType&quot;: &quot;boolean&quot;}
+}">
+class Component extends DCLogic {
+  state = { copied: false };
+  cv = React.createRef();
+  renderVals() {
+    return {
+      entriesCount: String(this.props.entriesCount ?? 0).padStart(2, '0'),
+      skillsCount: String(this.props.skillsCount ?? 5).padStart(2, '0'),
+      domainsCount: String(this.props.domainsCount ?? 6).padStart(2, '0'),
+      platformsCount: String(this.props.platformsCount ?? 4).padStart(2, '0'),
+      canvasRef: this.cv,
+      copyLabel: this.state.copied ? 'COPIED' : 'COPY',
+      copyCmd: () => {
+        navigator.clipboard.writeText('claude plugin install iot-brain');
+        this.setState({ copied: true });
+        clearTimeout(this._ct);
+        this._ct = setTimeout(() => this.setState({ copied: false }), 1600);
+      },
+      loopDiagram: [
+        'any IoT task: build · deploy · integrate ·',
+        'optimize · debug',
+        '            │',
+        '            ▼',
+        ' consult the brain (grep, device-aware)',
+        '            │',
+        '   ┌────────┴─────────┐',
+        ' brain knows      brain is silent',
+        '   │                  │',
+        ' apply recipes,    research, experiment,',
+        ' avoid gotchas     verify on hardware',
+        '   │                  │',
+        '   └────────┬─────────┘',
+        '            ▼',
+        ' learned something new & verified?',
+        '            │',
+        '            ▼',
+        ' distill into the brain → community PR'
+      ].join('\n'),
+      repoTree: [
+        'iot-brain/',
+        '├── skills/',
+        '│   ├── iot-dev/         brain consultation, any task',
+        '│   ├── brain-distill/   learnings → entries + PRs',
+        '│   ├── vision-pipeline/ cameras, capture, inference',
+        '│   ├── iot-connect/     MQTT, cloud, fleet deployment',
+        '│   └── sdk-build/       cross-compiling, packaging',
+        '└── brain/',
+        '    ├── INDEX.md         one line per entry',
+        '    ├── jetson/          JetPack, CUDA, TensorRT …',
+        '    ├── raspberry-pi/    kernel, camera stack, HATs …',
+        '    ├── esp32/           firmware, OTA, radios …',
+        '    ├── coral/           Edge TPU, model compilation …',
+        '    └── common/          protocols, fleets, containers',
+        '        (new platforms grow as entries land)'
+      ].join('\n')
+    };
+  }
+  componentDidMount() {
+    const c = this.cv.current;
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    let w = 0, h = 0, dpr = 1, t = 0;
+    let mx = -9999, my = -9999, smx = -9999, smy = -9999;
+    let cols = [];
+    const frac = (k, s) => { const r = Math.sin((k + 1) * s) * 43758.5453; return r - Math.floor(r); };
+    const TOKENS = [
+      'fix/libcudnn.so.8-import', 'recipe/yolo-trt-orin', 'config/jp6.1-torch2.5',
+      'gotcha/nvargus-framedrop', 'matrix/cuda12.2-trt10', 'fix/esp32-ota-brick',
+      'recipe/csi-deepstream', 'config/rpi5-kernel-6.6', 'gotcha/dtb-overlay-pinmux',
+      'fix/aarch64-wheel-glibc', 'recipe/mqtt-fleet-qos1', 'matrix/l4t-r36.3',
+      'config/coral-edgetpu-py310', 'gotcha/modbus-rtu-timing', 'fix/zigbee-rejoin-loop',
+      'recipe/ota-a-b-rollback', 'config/jetson-clocks-max', 'gotcha/thermal-throttle-25w',
+      'fix/v4l2-timeout-cam0', 'matrix/jp5.1-cuda11.4', 'recipe/cross-compile-armv8',
+      'config/docker-nvruntime', 'gotcha/eeprom-write-cycle', 'fix/can-bus-bitrate'
+    ];
+    const seedCols = () => {
+      cols = [];
+      const n = Math.max(6, Math.round(this.props.columnCount ?? 14));
+      for (let k = 0; k < n; k++) {
+        const x = w * (0.03 + (k / n) * 0.62 + frac(k, 12.9) * 0.03);
+        const count = 9 + Math.floor(frac(k, 7.7) * 6);
+        const items = [];
+        for (let j = 0; j < count; j++) {
+          items.push({ tok: TOKENS[(k * 13 + j * 7) % TOKENS.length], off: frac(k * 100 + j, 31.7), jp: j });
+        }
+        cols.push({ x, items, speed: 0.35 + frac(k, 5.3) * 0.65 });
+      }
+    };
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth; h = window.innerHeight;
+      c.width = w * dpr; c.height = h * dpr;
+      seedCols();
+    };
+    resize();
+    this._onResize = resize;
+    this._onMove = (e) => { mx = e.clientX; my = e.clientY; };
+    window.addEventListener('resize', this._onResize);
+    window.addEventListener('pointermove', this._onMove);
+    const draw = () => {
+      const speed = this.props.flowSpeed ?? 1;
+      const cursor = this.props.cursorField ?? true;
+      const want = Math.max(6, Math.round(this.props.columnCount ?? 14));
+      if (cols.length !== want) seedCols();
+      t += 0.016 * speed;
+      smx += (mx - smx) * 0.05; smy += (my - smy) * 0.05;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+      ctx.font = '10px ui-monospace, Menlo, Consolas, monospace';
+      const H = h + 60;
+      // scattered columns: raw knowledge drifting up, loose and unordered
+      for (const col of cols) {
+        for (const it of col.items) {
+          const yn = ((it.off - t * 0.012 * col.speed) % 1 + 1) % 1;
+          const y = yn * H - 30;
+          const x = col.x + Math.sin(t * 0.4 + it.jp * 1.9 + col.x) * 5;
+          let a = (0.05 + 0.06 * frac(it.jp + col.x, 9.1)) * Math.sin(yn * Math.PI);
+          if (cursor) {
+            const dx = x - smx, dy = y - smy;
+            a += 0.22 * Math.exp(-(dx * dx + dy * dy) / 12000) * Math.sin(yn * Math.PI);
+          }
+          ctx.fillStyle = 'rgba(26,25,20,' + a.toFixed(3) + ')';
+          ctx.fillText(it.tok, x, y);
+        }
+      }
+      // the ledger: one ordered column at the right where everything aligns
+      const ix = w * 0.8;
+      const rowH = 24;
+      const total = TOKENS.length;
+      ctx.strokeStyle = 'rgba(26,25,20,0.1)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(ix - 16, 0); ctx.lineTo(ix - 16, h); ctx.stroke();
+      for (let i = 0; i < total; i++) {
+        const yn = (((i * rowH - t * 6) % (total * rowH)) + total * rowH) % (total * rowH);
+        const y = (yn / (total * rowH)) * H - 30;
+        const fade = Math.sin(Math.max(0, Math.min(1, (y + 30) / H)) * Math.PI);
+        let a = 0.24 * fade;
+        if (cursor) {
+          const dx = ix - smx, dy = y - smy;
+          a += 0.2 * Math.exp(-(dx * dx + dy * dy) / 12000) * fade;
+        }
+        ctx.fillStyle = 'rgba(26,25,20,' + Math.min(1, a * 1.6).toFixed(3) + ')';
+        ctx.fillText(String(i + 1).padStart(4, '0'), ix, y);
+        ctx.fillStyle = 'rgba(26,25,20,' + a.toFixed(3) + ')';
+        ctx.fillText(TOKENS[i], ix + 34, y);
+      }
+      this._raf = requestAnimationFrame(draw);
+    };
+    draw();
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    clearTimeout(this._ct);
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('pointermove', this._onMove);
+  }
+}
+</script>
+</body>
+</html>
