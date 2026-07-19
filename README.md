@@ -86,7 +86,7 @@ iotbrain/
 Two steps inside Claude Code (marketplace link coming soon — `OWNER` below is a placeholder until the public repo lands):
 
 ```
-/plugin marketplace add OWNER/iotbrain
+/plugin marketplace add Rulense/iotbrain
 /plugin install iotbrain@iotbrain
 ```
 
