@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/logo.png" width="120" alt="iotbrain logo">
+<img src="assets/logo.png" width="240" alt="iotbrain logo">
 
 # iotbrain
 
