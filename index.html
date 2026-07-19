@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>iotbrain — the collective brain for IoT development</title>
 <meta name="description" content="iotbrain is a Claude Code plugin: skills plus a community-grown, grep-able knowledge base of verified recipes, configs, version matrices, gotchas, and fixes — so your agent starts every IoT task with what the community already knows. NVIDIA Jetson first.">
+<link rel="icon" type="image/png" href="./assets/favicon.png">
+<meta property="og:title" content="iotbrain — the collective brain for IoT development">
+<meta property="og:description" content="A Claude Code plugin: skills plus a community-grown, grep-able knowledge base of verified recipes, configs, version matrices, gotchas, and fixes. Your agent starts every IoT task with what the community already knows.">
+<meta property="og:image" content="./assets/logo.png">
+<meta name="twitter:card" content="summary">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:#faf8f3}
@@ -23,6 +28,7 @@ a:hover{color:#757266}
 header{border-bottom:1px solid rgba(26,25,20,0.14);background:rgba(250,248,243,0.92)}
 .header-in{padding-top:20px;padding-bottom:20px;display:flex;align-items:baseline;justify-content:space-between;gap:24px}
 .brand{display:flex;align-items:baseline;gap:14px}
+.brand-logo{width:20px;height:20px;border-radius:4px;align-self:center;display:block;vertical-align:middle}
 .brand-name{font-weight:600;font-size:15px;letter-spacing:-0.01em}
 .brand-tag{font-size:10px;letter-spacing:0.18em;color:#8b887c}
 nav{display:flex;gap:26px;font-size:10px;letter-spacing:0.18em;flex-wrap:wrap}
@@ -150,6 +156,7 @@ footer{padding-bottom:48px}
   <header>
     <div class="wrap header-in">
       <div class="brand">
+        <img class="brand-logo" src="./assets/logo.png" alt="" width="20" height="20">
         <div class="brand-name">iotbrain</div>
         <div class="mono brand-tag">CLAUDE CODE PLUGIN</div>
       </div>
@@ -407,7 +414,7 @@ optimize · debug
 
     <footer class="wrap">
       <div class="mono footer-in">
-        <div>IOTBRAIN · THE COLLECTIVE BRAIN FOR IOT DEVELOPMENT</div>
+        <div style="display:flex;align-items:center;gap:10px"><img src="./assets/logo.png" alt="" width="18" height="18" style="border-radius:3px;vertical-align:middle">IOTBRAIN · THE COLLECTIVE BRAIN FOR IOT DEVELOPMENT</div>
         <div style="display:flex;gap:28px">
           <a class="gh-link" href="https://github.com/Rulense/iotbrain" target="_blank" rel="noreferrer">GITHUB ↗</a>
         </div>
