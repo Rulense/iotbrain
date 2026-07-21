@@ -92,7 +92,7 @@ Give the agent any edge-IoT task and `iot-dev` runs the loop:
 2. **Brain consult.** It greps the brain with exact error strings, package names, and device models, filters entries by vendor and version applicability, applies what matches — and surfaces gotchas before you hit them.
 3. **Distill.** Anything new it learns and verifies on real hardware, `brain-distill` turns into a draft entry and — only with your approval — a community PR.
 
-Knowledge you choose not to contribute stays in a private local overlay at `~/.iotbrain/local/`, consulted right beside the shared brain.
+Knowledge you choose not to contribute stays in a private local overlay at `~/.iotbrain/local/`, consulted right beside the shared brain. The overlay is auto-initialized on first use (six domain directories, a README, and an entry template) — nothing in it is ever pushed without your approval.
 
 ### Contributor / dev setup
 

@@ -33,10 +33,30 @@ cat /proc/device-tree/model               # device model
 ```
 - Map L4T → JetPack (36.x → JetPack 6, 35.x → JetPack 5).
 
+### Tethered targets (MCU over USB)
+
+MCUs like the ESP32 run no shell — detect them from the HOST they are
+tethered to. Worked example — Espressif ESP32 (company `espressif`):
+```bash
+esptool.py chip_id     # chip variant + MAC
+esptool.py flash_id    # flash size
+idf.py --version       # ESP-IDF version on the host
+```
+Device facts = chip variant + IDF version; `platform_versions` like
+"ESP-IDF 5.3". Other tethered MCUs follow the same pattern with their
+vendor's host tool (`pyocd list` / `probe-rs list` for debug probes,
+`mpremote connect list` for MicroPython boards); if no host tool is
+present, ask the user for the board model + SDK version. From here the
+brain consult (Steps 2–3) proceeds identically, keyed on the detected
+company/`platform_versions`.
+
 ## Step 2 — Consult the brain
 
 Entries are company-scoped: match entries whose `company` value is the
 device's vendor.
+
+If `~/.iotbrain/local/` is missing, initialize it first:
+`python3 "${CLAUDE_PLUGIN_ROOT}/scripts/init_overlay.py"`.
 
 1. Read `brain/INDEX.md` — scan for entries matching the task.
 2. Grep both stores for task keywords, package names, and (when debugging)

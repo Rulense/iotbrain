@@ -30,11 +30,21 @@ Use the exact template from CONTRIBUTING.md (plugin root). Choose ONE `type`:
   skill only runs for verified learnings.
 - `sources`: URLs used, or "verified locally" context in the body.
 
-SCRUB before writing: remove usernames, private paths, hostnames, IPs, tokens,
-company-internal references, proprietary code. Replace with placeholders like
-`<project-dir>`.
+SCRUB before writing — mechanical pass first, then manual:
+1. Run the auto-scrubber on the draft and review its stderr redaction report
+   (one line per redaction):
+```bash
+python3 "${CLAUDE_PLUGIN_ROOT}/skills/brain-distill/scripts/scrub.py" < draft.md
+```
+2. Then the manual scrub pass — the mechanical scrub is a floor, not a
+   replacement: remove usernames, private paths, hostnames, IPs, tokens,
+   company-internal references, proprietary code. Replace with placeholders
+   like `<project-dir>`.
 
 ## Step 3 — Save to the local overlay immediately
+
+If `~/.iotbrain/local/` is missing, initialize it first:
+`python3 "${CLAUDE_PLUGIN_ROOT}/scripts/init_overlay.py"`.
 
 ```bash
 mkdir -p ~/.iotbrain/local/<domain>
