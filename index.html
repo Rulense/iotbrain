@@ -468,19 +468,28 @@ optimize · debug
      — do not edit by hand. */
   /*__IOTBRAIN_DATA_START__*/
   const FALLBACK = {
-    "stats": {"entries": 49, "skills": 21, "domains": 6, "platforms": 5},
+    "stats": {"entries": 58, "skills": 21, "domains": 6, "platforms": 6},
     "updates": [
+      {"title": "Bookworm moved the Raspberry Pi boot partition to /boot/firmware — edits to /boot/config.txt are silently ignored", "type": "gotcha", "domain": "setup", "company": "raspberry-pi", "date": "2026-07-21"},
+      {"title": "Boot a Raspberry Pi 5 from NVMe — BOOT_ORDER=0xf416, PCIE_PROBE=1 for non-HAT+ adapters, PCIe gen 3 at your own risk", "type": "recipe", "domain": "setup", "company": "raspberry-pi", "date": "2026-07-21"},
+      {"title": "Decode vcgencmd get_throttled on Raspberry Pi — under-voltage bits, 0x50005, and the Pi 5 5A PSU / USB current limit", "type": "matrix", "domain": "runtime", "company": "raspberry-pi", "date": "2026-07-21"},
       {"title": "Enable secure boot on Jetson Orin — PKC/SBK fuse burning with odmfuse.sh: dry-run first, fuses are write-once", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-21"},
       {"title": "Encrypt the Jetson rootfs with LUKS — ROOTFS_ENC=1 flashing, EKB-derived per-device keys, and the unencrypted /boot split", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-21"},
       {"title": "Flash the Jetson AGX Thor devkit — unified initrd flashing only (l4t_initrd_flash.sh + apply_binaries.sh --openrm)", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-21"},
+      {"title": "Headless Raspberry Pi provisioning on Bookworm — ssh file + userconf.txt (no default pi user), Imager OS customisation", "type": "recipe", "domain": "iot", "company": "raspberry-pi", "date": "2026-07-21"},
       {"title": "Image-based OTA on fused Jetsons — build the payload with the same PKC/SBK keys the device was fused with", "type": "gotcha", "domain": "iot", "company": "nvidia", "date": "2026-07-21"},
       {"title": "JetPack 7 aligns Jetson with SBSA — one CUDA 13 Arm toolkit for Thor and Arm servers, but Orin (sm_87) stays on the old path", "type": "gotcha", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-21"},
       {"title": "JetPack 7.x support matrix — 7.0/7.1 are Thor-only (L4T 38.x), Orin joins at JetPack 7.2 (L4T 39.2)", "type": "matrix", "domain": "setup", "company": "nvidia", "date": "2026-07-21"},
       {"title": "Jetson power-mode envelopes vs supply sizing — Orin Nano/NX/AGX Orin/Thor wattage tables, MAXN caveats, devkit adapter limits", "type": "matrix", "domain": "runtime", "company": "nvidia", "date": "2026-07-21"},
+      {"title": "RP2350-E9 erratum on Pico 2 — GPIO inputs latch near 2.2 V and internal pull-downs can't pull low (fixed in A3/A4 stepping)", "type": "gotcha", "domain": "sdk-dev", "company": "raspberry-pi", "date": "2026-07-21"},
       {"title": "Run vLLM on Jetson AGX Thor — use the NVIDIA Thor containers; old images fail with 'no kernel image' or missing model support", "type": "config", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-21"},
+      {"title": "Set up the Raspberry Pi AI Kit / AI HAT+ (Hailo-8L/Hailo-8) on Pi 5 — hailo-all package, PCIe gen 3, hailortcli verify", "type": "recipe", "domain": "ml-stack", "company": "raspberry-pi", "date": "2026-07-21"},
+      {"title": "Stream the Pi camera on Bookworm — rpicam-vid over TCP/UDP, GStreamer libcamerasrc, Picamera2 capture_array into OpenCV", "type": "recipe", "domain": "vision", "company": "raspberry-pi", "date": "2026-07-21"},
+      {"title": "Update or recover the Raspberry Pi 4/5 bootloader EEPROM — rpi-eeprom-update, and the Imager bootloader-recovery SD card", "type": "recipe", "domain": "setup", "company": "raspberry-pi", "date": "2026-07-21"},
       {"title": "iot-connect — Use for edge-device connectivity and fleet work — MQTT (mosquitto, paho, AWS…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
       {"title": "nvcc fatal: Unsupported gpu architecture 'compute_110' — Thor is sm_110 and needs CUDA 13-era toolchains", "type": "fix", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-21"},
       {"title": "nvidia-smi 'No devices were found' on AGX Thor — GSP firmware init fails when the open/SBSA GPU driver wasn't applied", "type": "fix", "domain": "runtime", "company": "nvidia", "date": "2026-07-21"},
+      {"title": "rpicam-hello 'ERROR: *** no cameras available ***' on Bookworm — dtoverlay in /boot/firmware/config.txt, and raspistill is gone", "type": "fix", "domain": "vision", "company": "raspberry-pi", "date": "2026-07-21"},
       {"title": "sdk-build — Use for building, compiling, and packaging software for edge targets — native…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
       {"title": "vision-pipeline — Use for camera and vision-pipeline work on ANY edge device — sensor bring-up…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
       {"title": "Change the Jetson Orin fan profile (quiet vs cool) — edit /etc/nvfancontrol.conf AND delete /var/lib/nvfancontrol/status", "type": "config", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},
@@ -520,16 +529,7 @@ optimize · debug
       {"title": "Fleet OTA on Jetson — apt package OTA vs image-based OTA, and what survives each", "type": "matrix", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
       {"title": "Headless Jetson setup with no monitor — USB device mode serial oem-config, then ssh to 192.168.55.1", "type": "recipe", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
       {"title": "Illegal instruction (core dumped) importing numpy/torch on Jetson — OPENBLAS_CORETYPE=ARMV8", "type": "fix", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "ImportError: libcudnn.so after pip-installing PyTorch on Jetson", "type": "fix", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "JetPack 6 SD image stuck at first boot / End-user configuration on Orin Nano — QSPI firmware too old", "type": "fix", "domain": "setup", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "Jetson boots with clock in the past after power-off (TLS/apt breaks) — RTC battery is on rtc0, but boot time comes from rtc1", "type": "fix", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "Jetson in forced recovery mode not detected by host lsusb (cable, port, VM passthrough)", "type": "fix", "domain": "setup", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "Known-working PyTorch wheel source for JetPack 6.x (CUDA 12.6)", "type": "config", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "Python wheels on Jetson (aarch64) — piwheels doesn't serve you, cp-tag mismatches, and pip's silent source builds", "type": "gotcha", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "RTSP streaming from a Jetson camera with the hardware encoder (nvv4l2h264enc + gst-rtsp-server test-launch)", "type": "recipe", "domain": "vision", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "Recover an unbootable Jetson after a failed apt/OTA upgrade (forced recovery + reflash)", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "RuntimeError: operator torchvision::nms does not exist — torch/torchvision pairing on Jetson", "type": "matrix", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "SDK Manager hangs at 'Determining the IP address of the target' — OEM configuration not completed", "type": "fix", "domain": "setup", "company": "nvidia", "date": "2026-07-17"}
+      {"title": "ImportError: libcudnn.so after pip-installing PyTorch on Jetson", "type": "fix", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"}
     ]
   };
   /*__IOTBRAIN_DATA_END__*/

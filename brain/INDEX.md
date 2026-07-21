@@ -10,6 +10,7 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [Image-based OTA on fused Jetsons — build the payload with the same PKC/SBK keys the device was fused with](iot/image-ota-payload-signing-fused.md) — gotcha · JP 6.x · l4t_generate_ota_package.sh -u/-v must match fused keys; tarball transport checks are on you
 - [Jetson boots with clock in the past after power-off (TLS/apt breaks) — RTC battery is on rtc0, but boot time comes from rtc1](iot/rtc-clock-reset-breaks-tls.md) — fix · JP 5.x–6.x · hwclock -f /dev/rtc0 -s at boot; battery alone isn't enough
 - [Wi-Fi drops on an idle Jetson and never reconnects — disable wifi.powersave / iw power_save](iot/wifi-drops-on-idle-powersave.md) — fix · JP all · wifi.powersave = 2 plus iw fallback unit for stubborn drivers
+- [Headless Raspberry Pi provisioning on Bookworm — ssh file + userconf.txt (no default pi user), Imager OS customisation](iot/headless-provisioning-userconf-ssh-bookworm.md) — recipe · Bookworm+ · empty ssh file + userconf.txt username:hash; wpa_supplicant.conf is dead, use Imager
 
 ## ml-stack
 - [ImportError: libcudnn.so after pip-installing PyTorch on Jetson](ml-stack/pytorch-wheel-libcudnn-import-error.md) — fix · JP 5.x–6.x · wheel/JetPack mismatch breaks import or CUDA
@@ -21,6 +22,7 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [Don't apt-install Ubuntu's nvidia-cuda-toolkit on Jetson — JetPack CUDA lives in /usr/local/cuda](ml-stack/cuda-toolkit-apt-vs-jetpack-cuda.md) — gotcha · JP 5.x–6.x · nvcc is a PATH problem; upgrade CUDA via NVIDIA's Jetson repo instead
 - [jetson-containers — prebuilt CUDA ML containers as the escape hatch for on-device dependency hell](ml-stack/jetson-containers-dependency-escape-hatch.md) — recipe · JP 6.x–7.x · autotag matches your L4T; run wrapper sets --runtime nvidia
 - [Run vLLM on Jetson AGX Thor — use the NVIDIA Thor containers; old images fail with 'no kernel image' or missing model support](ml-stack/vllm-on-thor-containers.md) — config · JP 7.x · ghcr latest-jetson-thor or monthly nvcr.io vllm tags; stale images lack FP4/GPT-OSS
+- [Set up the Raspberry Pi AI Kit / AI HAT+ (Hailo-8L/Hailo-8) on Pi 5 — hailo-all package, PCIe gen 3, hailortcli verify](ml-stack/pi5-ai-kit-hailo-all-setup.md) — recipe · Bookworm+ · apt hailo-all ships driver+HailoRT; gen 3 for full fps; hailortcli fw-control identify
 
 ## runtime
 - [Default power mode silently caps Jetson performance](runtime/default-power-mode-caps-performance.md) — gotcha · JP all · nvpmodel + jetson_clocks before benchmarking
@@ -32,6 +34,7 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [Move a running Jetson's rootfs from SD to NVMe without reflashing — copy rootfs, point extlinux.conf root= at /dev/nvme0n1p1](runtime/rootfs-redirect-sd-to-nvme.md) — recipe · JP 4.x–6.x · rsync -ax to SSD, edit root= on the SD's extlinux.conf; kernel updates still land on SD /boot
 - [nvidia-smi 'No devices were found' on AGX Thor — GSP firmware init fails when the open/SBSA GPU driver wasn't applied](runtime/thor-nvidia-smi-no-devices-gsp-openrm.md) — fix · JP 7.x · RmInitAdapter GSP errors in dmesg; re-apply_binaries.sh --openrm and reflash
 - [Jetson power-mode envelopes vs supply sizing — Orin Nano/NX/AGX Orin/Thor wattage tables, MAXN caveats, devkit adapter limits](runtime/power-mode-envelopes-supply-sizing.md) — matrix · JP 6.x–7.x · mode wattage tables; MAXN is uncapped and self-throttles; Thor devkit 168W enforced limit
+- [Decode vcgencmd get_throttled on Raspberry Pi — under-voltage bits, 0x50005, and the Pi 5 5A PSU / USB current limit](runtime/vcgencmd-get-throttled-undervoltage-bits.md) — matrix · all · bit table; 0x50005 = live under-voltage; Pi 5 3A supply caps USB at 600mA
 
 ## sdk-dev
 - [CUDA gencode/arch flags per Jetson module — Orin is sm_87, Xavier is sm_72 (wrong arch = no kernel image)](sdk-dev/cuda-arch-gencode-flags-per-module.md) — matrix · JP all · sm table + CMake/OpenCV flags; missing arch fails at first kernel launch
@@ -42,6 +45,7 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [Shipping Jetson apps as containers — since JetPack 5, l4t-base no longer mounts CUDA from the host (l4t.csv mounts BSP only)](sdk-dev/l4t-base-container-csv-mounts.md) — gotcha · JP 4.x–6.x · JP5+ needs CUDA in the image (l4t-cuda/l4t-jetpack); l4t.csv mounts BSP libs only
 - [nvcc fatal: Unsupported gpu architecture 'compute_110' — Thor is sm_110 and needs CUDA 13-era toolchains](sdk-dev/cuda13-thor-compute-110-unsupported-arch.md) — fix · JP 7.x · sm_101→sm_110 rename in CUDA 13; cu130 wheels / Isaac ROS 4.0; gencode compute_110
 - [JetPack 7 aligns Jetson with SBSA — one CUDA 13 Arm toolkit for Thor and Arm servers, but Orin (sm_87) stays on the old path](sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md) — gotcha · JP 7.x · build once on Arm servers, deploy to Thor; Orin keeps the Jetson-specific CUDA path
+- [RP2350-E9 erratum on Pico 2 — GPIO inputs latch near 2.2 V and internal pull-downs can't pull low (fixed in A3/A4 stepping)](sdk-dev/rp2350-e9-gpio-pulldown-latch.md) — gotcha · RP2350 A2 · inputs stick at ~2.2V; ≤8.2kΩ external pull-down or A3/A4 silicon; A4 needs pico-sdk 2.1.0+
 
 ## setup
 - [Jetson in forced recovery mode not detected by host lsusb (cable, port, VM passthrough)](setup/recovery-mode-device-not-detected-lsusb.md) — fix · JP all · USB-C flashing port, data cable, no VMs; expect 0955:xxxx APX
@@ -54,6 +58,9 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [Flash the Jetson AGX Thor devkit — unified initrd flashing only (l4t_initrd_flash.sh + apply_binaries.sh --openrm)](setup/thor-devkit-unified-initrd-flash.md) — recipe · JP 7.x · no flash.sh path; --openrm rootfs prep; device parks in initrd after flash, reset to boot
 - [Enable secure boot on Jetson Orin — PKC/SBK fuse burning with odmfuse.sh: dry-run first, fuses are write-once](setup/secure-boot-pkc-fuse-burning-orin.md) — recipe · JP 6.x · tegrasign_v3 pubkeyhash + fuse XML; --test before burn; SecurityMode blocks all later fuse writes
 - [Encrypt the Jetson rootfs with LUKS — ROOTFS_ENC=1 flashing, EKB-derived per-device keys, and the unencrypted /boot split](setup/disk-encryption-rootfs-enc-luks.md) — recipe · JP 6.x–7.x · APP/APP_ENC split; OP-TEE derives per-device passphrase from ECID; shipped eks keys are test-only
+- [Bookworm moved the Raspberry Pi boot partition to /boot/firmware — edits to /boot/config.txt are silently ignored](setup/bookworm-boot-firmware-config-move.md) — gotcha · Bookworm+ · live files are /boot/firmware/config.txt+cmdline.txt; /boot is rootfs now
+- [Boot a Raspberry Pi 5 from NVMe — BOOT_ORDER=0xf416, PCIE_PROBE=1 for non-HAT+ adapters, PCIe gen 3 at your own risk](setup/pi5-nvme-boot-order-pcie-gen3.md) — recipe · Bookworm+ · rpi-eeprom-config edit; PCIE_PROBE=1 for third-party boards; gen 3 uncertified
+- [Update or recover the Raspberry Pi 4/5 bootloader EEPROM — rpi-eeprom-update, and the Imager bootloader-recovery SD card](setup/rpi-eeprom-bootloader-update-recovery.md) — recipe · all · rpi-eeprom-update -a; Imager Misc utility images recovery card; rapid green LED = success
 
 ## vision
 - [nvarguscamerasrc 'No cameras available' with IMX219/IMX477 — apply CSI overlay with jetson-io](vision/nvarguscamerasrc-no-cameras-available-jetson-io.md) — fix · JP 5.x–6.x · JP6 needs jetson-io overlay; i2c -121 means reseat the ribbon
@@ -62,3 +69,5 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [nvarguscamerasrc in Docker: mount /tmp/argus_socket — and remount after any nvargus-daemon restart](vision/nvargus-docker-argus-socket-mount.md) — fix · JP all · client/daemon split; stale socket bind-mount after daemon restart
 - [RTSP streaming from a Jetson camera with the hardware encoder (nvv4l2h264enc + gst-rtsp-server test-launch)](vision/rtsp-stream-nvv4l2h264enc-test-launch.md) — recipe · JP 4.x–6.x · test-launch pipeline; Orin Nano has no NVENC
 - [Camera worked before, now every Argus open fails/times out — restart nvargus-daemon first](vision/restart-nvargus-daemon-first-line-recovery.md) — fix · JP all · daemon owns all Argus state; journalctl -u nvargus-daemon for the real error
+- [rpicam-hello 'ERROR: *** no cameras available ***' on Bookworm — dtoverlay in /boot/firmware/config.txt, and raspistill is gone](vision/rpicam-no-cameras-available-bookworm.md) — fix · Bookworm+ · camera_auto_detect=0 + dtoverlay=<sensor>; Pi 5 cam0 suffix; raspistill removed
+- [Stream the Pi camera on Bookworm — rpicam-vid over TCP/UDP, GStreamer libcamerasrc, Picamera2 capture_array into OpenCV](vision/rpicam-vid-gstreamer-opencv-streaming.md) — recipe · Bookworm+ · rpicam-vid mpegts; Pi 5 has no HW H.264 (x264enc); capture_array for OpenCV

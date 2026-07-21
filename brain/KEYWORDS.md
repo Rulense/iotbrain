@@ -16,7 +16,10 @@ string or symptom phrase, then read the target entries.
 -ats.iot → iot/mqtt-tls-aws-iot-core.md
 -gencode arch=compute_72,code=sm_72 → sdk-dev/cuda-arch-gencode-flags-per-module.md
 -gencode arch=compute_87,code=sm_87 → sdk-dev/cuda-arch-gencode-flags-per-module.md
+/boot/config.txt → setup/bookworm-boot-firmware-config-move.md
 /boot/extlinux/extlinux.conf → runtime/rootfs-redirect-sd-to-nvme.md
+/boot/firmware/cmdline.txt → setup/bookworm-boot-firmware-config-move.md
+/boot/firmware/config.txt → setup/bookworm-boot-firmware-config-move.md
 /dev/ttyACM0 → iot/headless-setup-usb-device-mode.md
 /etc/nvidia-container-runtime/host-files-for-container.d → sdk-dev/l4t-base-container-csv-mounts.md
 /sys/class/hwmon/hwmon*/oc*_event_cnt → runtime/over-current-throttling-warning.md
@@ -35,6 +38,7 @@ APPEND ${cbootargs} → runtime/rootfs-redirect-sd-to-nvme.md
 APP_ENC → setup/disk-encryption-rootfs-enc-luks.md
 APX → setup/recover-unbootable-after-apt-ota-upgrade.md
 AmazonRootCA1.pem → iot/mqtt-tls-aws-iot-core.md
+BOOT_ORDER=0xf416 → setup/pi5-nvme-boot-order-pcie-gen3.md
 BootSecurityInfo → setup/secure-boot-pkc-fuse-burning-orin.md
 Building wheel for → sdk-dev/python-wheels-aarch64-no-piwheels.md
 CMAKE_CUDA_ARCHITECTURES → sdk-dev/cuda-arch-gencode-flags-per-module.md
@@ -49,6 +53,7 @@ Determining the IP address of the target → setup/sdk-manager-sdk-components-ip
 EFI stub: ERROR: Invalid header detected on UEFI supplied FDT, ignoring → setup/recover-unbootable-after-apt-ota-upgrade.md
 EFI stub: Generating empty DTB → setup/recover-unbootable-after-apt-ota-upgrade.md
 EMC_FREQ → runtime/tegrastats-fields-decoder.md
+ERROR: *** no cameras available *** → vision/rpicam-no-cameras-available-bookworm.md
 Error generated. /dvs/git/dirty/git-master_linux/multimedia/nvgstreamer/gst-nvarguscamera/gstnvarguscamerasrc.cpp, execute:751 No cameras available → vision/nvarguscamerasrc-no-cameras-available-jetson-io.md
 FAN_DEFAULT_PROFILE → runtime/nvfancontrol-fan-profile-change.md
 Failed to create CameraProvider → vision/nvargus-docker-argus-socket-mount.md
@@ -63,6 +68,7 @@ Jetson Linux 38.2 → setup/jetpack7-support-matrix-thor-orin.md
 L4T r39.2 → setup/jetpack7-support-matrix-thor-orin.md
 LSC: LSC surface is not based on full res! → vision/v4l2-works-nvargus-fails-isp-path.md
 MAXN_SUPER → runtime/power-mode-envelopes-supply-sizing.md
+Misc utility images → setup/rpi-eeprom-bootloader-update-recovery.md
 NVIDIA Corp. APX → setup/recovery-mode-device-not-detected-lsusb.md
 No cameras available → vision/nvarguscamerasrc-no-cameras-available-jetson-io.md · vision/v4l2-works-nvargus-fails-isp-path.md
 No devices were found → runtime/thor-nvidia-smi-no-devices-gsp-openrm.md
@@ -70,9 +76,12 @@ NvBufSurface → sdk-dev/multimedia-api-linking-nvbuf-utils.md
 OEM Configuration → setup/sdk-manager-sdk-components-ip-oem-config.md
 OPENBLAS_CORETYPE=ARMV8 → ml-stack/numpy-illegal-instruction-openblas-coretype.md
 Out of memory: Killed process → runtime/oom-killed-unified-memory.md
+PCIE_PROBE=1 → setup/pi5-nvme-boot-order-pcie-gen3.md
 Power save: on → iot/wifi-drops-on-idle-powersave.md
 PublicKeyHash → setup/secure-boot-pkc-fuse-burning-orin.md
 ROOTFS_ENC=1 → setup/disk-encryption-rootfs-enc-luks.md
+RP2350 A2 stepping → sdk-dev/rp2350-e9-gpio-pulldown-latch.md
+RP2350-E9 → sdk-dev/rp2350-e9-gpio-pulldown-latch.md
 RmInitAdapter: Cannot initialize GSP firmware RM → runtime/thor-nvidia-smi-no-devices-gsp-openrm.md
 RuntimeError: operator torchvision::nms does not exist → ml-stack/torch-torchvision-version-pairing.md
 SBSA → sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md
@@ -85,6 +94,8 @@ System throttled due to over-current → runtime/over-current-throttling-warning
 TARGET_ROOTFS → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md
 TensorrtExecutionProvider → ml-stack/onnxruntime-gpu-jetson-wheels.md
 The engine plan file is not compatible with this version of TensorRT → ml-stack/tensorrt-engines-not-portable.md
+This power supply is not capable of supplying 5A → runtime/vcgencmd-get-throttled-undervoltage-bits.md
+Undervoltage detected! → runtime/vcgencmd-get-throttled-undervoltage-bits.md
 Using an engine plan file across different models of devices is not recommended → ml-stack/tensorrt-engines-not-portable.md
 VDD_CPU_GPU_CV → runtime/tegrastats-fields-decoder.md
 [Errno 104] Connection reset by peer → iot/mqtt-tls-aws-iot-core.md
@@ -95,6 +106,7 @@ appsink → vision/csi-camera-opencv-bgr-gstreamer-pipeline.md
 apt dist-upgrade → iot/fleet-ota-apt-vs-image-based.md
 authentication with → iot/wifi-drops-on-idle-powersave.md
 autotag → ml-stack/jetson-containers-dependency-escape-hatch.md
+boot from nvme ssd → setup/pi5-nvme-boot-order-pcie-gen3.md
 boot from nvme without reflash → runtime/rootfs-redirect-sd-to-nvme.md
 boot hangs after flash → setup/jetpack6-first-boot-hang-qspi-firmware.md
 build aarch64 on x86 host → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md
@@ -102,20 +114,25 @@ build runs out of memory → sdk-dev/on-device-builds-swap-and-clocks.md
 camera broken in container → vision/nvargus-docker-argus-socket-mount.md
 camera fails inside docker → vision/nvargus-docker-argus-socket-mount.md
 camera frames into opencv → vision/csi-camera-opencv-bgr-gstreamer-pipeline.md
-camera not detected → vision/nvarguscamerasrc-no-cameras-available-jetson-io.md
+camera not detected → vision/nvarguscamerasrc-no-cameras-available-jetson-io.md · vision/rpicam-no-cameras-available-bookworm.md
 camera open times out → vision/restart-nvargus-daemon-first-line-recovery.md
 camera stopped working → vision/restart-nvargus-daemon-first-line-recovery.md
 camera works only with v4l2 → vision/v4l2-works-nvargus-fails-isp-path.md
+camera_auto_detect=0 → vision/rpicam-no-cameras-available-bookworm.md
 cannot connect to aws iot → iot/mqtt-tls-aws-iot-core.md
 cannot install sdk components → setup/sdk-manager-sdk-components-ip-oem-config.md
 cannot link nvbuf utils → sdk-dev/multimedia-api-linking-nvbuf-utils.md
+cannot log in headless → iot/headless-provisioning-userconf-ssh-bookworm.md
+capture_array → vision/rpicam-vid-gstreamer-opencv-streaming.md
 certificate is not yet valid → iot/rtc-clock-reset-breaks-tls.md
 certificate verify failed → iot/mqtt-tls-aws-iot-core.md
 choosing an ota update strategy → iot/fleet-ota-apt-vs-image-based.md
 clock wrong after reboot → iot/rtc-clock-reset-breaks-tls.md
 compiler killed during build → sdk-dev/on-device-builds-swap-and-clocks.md
 compute_110 → sdk-dev/cuda13-thor-compute-110-unsupported-arch.md
+config.txt changes have no effect → setup/bookworm-boot-firmware-config-move.md
 container image lacks cuda → sdk-dev/l4t-base-container-csv-mounts.md
+corrupted bootloader recovery → setup/rpi-eeprom-bootloader-update-recovery.md
 could not select device driver "" with capabilities: [[gpu]] → iot/docker-gpu-lost-runtime-nvidia.md
 cpu-thermal → runtime/thermal-throttling-trip-points.md
 crash importing numpy → ml-stack/numpy-illegal-instruction-openblas-coretype.md
@@ -135,6 +152,8 @@ device feels slow → runtime/default-power-mode-caps-performance.md
 device is not in recovery mode → setup/recovery-mode-device-not-detected-lsusb.md
 disk_enc.key → setup/disk-encryption-rootfs-enc-luks.md
 docker container cannot use gpu → iot/docker-gpu-lost-runtime-nvidia.md
+dtoverlay=imx708 → vision/rpicam-no-cameras-available-bookworm.md
+dtparam=pciex1_gen=3 → ml-stack/pi5-ai-kit-hailo-all-setup.md · setup/pi5-nvme-boot-order-pcie-gen3.md
 enable secure boot on jetson → setup/secure-boot-pkc-fuse-burning-orin.md
 enableCamInfiniteTimeout → vision/restart-nvargus-daemon-first-line-recovery.md
 encrypt jetson rootfs → setup/disk-encryption-rootfs-enc-luks.md
@@ -153,9 +172,14 @@ flashed but will not boot → setup/orin-flash-board-config-names.md
 format=BGRx ! videoconvert → vision/csi-camera-opencv-bgr-gstreamer-pipeline.md
 fuse burning is permanent → setup/secure-boot-pkc-fuse-burning-orin.md
 ghcr.io/nvidia-ai-iot/vllm:latest-jetson-thor → ml-stack/vllm-on-thor-containers.md
+gpio input stuck at 2.2V → sdk-dev/rp2350-e9-gpio-pulldown-latch.md
 gpu missing inside container → iot/docker-gpu-lost-runtime-nvidia.md
 gpu-thermal → runtime/thermal-throttling-trip-points.md
+gst-launch-1.0 fdsrc fd=0 → vision/rpicam-vid-gstreamer-opencv-streaming.md
 gst-rtsp-server → vision/rtsp-stream-nvv4l2h264enc-test-launch.md
+hailo device not detected → ml-stack/pi5-ai-kit-hailo-all-setup.md
+hailo_yolov8_inference.json → ml-stack/pi5-ai-kit-hailo-all-setup.md
+hailortcli fw-control identify → ml-stack/pi5-ai-kit-hailo-all-setup.md
 hardware encoded video stream → vision/rtsp-stream-nvv4l2h264enc-test-launch.md
 hctosys → iot/rtc-clock-reset-breaks-tls.md
 headless setup without monitor → iot/headless-setup-usb-device-mode.md
@@ -166,6 +190,7 @@ inference slower than expected → runtime/default-power-mode-caps-performance.m
 install os on nvme → setup/orin-nano-nvme-initrd-flash.md
 install pytorch on jetson → ml-stack/pytorch-jetpack6-working-wheels.md
 internal compiler error: Killed (program cc1plus) → sdk-dev/on-device-builds-swap-and-clocks.md
+internal pull-down not working → sdk-dev/rp2350-e9-gpio-pulldown-latch.md
 invoked oom-killer → runtime/oom-killed-unified-memory.md
 is not a supported wheel on this platform → sdk-dev/python-wheels-aarch64-no-piwheels.md
 is not valid yet (invalid for another → iot/rtc-clock-reset-breaks-tls.md
@@ -193,8 +218,10 @@ l4t_initrd_flash.sh → setup/orin-nano-nvme-initrd-flash.md
 l4t_initrd_flash.sh jetson-agx-thor-devkit internal → setup/thor-devkit-unified-initrd-flash.md
 l4tbr0 → iot/headless-setup-usb-device-mode.md
 lfb → runtime/tegrastats-fields-decoder.md
+libcamerasrc → vision/rpicam-vid-gstreamer-opencv-streaming.md
 link_directories(/usr/lib/aarch64-linux-gnu/tegra) → sdk-dev/multimedia-api-linking-nvbuf-utils.md
 linux_aarch64.whl → sdk-dev/python-wheels-aarch64-no-piwheels.md
+low voltage warning keeps appearing → runtime/vcgencmd-get-throttled-undervoltage-bits.md
 lsusb → setup/recovery-mode-device-not-detected-lsusb.md
 luks-srv → setup/disk-encryption-rootfs-enc-luks.md
 manylinux2014_aarch64 → sdk-dev/python-wheels-aarch64-no-piwheels.md
@@ -204,8 +231,11 @@ move rootfs to ssd → runtime/rootfs-redirect-sd-to-nvme.md
 mqtt connection keeps dropping → iot/mqtt-tls-aws-iot-core.md
 multimedia api link error → sdk-dev/multimedia-api-linking-nvbuf-utils.md
 named symbol not found → sdk-dev/cuda-arch-gencode-flags-per-module.md
+no default pi user → iot/headless-provisioning-userconf-ssh-bookworm.md
+no hdmi output green led never blinks → setup/rpi-eeprom-bootloader-update-recovery.md
 no kernel image is available for execution on the device → ml-stack/vllm-on-thor-containers.md · sdk-dev/cuda-arch-gencode-flags-per-module.md · sdk-dev/cuda13-thor-compute-110-unsupported-arch.md
 no wheel for aarch64 → sdk-dev/python-wheels-aarch64-no-piwheels.md
+npu inference on raspberry pi → ml-stack/pi5-ai-kit-hailo-all-setup.md
 numpy==1.19.5 → ml-stack/numpy-illegal-instruction-openblas-coretype.md
 nv-l4t-bootloader-config → setup/jetpack6-first-boot-hang-qspi-firmware.md
 nv-l4t-usb-device-mode → iot/headless-setup-usb-device-mode.md
@@ -222,6 +252,7 @@ nvidia-jetpack → ml-stack/cuda-toolkit-apt-vs-jetpack-cuda.md
 nvidia-l4t-apt-source.list → iot/fleet-ota-apt-vs-image-based.md
 nvidia-l4t-jetson-multimedia-api → sdk-dev/multimedia-api-linking-nvbuf-utils.md
 nvidia-l4t-jetson-orin-nano-qspi-updater → setup/jetpack6-first-boot-hang-qspi-firmware.md
+nvme drive not detected → setup/pi5-nvme-boot-order-pcie-gen3.md
 nvpmodel → runtime/default-power-mode-caps-performance.md
 nvpmodel -m 0 → runtime/power-mode-envelopes-supply-sizing.md
 nvv4l2h264enc → vision/rtsp-stream-nvv4l2h264enc-test-launch.md
@@ -230,13 +261,17 @@ nvzramconfig → runtime/oom-killed-unified-memory.md
 oc1_event_cnt → runtime/over-current-throttling-warning.md
 odmfuse.sh → setup/secure-boot-pkc-fuse-burning-orin.md
 oem-config → setup/jetpack6-first-boot-hang-qspi-firmware.md
+old guide edits wrong file → setup/bookworm-boot-firmware-config-move.md
 onnx inference runs on cpu → ml-stack/onnxruntime-gpu-jetson-wheels.md
 onnxruntime not using gpu → ml-stack/onnxruntime-gpu-jetson-wheels.md
 onnxruntime_gpu → ml-stack/onnxruntime-gpu-jetson-wheels.md
+openssl passwd -6 → iot/headless-provisioning-userconf-ssh-bookworm.md
 operator torchvision::nms does not exist → ml-stack/torch-torchvision-version-pairing.md
 ota fails on fused jetson → iot/image-ota-payload-signing-fused.md
 ota_payload_package.tar.gz → iot/image-ota-payload-signing-fused.md
 over current warning → runtime/over-current-throttling-warning.md
+pi camera frames into opencv → vision/rpicam-vid-gstreamer-opencv-streaming.md
+pico-sdk 2.1.0 → sdk-dev/rp2350-e9-gpio-pulldown-latch.md
 pip builds from source forever → sdk-dev/python-wheels-aarch64-no-piwheels.md
 pip install onnxruntime → ml-stack/onnxruntime-gpu-jetson-wheels.md
 pip install torch → ml-stack/pytorch-wheel-libcudnn-import-error.md
@@ -248,11 +283,17 @@ process killed loading model → runtime/oom-killed-unified-memory.md
 pypi.jetson-ai-lab → ml-stack/pytorch-jetpack6-working-wheels.md
 python crashes on import → ml-stack/numpy-illegal-instruction-openblas-coretype.md
 pytorch cannot find cudnn → ml-stack/pytorch-wheel-libcudnn-import-error.md
+random reboots under load → runtime/vcgencmd-get-throttled-undervoltage-bits.md
+raspistill: command not found → vision/rpicam-no-cameras-available-bookworm.md
 recover a bricked device → setup/recover-unbootable-after-apt-ota-upgrade.md
 recovery mode not detected → setup/recovery-mode-device-not-detected-lsusb.md
 repo.download.nvidia.com/jetson → iot/fleet-ota-apt-vs-image-based.md
 root=/dev/nvme0n1p1 → runtime/rootfs-redirect-sd-to-nvme.md
 rootwait → runtime/rootfs-redirect-sd-to-nvme.md
+rpi-eeprom-config --edit → setup/pi5-nvme-boot-order-pcie-gen3.md · setup/rpi-eeprom-bootloader-update-recovery.md
+rpi-eeprom-update -a → setup/rpi-eeprom-bootloader-update-recovery.md
+rpicam-hello --list-cameras → vision/rpicam-no-cameras-available-bookworm.md
+rpicam-vid -t 0 --codec libav --libav-format mpegts → vision/rpicam-vid-gstreamer-opencv-streaming.md
 rtc1 → iot/rtc-clock-reset-breaks-tls.md
 rtph264pay name=pay0 pt=96 → vision/rtsp-stream-nvv4l2h264enc-test-launch.md
 rtsp://127.0.0.1:8554/test → vision/rtsp-stream-nvv4l2h264enc-test-launch.md
@@ -266,8 +307,11 @@ slow inference jetson → runtime/default-power-mode-caps-performance.md
 slows down when hot → runtime/thermal-throttling-trip-points.md
 sm_110 → sdk-dev/cuda13-thor-compute-110-unsupported-arch.md
 sm_87 → sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md
+ssh connection refused after flashing → iot/headless-provisioning-userconf-ssh-bookworm.md
 stream camera over rtsp → vision/rtsp-stream-nvv4l2h264enc-test-launch.md
+stream pi camera over network → vision/rpicam-vid-gstreamer-opencv-streaming.md
 stuck at first boot → setup/jetpack6-first-boot-hang-qspi-firmware.md
+sudo apt install hailo-all → ml-stack/pi5-ai-kit-hailo-all-setup.md
 sudo apt upgrade → setup/recover-unbootable-after-apt-ota-upgrade.md
 sudo systemctl disable nvzramconfig → sdk-dev/on-device-builds-swap-and-clocks.md
 sudo systemctl restart nvargus-daemon → vision/restart-nvargus-daemon-first-line-recovery.md
@@ -281,6 +325,7 @@ thermal throttling under load → runtime/thermal-throttling-trip-points.md
 thermal_zone → runtime/thermal-throttling-trip-points.md
 thor flashing fails → setup/thor-devkit-unified-initrd-flash.md
 thor gpu not detected → runtime/thor-nvidia-smi-no-devices-gsp-openrm.md
+throttled=0x50005 → runtime/vcgencmd-get-throttled-undervoltage-bits.md
 throttles under heavy load → runtime/over-current-throttling-warning.md
 tj-thermal → runtime/thermal-throttling-trip-points.md
 tls_set → iot/mqtt-tls-aws-iot-core.md
@@ -293,7 +338,10 @@ trtexec --saveEngine → ml-stack/tensorrt-engines-not-portable.md
 unbootable after apt upgrade → setup/recover-unbootable-after-apt-ota-upgrade.md
 unknown or invalid runtime name: nvidia → iot/docker-gpu-lost-runtime-nvidia.md
 update a fleet remotely → iot/fleet-ota-apt-vs-image-based.md
+usb_max_current_enable=1 → runtime/vcgencmd-get-throttled-undervoltage-bits.md
+userconf.txt → iot/headless-provisioning-userconf-ssh-bookworm.md
 v4l2-ctl --list-devices → vision/v4l2-works-nvargus-fails-isp-path.md
+vcgencmd get_throttled → runtime/vcgencmd-get-throttled-undervoltage-bits.md
 video/x-raw(memory:NVMM) → vision/csi-camera-opencv-bgr-gstreamer-pipeline.md
 vllm fails on thor → ml-stack/vllm-on-thor-containers.md
 vllm serve → ml-stack/vllm-on-thor-containers.md
@@ -304,5 +352,6 @@ which pytorch wheel works → ml-stack/pytorch-jetpack6-working-wheels.md
 wifi drops when idle → iot/wifi-drops-on-idle-powersave.md
 wifi keeps disconnecting → iot/wifi-drops-on-idle-powersave.md
 wifi.powersave = 2 → iot/wifi-drops-on-idle-powersave.md
+wpa_supplicant.conf → iot/headless-provisioning-userconf-ssh-bookworm.md
 wrong cuda arch flags → sdk-dev/cuda-arch-gencode-flags-per-module.md
 wrong cuda toolkit installed → ml-stack/cuda-toolkit-apt-vs-jetpack-cuda.md

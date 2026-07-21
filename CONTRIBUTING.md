@@ -17,7 +17,7 @@ keys:                       # BOTH kinds required (≥2 keys, lint-enforced):
   - "<exact string an agent would search for>"    # verbatim — error strings, package names, element names
   - "<plain-language symptom phrase>"             # how a human/agent would describe it, lowercase, 2-6 words
 platform_versions: ["JetPack 6.1", "L4T 36.x"]   # platform/SDK version scope, or ["all"]
-devices: [orin-nano]        # orin-nano | orin-nx | agx-orin | xavier-nx | agx-xavier | nano | agx-thor | all
+devices: [orin-nano]        # vendor-appropriate slugs — e.g. jetson: orin-nano | orin-nx | agx-orin | xavier-nx | agx-xavier | nano | agx-thor; raspberry-pi: pi-5 | pi-4 | pi-zero-2w | pico-2; or all
 status: verified | unverified | outdated
 verified_on: "<device>, JetPack <ver>, <YYYY-MM-DD>"   # required when status: verified
 reproduced_by: ["<who/context>, <device>, <version>, <YYYY-MM-DD>"]   # optional second confirmations
