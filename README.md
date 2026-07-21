@@ -118,6 +118,7 @@ python3 scripts/gen_updates.py
 - **Version-aware.** Every entry is scoped to platform/SDK versions and device models (JetPack/L4T versions and Jetson models for today's entries). The agent checks applicability before trusting knowledge, so nothing stale gets confidently misapplied. Entries also carry a `company` field naming the device vendor — v0.1 content is NVIDIA Jetson, and the brain broadens to other edge-IoT vendors over time.
 - **Human-reviewed growth.** The only write path into the shared brain is a pull request. The distiller formats entries; the community reviews truth. Nothing is published without the contributing user approving the exact content first.
 - **Transparent verification.** An entry is `verified` only when it worked on real hardware (confirmed by the contributor or the cited thread's author) or is stated by the vendor's current official docs, cited with a check date — everything else is honestly marked `unverified` until confirmed. Junk doesn't get in, and provenance is always transparent.
+- **Safety gate.** Flashing, partitioning, fuse-burning, and boot-config commands trigger an explicit confirm-with-context prompt before they run.
 
 ## What's inside
 

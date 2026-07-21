@@ -1,0 +1,16 @@
+{
+  "description": "iotbrain safety gate: brickable device commands (flashing, partitioning, fuse burning, boot-config edits) trigger an explicit confirm-with-context prompt before they run.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/guard_brickable.py\""
+          }
+        ]
+      }
+    ]
+  }
+}
