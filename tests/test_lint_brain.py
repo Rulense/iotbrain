@@ -127,7 +127,7 @@ def test_real_brain_passes_with_key_floor():
     assert main([str(brain)]) == 0
     entries = [p for p in brain.rglob("*.md")
                if p.name not in ("INDEX.md", "KEYWORDS.md")]
-    assert len(entries) == 58
+    assert len(entries) == 62
     for p in entries:
         assert len(parse_entry(p)["keys"]) >= 2, p
 

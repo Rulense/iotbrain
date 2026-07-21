@@ -11,6 +11,7 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [Jetson boots with clock in the past after power-off (TLS/apt breaks) — RTC battery is on rtc0, but boot time comes from rtc1](iot/rtc-clock-reset-breaks-tls.md) — fix · JP 5.x–6.x · hwclock -f /dev/rtc0 -s at boot; battery alone isn't enough
 - [Wi-Fi drops on an idle Jetson and never reconnects — disable wifi.powersave / iw power_save](iot/wifi-drops-on-idle-powersave.md) — fix · JP all · wifi.powersave = 2 plus iw fallback unit for stubborn drivers
 - [Headless Raspberry Pi provisioning on Bookworm — ssh file + userconf.txt (no default pi user), Imager OS customisation](iot/headless-provisioning-userconf-ssh-bookworm.md) — recipe · Bookworm+ · empty ssh file + userconf.txt username:hash; wpa_supplicant.conf is dead, use Imager
+- [ESP32 OTA anti-brick — app rollback with CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE, otadata states, and interrupted-OTA recovery](iot/esp32-ota-rollback-anti-brick.md) — recipe · IDF 5.x–6.0 · rollback + otadata safety net for fleet OTA
 
 ## ml-stack
 - [ImportError: libcudnn.so after pip-installing PyTorch on Jetson](ml-stack/pytorch-wheel-libcudnn-import-error.md) — fix · JP 5.x–6.x · wheel/JetPack mismatch breaks import or CUDA
@@ -35,6 +36,7 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [nvidia-smi 'No devices were found' on AGX Thor — GSP firmware init fails when the open/SBSA GPU driver wasn't applied](runtime/thor-nvidia-smi-no-devices-gsp-openrm.md) — fix · JP 7.x · RmInitAdapter GSP errors in dmesg; re-apply_binaries.sh --openrm and reflash
 - [Jetson power-mode envelopes vs supply sizing — Orin Nano/NX/AGX Orin/Thor wattage tables, MAXN caveats, devkit adapter limits](runtime/power-mode-envelopes-supply-sizing.md) — matrix · JP 6.x–7.x · mode wattage tables; MAXN is uncapped and self-throttles; Thor devkit 168W enforced limit
 - [Decode vcgencmd get_throttled on Raspberry Pi — under-voltage bits, 0x50005, and the Pi 5 5A PSU / USB current limit](runtime/vcgencmd-get-throttled-undervoltage-bits.md) — matrix · all · bit table; 0x50005 = live under-voltage; Pi 5 3A supply caps USB at 600mA
+- ['Brownout detector was triggered' reset loop on ESP32 — power supply and cable causes, threshold config (CONFIG_ESP_BROWNOUT_DET_LVL_SEL)](runtime/esp32-brownout-detector-reset-loop.md) — fix · IDF 5.x–6.0 · power/cable first, threshold config last
 
 ## sdk-dev
 - [CUDA gencode/arch flags per Jetson module — Orin is sm_87, Xavier is sm_72 (wrong arch = no kernel image)](sdk-dev/cuda-arch-gencode-flags-per-module.md) — matrix · JP all · sm table + CMake/OpenCV flags; missing arch fails at first kernel launch
@@ -46,6 +48,7 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [nvcc fatal: Unsupported gpu architecture 'compute_110' — Thor is sm_110 and needs CUDA 13-era toolchains](sdk-dev/cuda13-thor-compute-110-unsupported-arch.md) — fix · JP 7.x · sm_101→sm_110 rename in CUDA 13; cu130 wheels / Isaac ROS 4.0; gencode compute_110
 - [JetPack 7 aligns Jetson with SBSA — one CUDA 13 Arm toolkit for Thor and Arm servers, but Orin (sm_87) stays on the old path](sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md) — gotcha · JP 7.x · build once on Arm servers, deploy to Thor; Orin keeps the Jetson-specific CUDA path
 - [RP2350-E9 erratum on Pico 2 — GPIO inputs latch near 2.2 V and internal pull-downs can't pull low (fixed in A3/A4 stepping)](sdk-dev/rp2350-e9-gpio-pulldown-latch.md) — gotcha · RP2350 A2 · inputs stick at ~2.2V; ≤8.2kΩ external pull-down or A3/A4 silicon; A4 needs pico-sdk 2.1.0+
+- [ESP-IDF build fails 'partition is too small for binary' — grow the app partition with partitions_singleapp_large or a custom partitions.csv](sdk-dev/esp32-app-partition-too-small-partitions-csv.md) — fix · IDF 5.x–6.0 · partitions.csv sizing over default table
 
 ## setup
 - [Jetson in forced recovery mode not detected by host lsusb (cable, port, VM passthrough)](setup/recovery-mode-device-not-detected-lsusb.md) — fix · JP all · USB-C flashing port, data cable, no VMs; expect 0955:xxxx APX
@@ -61,6 +64,7 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [Bookworm moved the Raspberry Pi boot partition to /boot/firmware — edits to /boot/config.txt are silently ignored](setup/bookworm-boot-firmware-config-move.md) — gotcha · Bookworm+ · live files are /boot/firmware/config.txt+cmdline.txt; /boot is rootfs now
 - [Boot a Raspberry Pi 5 from NVMe — BOOT_ORDER=0xf416, PCIE_PROBE=1 for non-HAT+ adapters, PCIe gen 3 at your own risk](setup/pi5-nvme-boot-order-pcie-gen3.md) — recipe · Bookworm+ · rpi-eeprom-config edit; PCIE_PROBE=1 for third-party boards; gen 3 uncertified
 - [Update or recover the Raspberry Pi 4/5 bootloader EEPROM — rpi-eeprom-update, and the Imager bootloader-recovery SD card](setup/rpi-eeprom-bootloader-update-recovery.md) — recipe · all · rpi-eeprom-update -a; Imager Misc utility images recovery card; rapid green LED = success
+- [esptool 'Failed to connect: Wrong boot mode detected' / 'Timed out waiting for packet header' — strapping pins, BOOT button, cable and driver causes](setup/esptool-failed-to-connect-wrong-boot-mode.md) — fix · all · hold BOOT, check strapping pins and cable
 
 ## vision
 - [nvarguscamerasrc 'No cameras available' with IMX219/IMX477 — apply CSI overlay with jetson-io](vision/nvarguscamerasrc-no-cameras-available-jetson-io.md) — fix · JP 5.x–6.x · JP6 needs jetson-io overlay; i2c -121 means reseat the ribbon

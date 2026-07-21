@@ -15,7 +15,7 @@ Install it into Claude Code and your agent starts every edge-IoT task with what 
 </div>
 
 <!-- IOTBRAIN_STATS_START -->
-**58** brain entries · **21** skills · **6** domains · **6** platforms — last updated 2026-07-21
+**62** brain entries · **21** skills · **6** domains · **6** platforms — last updated 2026-07-21
 <!-- IOTBRAIN_STATS_END -->
 
 ## Why

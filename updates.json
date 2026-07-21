@@ -1,9 +1,12 @@
 {
-  "stats": {"entries": 58, "skills": 21, "domains": 6, "platforms": 6},
+  "stats": {"entries": 62, "skills": 21, "domains": 6, "platforms": 6},
   "updates": [
+    {"title": "'Brownout detector was triggered' reset loop on ESP32 — power supply and cable causes, threshold config (CONFIG_ESP_BROWNOUT_DET_LVL_SEL)", "type": "fix", "domain": "runtime", "company": "espressif", "date": "2026-07-21"},
     {"title": "Bookworm moved the Raspberry Pi boot partition to /boot/firmware — edits to /boot/config.txt are silently ignored", "type": "gotcha", "domain": "setup", "company": "raspberry-pi", "date": "2026-07-21"},
     {"title": "Boot a Raspberry Pi 5 from NVMe — BOOT_ORDER=0xf416, PCIE_PROBE=1 for non-HAT+ adapters, PCIe gen 3 at your own risk", "type": "recipe", "domain": "setup", "company": "raspberry-pi", "date": "2026-07-21"},
     {"title": "Decode vcgencmd get_throttled on Raspberry Pi — under-voltage bits, 0x50005, and the Pi 5 5A PSU / USB current limit", "type": "matrix", "domain": "runtime", "company": "raspberry-pi", "date": "2026-07-21"},
+    {"title": "ESP-IDF build fails 'partition is too small for binary' — grow the app partition with partitions_singleapp_large or a custom partitions.csv", "type": "fix", "domain": "sdk-dev", "company": "espressif", "date": "2026-07-21"},
+    {"title": "ESP32 OTA anti-brick — app rollback with CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE, otadata states, and interrupted-OTA recovery", "type": "recipe", "domain": "iot", "company": "espressif", "date": "2026-07-21"},
     {"title": "Enable secure boot on Jetson Orin — PKC/SBK fuse burning with odmfuse.sh: dry-run first, fuses are write-once", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-21"},
     {"title": "Encrypt the Jetson rootfs with LUKS — ROOTFS_ENC=1 flashing, EKB-derived per-device keys, and the unencrypted /boot split", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-21"},
     {"title": "Flash the Jetson AGX Thor devkit — unified initrd flashing only (l4t_initrd_flash.sh + apply_binaries.sh --openrm)", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-21"},
@@ -17,6 +20,7 @@
     {"title": "Set up the Raspberry Pi AI Kit / AI HAT+ (Hailo-8L/Hailo-8) on Pi 5 — hailo-all package, PCIe gen 3, hailortcli verify", "type": "recipe", "domain": "ml-stack", "company": "raspberry-pi", "date": "2026-07-21"},
     {"title": "Stream the Pi camera on Bookworm — rpicam-vid over TCP/UDP, GStreamer libcamerasrc, Picamera2 capture_array into OpenCV", "type": "recipe", "domain": "vision", "company": "raspberry-pi", "date": "2026-07-21"},
     {"title": "Update or recover the Raspberry Pi 4/5 bootloader EEPROM — rpi-eeprom-update, and the Imager bootloader-recovery SD card", "type": "recipe", "domain": "setup", "company": "raspberry-pi", "date": "2026-07-21"},
+    {"title": "esptool 'Failed to connect: Wrong boot mode detected' / 'Timed out waiting for packet header' — strapping pins, BOOT button, cable and driver causes", "type": "fix", "domain": "setup", "company": "espressif", "date": "2026-07-21"},
     {"title": "iot-connect — Use for edge-device connectivity and fleet work — MQTT (mosquitto, paho, AWS…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
     {"title": "nvcc fatal: Unsupported gpu architecture 'compute_110' — Thor is sm_110 and needs CUDA 13-era toolchains", "type": "fix", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-21"},
     {"title": "nvidia-smi 'No devices were found' on AGX Thor — GSP firmware init fails when the open/SBSA GPU driver wasn't applied", "type": "fix", "domain": "runtime", "company": "nvidia", "date": "2026-07-21"},
@@ -56,10 +60,6 @@
     {"title": "Default power mode silently caps Jetson performance", "type": "gotcha", "domain": "runtime", "company": "nvidia", "date": "2026-07-17"},
     {"title": "Docker container can't reach the GPU on Jetson after Docker install/update — re-register nvidia runtime, set default-runtime", "type": "fix", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
     {"title": "Don't apt-install Ubuntu's nvidia-cuda-toolkit on Jetson — JetPack CUDA lives in /usr/local/cuda", "type": "gotcha", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
-    {"title": "Flash Jetson Orin Nano devkit to NVMe SSD with l4t_initrd_flash.sh", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-17"},
-    {"title": "Fleet OTA on Jetson — apt package OTA vs image-based OTA, and what survives each", "type": "matrix", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
-    {"title": "Headless Jetson setup with no monitor — USB device mode serial oem-config, then ssh to 192.168.55.1", "type": "recipe", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
-    {"title": "Illegal instruction (core dumped) importing numpy/torch on Jetson — OPENBLAS_CORETYPE=ARMV8", "type": "fix", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
-    {"title": "ImportError: libcudnn.so after pip-installing PyTorch on Jetson", "type": "fix", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"}
+    {"title": "Flash Jetson Orin Nano devkit to NVMe SSD with l4t_initrd_flash.sh", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-17"}
   ]
 }

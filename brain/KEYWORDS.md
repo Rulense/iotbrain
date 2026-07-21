@@ -9,6 +9,7 @@ string or symptom phrase, then read the target entries.
 "default-runtime": "nvidia" → iot/docker-gpu-lost-runtime-nvidia.md
 (Argus) Error InvalidState: CaptureProvider destroyed → vision/restart-nvargus-daemon-first-line-recovery.md
 (Argus) Error Timeout: (propagating from src/rpc/socket/client/ClientSocketManager.cpp, function send(), line 137) → vision/restart-nvargus-daemon-first-line-recovery.md
+(overflow 0x → sdk-dev/esp32-app-partition-too-small-partitions-csv.md
 --external-device nvme0n1p1 → setup/orin-nano-nvme-initrd-flash.md
 --runtime nvidia → sdk-dev/l4t-base-container-csv-mounts.md
 --sysroot → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md
@@ -40,8 +41,12 @@ APX → setup/recover-unbootable-after-apt-ota-upgrade.md
 AmazonRootCA1.pem → iot/mqtt-tls-aws-iot-core.md
 BOOT_ORDER=0xf416 → setup/pi5-nvme-boot-order-pcie-gen3.md
 BootSecurityInfo → setup/secure-boot-pkc-fuse-burning-orin.md
+Brownout detector was triggered → runtime/esp32-brownout-detector-reset-loop.md
 Building wheel for → sdk-dev/python-wheels-aarch64-no-piwheels.md
 CMAKE_CUDA_ARCHITECTURES → sdk-dev/cuda-arch-gencode-flags-per-module.md
+CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE → iot/esp32-ota-rollback-anti-brick.md
+CONFIG_ESP_BROWNOUT_DET_LVL_SEL → runtime/esp32-brownout-detector-reset-loop.md
+CONFIG_PARTITION_TABLE_CUSTOM → sdk-dev/esp32-app-partition-too-small-partitions-csv.md
 CROSS_COMPILE → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md
 CUDA 13.0 → sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md
 CUDAExecutionProvider → ml-stack/onnxruntime-gpu-jetson-wheels.md
@@ -54,14 +59,17 @@ EFI stub: ERROR: Invalid header detected on UEFI supplied FDT, ignoring → setu
 EFI stub: Generating empty DTB → setup/recover-unbootable-after-apt-ota-upgrade.md
 EMC_FREQ → runtime/tegrastats-fields-decoder.md
 ERROR: *** no cameras available *** → vision/rpicam-no-cameras-available-bookworm.md
+ESP_OTA_IMG_PENDING_VERIFY → iot/esp32-ota-rollback-anti-brick.md
 Error generated. /dvs/git/dirty/git-master_linux/multimedia/nvgstreamer/gst-nvarguscamera/gstnvarguscamerasrc.cpp, execute:751 No cameras available → vision/nvarguscamerasrc-no-cameras-available-jetson-io.md
 FAN_DEFAULT_PROFILE → runtime/nvfancontrol-fan-profile-change.md
+Failed to connect to ESP32 → setup/esptool-failed-to-connect-wrong-boot-mode.md
 Failed to create CameraProvider → vision/nvargus-docker-argus-socket-mount.md
 GR3D_FREQ → runtime/tegrastats-fields-decoder.md
 Illegal instruction (core dumped) → ml-stack/numpy-illegal-instruction-openblas-coretype.md
 ImportError: libcudnn.so.8: cannot open shared object file → ml-stack/pytorch-wheel-libcudnn-import-error.md
 ImportError: libcudnn.so.9: cannot open shared object file → ml-stack/pytorch-wheel-libcudnn-import-error.md
 Install SDK components → setup/sdk-manager-sdk-components-ip-oem-config.md
+Invalid head of packet → setup/esptool-failed-to-connect-wrong-boot-mode.md
 JetPack 7.0 → setup/jetpack7-support-matrix-thor-orin.md
 JetPack 7.2 → setup/jetpack7-support-matrix-thor-orin.md
 Jetson Linux 38.2 → setup/jetpack7-support-matrix-thor-orin.md
@@ -72,6 +80,7 @@ Misc utility images → setup/rpi-eeprom-bootloader-update-recovery.md
 NVIDIA Corp. APX → setup/recovery-mode-device-not-detected-lsusb.md
 No cameras available → vision/nvarguscamerasrc-no-cameras-available-jetson-io.md · vision/v4l2-works-nvargus-fails-isp-path.md
 No devices were found → runtime/thor-nvidia-smi-no-devices-gsp-openrm.md
+No serial data received. → setup/esptool-failed-to-connect-wrong-boot-mode.md
 NvBufSurface → sdk-dev/multimedia-api-linking-nvbuf-utils.md
 OEM Configuration → setup/sdk-manager-sdk-components-ip-oem-config.md
 OPENBLAS_CORETYPE=ARMV8 → ml-stack/numpy-illegal-instruction-openblas-coretype.md
@@ -82,6 +91,7 @@ PublicKeyHash → setup/secure-boot-pkc-fuse-burning-orin.md
 ROOTFS_ENC=1 → setup/disk-encryption-rootfs-enc-luks.md
 RP2350 A2 stepping → sdk-dev/rp2350-e9-gpio-pulldown-latch.md
 RP2350-E9 → sdk-dev/rp2350-e9-gpio-pulldown-latch.md
+RTCWDT_BROWN_OUT_RESET → runtime/esp32-brownout-detector-reset-loop.md
 RmInitAdapter: Cannot initialize GSP firmware RM → runtime/thor-nvidia-smi-no-devices-gsp-openrm.md
 RuntimeError: operator torchvision::nms does not exist → ml-stack/torch-torchvision-version-pairing.md
 SBSA → sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md
@@ -89,18 +99,22 @@ SCF: Error Timeout: ISP port 0 timed out! → vision/v4l2-works-nvargus-fails-is
 SKIP_EEPROM_CHECK=1 → setup/thor-devkit-unified-initrd-flash.md
 SecurityMode → setup/secure-boot-pkc-fuse-burning-orin.md
 Server Base System Architecture → sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md
+Single factory app (large) → sdk-dev/esp32-app-partition-too-small-partitions-csv.md
 System throttled due to Over-current → runtime/over-current-throttling-warning.md
 System throttled due to over-current → runtime/over-current-throttling-warning.md
 TARGET_ROOTFS → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md
 TensorrtExecutionProvider → ml-stack/onnxruntime-gpu-jetson-wheels.md
 The engine plan file is not compatible with this version of TensorRT → ml-stack/tensorrt-engines-not-portable.md
 This power supply is not capable of supplying 5A → runtime/vcgencmd-get-throttled-undervoltage-bits.md
+Timed out waiting for packet header → setup/esptool-failed-to-connect-wrong-boot-mode.md
 Undervoltage detected! → runtime/vcgencmd-get-throttled-undervoltage-bits.md
 Using an engine plan file across different models of devices is not recommended → ml-stack/tensorrt-engines-not-portable.md
 VDD_CPU_GPU_CV → runtime/tegrastats-fields-decoder.md
+Wrong boot mode detected → setup/esptool-failed-to-connect-wrong-boot-mode.md
 [Errno 104] Connection reset by peer → iot/mqtt-tls-aws-iot-core.md
 aarch64--glibc--stable-2022.08-1 → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md
 aarch64-buildroot-linux-gnu- → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md
+app image too big → sdk-dev/esp32-app-partition-too-small-partitions-csv.md
 apply_binaries.sh --openrm → setup/thor-devkit-unified-initrd-flash.md
 appsink → vision/csi-camera-opencv-bgr-gstreamer-pipeline.md
 apt dist-upgrade → iot/fleet-ota-apt-vs-image-based.md
@@ -120,6 +134,7 @@ camera stopped working → vision/restart-nvargus-daemon-first-line-recovery.md
 camera works only with v4l2 → vision/v4l2-works-nvargus-fails-isp-path.md
 camera_auto_detect=0 → vision/rpicam-no-cameras-available-bookworm.md
 cannot connect to aws iot → iot/mqtt-tls-aws-iot-core.md
+cannot flash esp32 board → setup/esptool-failed-to-connect-wrong-boot-mode.md
 cannot install sdk components → setup/sdk-manager-sdk-components-ip-oem-config.md
 cannot link nvbuf utils → sdk-dev/multimedia-api-linking-nvbuf-utils.md
 cannot log in headless → iot/headless-provisioning-userconf-ssh-bookworm.md
@@ -148,6 +163,7 @@ cuda missing in container → sdk-dev/l4t-base-container-csv-mounts.md
 cv2.CAP_GSTREAMER → vision/csi-camera-opencv-bgr-gstreamer-pipeline.md
 decode tegrastats output → runtime/tegrastats-fields-decoder.md
 default-wifi-powersave-on.conf → iot/wifi-drops-on-idle-powersave.md
+device bricked after ota → iot/esp32-ota-rollback-anti-brick.md
 device feels slow → runtime/default-power-mode-caps-performance.md
 device is not in recovery mode → setup/recovery-mode-device-not-detected-lsusb.md
 disk_enc.key → setup/disk-encryption-rootfs-enc-luks.md
@@ -158,10 +174,16 @@ enable secure boot on jetson → setup/secure-boot-pkc-fuse-burning-orin.md
 enableCamInfiniteTimeout → vision/restart-nvargus-daemon-first-line-recovery.md
 encrypt jetson rootfs → setup/disk-encryption-rootfs-enc-luks.md
 engine fails on another device → ml-stack/tensorrt-engines-not-portable.md
+esp32 keeps rebooting → runtime/esp32-brownout-detector-reset-loop.md
+esp32 not detected when flashing → setup/esptool-failed-to-connect-wrong-boot-mode.md
+esp32 rolls back after update → iot/esp32-ota-rollback-anti-brick.md
+esp_ota_mark_app_invalid_rollback_and_reboot → iot/esp32-ota-rollback-anti-brick.md
+esp_ota_mark_app_valid_cancel_rollback → iot/esp32-ota-rollback-anti-brick.md
 fallocate -l 16G → sdk-dev/on-device-builds-swap-and-clocks.md
 fan settings ignored → runtime/nvfancontrol-fan-profile-change.md
 fan too loud → runtime/nvfancontrol-fan-profile-change.md
 fatal error: Killed signal terminated program cc1plus → sdk-dev/on-device-builds-swap-and-clocks.md
+firmware does not fit in flash → sdk-dev/esp32-app-partition-too-small-partitions-csv.md
 first boot no display → iot/headless-setup-usb-device-mode.md
 flash agx thor devkit → setup/thor-devkit-unified-initrd-flash.md
 flash directly to nvme ssd → setup/orin-nano-nvme-initrd-flash.md
@@ -269,7 +291,9 @@ openssl passwd -6 → iot/headless-provisioning-userconf-ssh-bookworm.md
 operator torchvision::nms does not exist → ml-stack/torch-torchvision-version-pairing.md
 ota fails on fused jetson → iot/image-ota-payload-signing-fused.md
 ota_payload_package.tar.gz → iot/image-ota-payload-signing-fused.md
+otadata → iot/esp32-ota-rollback-anti-brick.md
 over current warning → runtime/over-current-throttling-warning.md
+partitions.csv → sdk-dev/esp32-app-partition-too-small-partitions-csv.md
 pi camera frames into opencv → vision/rpicam-vid-gstreamer-opencv-streaming.md
 pico-sdk 2.1.0 → sdk-dev/rp2350-e9-gpio-pulldown-latch.md
 pip builds from source forever → sdk-dev/python-wheels-aarch64-no-piwheels.md
@@ -288,6 +312,7 @@ raspistill: command not found → vision/rpicam-no-cameras-available-bookworm.md
 recover a bricked device → setup/recover-unbootable-after-apt-ota-upgrade.md
 recovery mode not detected → setup/recovery-mode-device-not-detected-lsusb.md
 repo.download.nvidia.com/jetson → iot/fleet-ota-apt-vs-image-based.md
+reset loop when wifi starts → runtime/esp32-brownout-detector-reset-loop.md
 root=/dev/nvme0n1p1 → runtime/rootfs-redirect-sd-to-nvme.md
 rootwait → runtime/rootfs-redirect-sd-to-nvme.md
 rpi-eeprom-config --edit → setup/pi5-nvme-boot-order-pcie-gen3.md · setup/rpi-eeprom-bootloader-update-recovery.md
@@ -329,6 +354,7 @@ throttled=0x50005 → runtime/vcgencmd-get-throttled-undervoltage-bits.md
 throttles under heavy load → runtime/over-current-throttling-warning.md
 tj-thermal → runtime/thermal-throttling-trip-points.md
 tls_set → iot/mqtt-tls-aws-iot-core.md
+too small for binary → sdk-dev/esp32-app-partition-too-small-partitions-csv.md
 torch and torchvision mismatch → ml-stack/torch-torchvision-version-pairing.md
 torch import fails → ml-stack/pytorch-wheel-libcudnn-import-error.md
 torch jetpack 6 → ml-stack/pytorch-jetpack6-working-wheels.md
