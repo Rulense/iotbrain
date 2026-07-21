@@ -12,6 +12,7 @@ string or symptom phrase, then read the target entries.
 --external-device nvme0n1p1 → setup/orin-nano-nvme-initrd-flash.md
 --runtime nvidia → sdk-dev/l4t-base-container-csv-mounts.md
 --sysroot → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md
+--uefi-keys → iot/image-ota-payload-signing-fused.md
 -ats.iot → iot/mqtt-tls-aws-iot-core.md
 -gencode arch=compute_72,code=sm_72 → sdk-dev/cuda-arch-gencode-flags-per-module.md
 -gencode arch=compute_87,code=sm_87 → sdk-dev/cuda-arch-gencode-flags-per-module.md
@@ -29,12 +30,16 @@ string or symptom phrase, then read the target entries.
 0955:7e19 → setup/recover-unbootable-after-apt-ota-upgrade.md · setup/recovery-mode-device-not-detected-lsusb.md
 192.168.55.1 → iot/headless-setup-usb-device-mode.md · setup/sdk-manager-sdk-components-ip-oem-config.md
 A start job is running for End-user configuration after initial OEM installation → setup/jetpack6-first-boot-hang-qspi-firmware.md
+ADP-240LB → runtime/power-mode-envelopes-supply-sizing.md
 APPEND ${cbootargs} → runtime/rootfs-redirect-sd-to-nvme.md
+APP_ENC → setup/disk-encryption-rootfs-enc-luks.md
 APX → setup/recover-unbootable-after-apt-ota-upgrade.md
 AmazonRootCA1.pem → iot/mqtt-tls-aws-iot-core.md
+BootSecurityInfo → setup/secure-boot-pkc-fuse-burning-orin.md
 Building wheel for → sdk-dev/python-wheels-aarch64-no-piwheels.md
 CMAKE_CUDA_ARCHITECTURES → sdk-dev/cuda-arch-gencode-flags-per-module.md
 CROSS_COMPILE → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md
+CUDA 13.0 → sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md
 CUDAExecutionProvider → ml-stack/onnxruntime-gpu-jetson-wheels.md
 CUDA_ARCH_BIN → sdk-dev/cuda-arch-gencode-flags-per-module.md
 Connecting to nvargus-daemon failed: Connection refused → vision/nvargus-docker-argus-socket-mount.md
@@ -52,16 +57,29 @@ Illegal instruction (core dumped) → ml-stack/numpy-illegal-instruction-openbla
 ImportError: libcudnn.so.8: cannot open shared object file → ml-stack/pytorch-wheel-libcudnn-import-error.md
 ImportError: libcudnn.so.9: cannot open shared object file → ml-stack/pytorch-wheel-libcudnn-import-error.md
 Install SDK components → setup/sdk-manager-sdk-components-ip-oem-config.md
+JetPack 7.0 → setup/jetpack7-support-matrix-thor-orin.md
+JetPack 7.2 → setup/jetpack7-support-matrix-thor-orin.md
+Jetson Linux 38.2 → setup/jetpack7-support-matrix-thor-orin.md
+L4T r39.2 → setup/jetpack7-support-matrix-thor-orin.md
 LSC: LSC surface is not based on full res! → vision/v4l2-works-nvargus-fails-isp-path.md
+MAXN_SUPER → runtime/power-mode-envelopes-supply-sizing.md
 NVIDIA Corp. APX → setup/recovery-mode-device-not-detected-lsusb.md
 No cameras available → vision/nvarguscamerasrc-no-cameras-available-jetson-io.md · vision/v4l2-works-nvargus-fails-isp-path.md
+No devices were found → runtime/thor-nvidia-smi-no-devices-gsp-openrm.md
 NvBufSurface → sdk-dev/multimedia-api-linking-nvbuf-utils.md
 OEM Configuration → setup/sdk-manager-sdk-components-ip-oem-config.md
 OPENBLAS_CORETYPE=ARMV8 → ml-stack/numpy-illegal-instruction-openblas-coretype.md
 Out of memory: Killed process → runtime/oom-killed-unified-memory.md
 Power save: on → iot/wifi-drops-on-idle-powersave.md
+PublicKeyHash → setup/secure-boot-pkc-fuse-burning-orin.md
+ROOTFS_ENC=1 → setup/disk-encryption-rootfs-enc-luks.md
+RmInitAdapter: Cannot initialize GSP firmware RM → runtime/thor-nvidia-smi-no-devices-gsp-openrm.md
 RuntimeError: operator torchvision::nms does not exist → ml-stack/torch-torchvision-version-pairing.md
+SBSA → sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md
 SCF: Error Timeout: ISP port 0 timed out! → vision/v4l2-works-nvargus-fails-isp-path.md
+SKIP_EEPROM_CHECK=1 → setup/thor-devkit-unified-initrd-flash.md
+SecurityMode → setup/secure-boot-pkc-fuse-burning-orin.md
+Server Base System Architecture → sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md
 System throttled due to Over-current → runtime/over-current-throttling-warning.md
 System throttled due to over-current → runtime/over-current-throttling-warning.md
 TARGET_ROOTFS → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md
@@ -72,6 +90,7 @@ VDD_CPU_GPU_CV → runtime/tegrastats-fields-decoder.md
 [Errno 104] Connection reset by peer → iot/mqtt-tls-aws-iot-core.md
 aarch64--glibc--stable-2022.08-1 → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md
 aarch64-buildroot-linux-gnu- → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot.md
+apply_binaries.sh --openrm → setup/thor-devkit-unified-initrd-flash.md
 appsink → vision/csi-camera-opencv-bgr-gstreamer-pipeline.md
 apt dist-upgrade → iot/fleet-ota-apt-vs-image-based.md
 authentication with → iot/wifi-drops-on-idle-powersave.md
@@ -95,6 +114,7 @@ certificate verify failed → iot/mqtt-tls-aws-iot-core.md
 choosing an ota update strategy → iot/fleet-ota-apt-vs-image-based.md
 clock wrong after reboot → iot/rtc-clock-reset-breaks-tls.md
 compiler killed during build → sdk-dev/on-device-builds-swap-and-clocks.md
+compute_110 → sdk-dev/cuda13-thor-compute-110-unsupported-arch.md
 container image lacks cuda → sdk-dev/l4t-base-container-csv-mounts.md
 could not select device driver "" with capabilities: [[gpu]] → iot/docker-gpu-lost-runtime-nvidia.md
 cpu-thermal → runtime/thermal-throttling-trip-points.md
@@ -103,6 +123,8 @@ cross compile for jetson → sdk-dev/cross-compile-bootlin-toolchain-l4t-sysroot
 csi camera not found → vision/nvarguscamerasrc-no-cameras-available-jetson-io.md
 csi camera with opencv → vision/csi-camera-opencv-bgr-gstreamer-pipeline.md
 cu126 → ml-stack/pytorch-jetpack6-working-wheels.md
+cuInit error 999 → runtime/thor-nvidia-smi-no-devices-gsp-openrm.md
+cuda build fails on thor → sdk-dev/cuda13-thor-compute-110-unsupported-arch.md
 cuda kernel fails to launch → sdk-dev/cuda-arch-gencode-flags-per-module.md
 cuda missing after apt install → ml-stack/cuda-toolkit-apt-vs-jetpack-cuda.md
 cuda missing in container → sdk-dev/l4t-base-container-csv-mounts.md
@@ -111,19 +133,26 @@ decode tegrastats output → runtime/tegrastats-fields-decoder.md
 default-wifi-powersave-on.conf → iot/wifi-drops-on-idle-powersave.md
 device feels slow → runtime/default-power-mode-caps-performance.md
 device is not in recovery mode → setup/recovery-mode-device-not-detected-lsusb.md
+disk_enc.key → setup/disk-encryption-rootfs-enc-luks.md
 docker container cannot use gpu → iot/docker-gpu-lost-runtime-nvidia.md
+enable secure boot on jetson → setup/secure-boot-pkc-fuse-burning-orin.md
 enableCamInfiniteTimeout → vision/restart-nvargus-daemon-first-line-recovery.md
+encrypt jetson rootfs → setup/disk-encryption-rootfs-enc-luks.md
 engine fails on another device → ml-stack/tensorrt-engines-not-portable.md
 fallocate -l 16G → sdk-dev/on-device-builds-swap-and-clocks.md
 fan settings ignored → runtime/nvfancontrol-fan-profile-change.md
 fan too loud → runtime/nvfancontrol-fan-profile-change.md
 fatal error: Killed signal terminated program cc1plus → sdk-dev/on-device-builds-swap-and-clocks.md
 first boot no display → iot/headless-setup-usb-device-mode.md
+flash agx thor devkit → setup/thor-devkit-unified-initrd-flash.md
 flash directly to nvme ssd → setup/orin-nano-nvme-initrd-flash.md
 flash.sh → setup/orin-flash-board-config-names.md
 flash_l4t_t234_nvme.xml → setup/orin-nano-nvme-initrd-flash.md
+flash_l4t_t264_nvme.xml → setup/thor-devkit-unified-initrd-flash.md
 flashed but will not boot → setup/orin-flash-board-config-names.md
 format=BGRx ! videoconvert → vision/csi-camera-opencv-bgr-gstreamer-pipeline.md
+fuse burning is permanent → setup/secure-boot-pkc-fuse-burning-orin.md
+ghcr.io/nvidia-ai-iot/vllm:latest-jetson-thor → ml-stack/vllm-on-thor-containers.md
 gpu missing inside container → iot/docker-gpu-lost-runtime-nvidia.md
 gpu-thermal → runtime/thermal-throttling-trip-points.md
 gst-rtsp-server → vision/rtsp-stream-nvv4l2h264enc-test-launch.md
@@ -142,6 +171,9 @@ is not a supported wheel on this platform → sdk-dev/python-wheels-aarch64-no-p
 is not valid yet (invalid for another → iot/rtc-clock-reset-breaks-tls.md
 isp pipeline fails → vision/v4l2-works-nvargus-fails-isp-path.md
 iw dev wlan0 set power_save off → iot/wifi-drops-on-idle-powersave.md
+jetpack 7 on orin → setup/jetpack7-support-matrix-thor-orin.md
+jetson disk encryption → setup/disk-encryption-rootfs-enc-luks.md
+jetson power budget → runtime/power-mode-envelopes-supply-sizing.md
 jetson-agx-orin-devkit → setup/orin-flash-board-config-names.md
 jetson-containers → ml-stack/jetson-containers-dependency-escape-hatch.md
 jetson-io.py → vision/nvarguscamerasrc-no-cameras-available-jetson-io.md
@@ -150,18 +182,21 @@ jetson-orin-nano-devkit-nvme → setup/orin-flash-board-config-names.md
 jetson-orin-nano-devkit-super → setup/orin-flash-board-config-names.md
 jetson_clocks → runtime/default-power-mode-caps-performance.md · sdk-dev/on-device-builds-swap-and-clocks.md
 jetson_clocks --fan → runtime/nvfancontrol-fan-profile-change.md
+kgspWaitForRmInitDone failed → runtime/thor-nvidia-smi-no-devices-gsp-openrm.md
 l4t-base → sdk-dev/l4t-base-container-csv-mounts.md
 l4t-jetpack → sdk-dev/l4t-base-container-csv-mounts.md
 l4t-pytorch → ml-stack/jetson-containers-dependency-escape-hatch.md
 l4t.csv → sdk-dev/l4t-base-container-csv-mounts.md
 l4t_flash_prerequisites.sh → setup/orin-nano-nvme-initrd-flash.md
-l4t_generate_ota_package.sh → iot/fleet-ota-apt-vs-image-based.md
+l4t_generate_ota_package.sh → iot/fleet-ota-apt-vs-image-based.md · iot/image-ota-payload-signing-fused.md
 l4t_initrd_flash.sh → setup/orin-nano-nvme-initrd-flash.md
+l4t_initrd_flash.sh jetson-agx-thor-devkit internal → setup/thor-devkit-unified-initrd-flash.md
 l4tbr0 → iot/headless-setup-usb-device-mode.md
 lfb → runtime/tegrastats-fields-decoder.md
 link_directories(/usr/lib/aarch64-linux-gnu/tegra) → sdk-dev/multimedia-api-linking-nvbuf-utils.md
 linux_aarch64.whl → sdk-dev/python-wheels-aarch64-no-piwheels.md
 lsusb → setup/recovery-mode-device-not-detected-lsusb.md
+luks-srv → setup/disk-encryption-rootfs-enc-luks.md
 manylinux2014_aarch64 → sdk-dev/python-wheels-aarch64-no-piwheels.md
 ml dependency hell on device → ml-stack/jetson-containers-dependency-escape-hatch.md
 mosquitto_pub → iot/mqtt-tls-aws-iot-core.md
@@ -169,14 +204,17 @@ move rootfs to ssd → runtime/rootfs-redirect-sd-to-nvme.md
 mqtt connection keeps dropping → iot/mqtt-tls-aws-iot-core.md
 multimedia api link error → sdk-dev/multimedia-api-linking-nvbuf-utils.md
 named symbol not found → sdk-dev/cuda-arch-gencode-flags-per-module.md
-no kernel image is available for execution on the device → sdk-dev/cuda-arch-gencode-flags-per-module.md
+no kernel image is available for execution on the device → ml-stack/vllm-on-thor-containers.md · sdk-dev/cuda-arch-gencode-flags-per-module.md · sdk-dev/cuda13-thor-compute-110-unsupported-arch.md
 no wheel for aarch64 → sdk-dev/python-wheels-aarch64-no-piwheels.md
 numpy==1.19.5 → ml-stack/numpy-illegal-instruction-openblas-coretype.md
 nv-l4t-bootloader-config → setup/jetpack6-first-boot-hang-qspi-firmware.md
 nv-l4t-usb-device-mode → iot/headless-setup-usb-device-mode.md
+nv_ota_start.sh → iot/image-ota-payload-signing-fused.md
 nvargus-daemon → vision/v4l2-works-nvargus-fails-isp-path.md
 nvarguscamerasrc → vision/nvargus-docker-argus-socket-mount.md · vision/nvarguscamerasrc-no-cameras-available-jetson-io.md
+nvcc fatal   : Unsupported gpu architecture 'compute_110' → sdk-dev/cuda13-thor-compute-110-unsupported-arch.md
 nvcc: command not found → ml-stack/cuda-toolkit-apt-vs-jetpack-cuda.md
+nvcr.io/nvidia/vllm → ml-stack/vllm-on-thor-containers.md
 nvfancontrol → runtime/nvfancontrol-fan-profile-change.md
 nvidia-ctk runtime configure --runtime=docker → iot/docker-gpu-lost-runtime-nvidia.md
 nvidia-cuda-toolkit → ml-stack/cuda-toolkit-apt-vs-jetpack-cuda.md
@@ -185,21 +223,26 @@ nvidia-l4t-apt-source.list → iot/fleet-ota-apt-vs-image-based.md
 nvidia-l4t-jetson-multimedia-api → sdk-dev/multimedia-api-linking-nvbuf-utils.md
 nvidia-l4t-jetson-orin-nano-qspi-updater → setup/jetpack6-first-boot-hang-qspi-firmware.md
 nvpmodel → runtime/default-power-mode-caps-performance.md
+nvpmodel -m 0 → runtime/power-mode-envelopes-supply-sizing.md
 nvv4l2h264enc → vision/rtsp-stream-nvv4l2h264enc-test-launch.md
 nvvidconv → vision/csi-camera-opencv-bgr-gstreamer-pipeline.md
 nvzramconfig → runtime/oom-killed-unified-memory.md
 oc1_event_cnt → runtime/over-current-throttling-warning.md
+odmfuse.sh → setup/secure-boot-pkc-fuse-burning-orin.md
 oem-config → setup/jetpack6-first-boot-hang-qspi-firmware.md
 onnx inference runs on cpu → ml-stack/onnxruntime-gpu-jetson-wheels.md
 onnxruntime not using gpu → ml-stack/onnxruntime-gpu-jetson-wheels.md
 onnxruntime_gpu → ml-stack/onnxruntime-gpu-jetson-wheels.md
 operator torchvision::nms does not exist → ml-stack/torch-torchvision-version-pairing.md
+ota fails on fused jetson → iot/image-ota-payload-signing-fused.md
+ota_payload_package.tar.gz → iot/image-ota-payload-signing-fused.md
 over current warning → runtime/over-current-throttling-warning.md
 pip builds from source forever → sdk-dev/python-wheels-aarch64-no-piwheels.md
 pip install onnxruntime → ml-stack/onnxruntime-gpu-jetson-wheels.md
 pip install torch → ml-stack/pytorch-wheel-libcudnn-import-error.md
 piwheels → sdk-dev/python-wheels-aarch64-no-piwheels.md
 please rebuild → ml-stack/tensorrt-engines-not-portable.md
+power mode wattage table → runtime/power-mode-envelopes-supply-sizing.md
 prebuilt cuda ml containers → ml-stack/jetson-containers-dependency-escape-hatch.md
 process killed loading model → runtime/oom-killed-unified-memory.md
 pypi.jetson-ai-lab → ml-stack/pytorch-jetpack6-working-wheels.md
@@ -214,9 +257,15 @@ rtc1 → iot/rtc-clock-reset-breaks-tls.md
 rtph264pay name=pay0 pt=96 → vision/rtsp-stream-nvv4l2h264enc-test-launch.md
 rtsp://127.0.0.1:8554/test → vision/rtsp-stream-nvv4l2h264enc-test-launch.md
 runs out of memory loading model → runtime/oom-killed-unified-memory.md
+same cuda binary on server and jetson → sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md
 sdk manager hangs at ip → setup/sdk-manager-sdk-components-ip-oem-config.md
+separate jetson cuda toolkit → sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md
+signed ota payload → iot/image-ota-payload-signing-fused.md
+size the power supply → runtime/power-mode-envelopes-supply-sizing.md
 slow inference jetson → runtime/default-power-mode-caps-performance.md
 slows down when hot → runtime/thermal-throttling-trip-points.md
+sm_110 → sdk-dev/cuda13-thor-compute-110-unsupported-arch.md
+sm_87 → sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md
 stream camera over rtsp → vision/rtsp-stream-nvv4l2h264enc-test-launch.md
 stuck at first boot → setup/jetpack6-first-boot-hang-qspi-firmware.md
 sudo apt upgrade → setup/recover-unbootable-after-apt-ota-upgrade.md
@@ -224,11 +273,14 @@ sudo systemctl disable nvzramconfig → sdk-dev/on-device-builds-swap-and-clocks
 sudo systemctl restart nvargus-daemon → vision/restart-nvargus-daemon-first-line-recovery.md
 system time resets on boot → iot/rtc-clock-reset-breaks-tls.md
 systemctl set-default multi-user.target → runtime/oom-killed-unified-memory.md
+tegrasign_v3.py --pubkeyhash → setup/secure-boot-pkc-fuse-burning-orin.md
 tegrastats → runtime/tegrastats-fields-decoder.md
 tensorrt engine version mismatch → ml-stack/tensorrt-engines-not-portable.md
 test-launch → vision/rtsp-stream-nvv4l2h264enc-test-launch.md
 thermal throttling under load → runtime/thermal-throttling-trip-points.md
 thermal_zone → runtime/thermal-throttling-trip-points.md
+thor flashing fails → setup/thor-devkit-unified-initrd-flash.md
+thor gpu not detected → runtime/thor-nvidia-smi-no-devices-gsp-openrm.md
 throttles under heavy load → runtime/over-current-throttling-warning.md
 tj-thermal → runtime/thermal-throttling-trip-points.md
 tls_set → iot/mqtt-tls-aws-iot-core.md
@@ -243,8 +295,11 @@ unknown or invalid runtime name: nvidia → iot/docker-gpu-lost-runtime-nvidia.m
 update a fleet remotely → iot/fleet-ota-apt-vs-image-based.md
 v4l2-ctl --list-devices → vision/v4l2-works-nvargus-fails-isp-path.md
 video/x-raw(memory:NVMM) → vision/csi-camera-opencv-bgr-gstreamer-pipeline.md
+vllm fails on thor → ml-stack/vllm-on-thor-containers.md
+vllm serve → ml-stack/vllm-on-thor-containers.md
 what tegrastats fields mean → runtime/tegrastats-fields-decoder.md
 which board config to flash → setup/orin-flash-board-config-names.md
+which jetpack supports thor → setup/jetpack7-support-matrix-thor-orin.md
 which pytorch wheel works → ml-stack/pytorch-jetpack6-working-wheels.md
 wifi drops when idle → iot/wifi-drops-on-idle-powersave.md
 wifi keeps disconnecting → iot/wifi-drops-on-idle-powersave.md

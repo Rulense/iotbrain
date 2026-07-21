@@ -7,6 +7,7 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [Fleet OTA on Jetson — apt package OTA vs image-based OTA, and what survives each](iot/fleet-ota-apt-vs-image-based.md) — matrix · JP 5.x–6.x · apt can't cross majors and isn't failsafe; image-based A/B replaces rootfs
 - [Headless Jetson setup with no monitor — USB device mode serial oem-config, then ssh to 192.168.55.1](iot/headless-setup-usb-device-mode.md) — recipe · JP all · /dev/ttyACM0 115200 for oem-config, then ssh over l4tbr0
 - [Connect a Jetson to AWS IoT Core over MQTT with mutual TLS (paho-mqtt / mosquitto, port 8883 or 443 ALPN)](iot/mqtt-tls-aws-iot-core.md) — recipe · JP all · ATS endpoint + per-device certs; Errno 104 is policy, not TLS
+- [Image-based OTA on fused Jetsons — build the payload with the same PKC/SBK keys the device was fused with](iot/image-ota-payload-signing-fused.md) — gotcha · JP 6.x · l4t_generate_ota_package.sh -u/-v must match fused keys; tarball transport checks are on you
 - [Jetson boots with clock in the past after power-off (TLS/apt breaks) — RTC battery is on rtc0, but boot time comes from rtc1](iot/rtc-clock-reset-breaks-tls.md) — fix · JP 5.x–6.x · hwclock -f /dev/rtc0 -s at boot; battery alone isn't enough
 - [Wi-Fi drops on an idle Jetson and never reconnects — disable wifi.powersave / iw power_save](iot/wifi-drops-on-idle-powersave.md) — fix · JP all · wifi.powersave = 2 plus iw fallback unit for stubborn drivers
 
@@ -19,6 +20,7 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [Illegal instruction (core dumped) importing numpy/torch on Jetson — OPENBLAS_CORETYPE=ARMV8](ml-stack/numpy-illegal-instruction-openblas-coretype.md) — fix · JP 4.x · numpy 1.19.5 OpenBLAS core misdetect; env var or pin 1.19.4
 - [Don't apt-install Ubuntu's nvidia-cuda-toolkit on Jetson — JetPack CUDA lives in /usr/local/cuda](ml-stack/cuda-toolkit-apt-vs-jetpack-cuda.md) — gotcha · JP 5.x–6.x · nvcc is a PATH problem; upgrade CUDA via NVIDIA's Jetson repo instead
 - [jetson-containers — prebuilt CUDA ML containers as the escape hatch for on-device dependency hell](ml-stack/jetson-containers-dependency-escape-hatch.md) — recipe · JP 6.x–7.x · autotag matches your L4T; run wrapper sets --runtime nvidia
+- [Run vLLM on Jetson AGX Thor — use the NVIDIA Thor containers; old images fail with 'no kernel image' or missing model support](ml-stack/vllm-on-thor-containers.md) — config · JP 7.x · ghcr latest-jetson-thor or monthly nvcr.io vllm tags; stale images lack FP4/GPT-OSS
 
 ## runtime
 - [Default power mode silently caps Jetson performance](runtime/default-power-mode-caps-performance.md) — gotcha · JP all · nvpmodel + jetson_clocks before benchmarking
@@ -28,6 +30,8 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [Jetson Orin thermal throttling under sustained load — clocks drop near 99°C, soft shutdown at 104.5°C (thermal_zone temps)](runtime/thermal-throttling-trip-points.md) — gotcha · JP 5.x–6.x · silent throttle overrides jetson_clocks; read thermal_zone*/temp; cool profile + airflow first
 - [Process 'Killed' loading a model on Jetson — GPU shares system RAM (unified memory): swap strategy, GUI off, zram trade-offs](runtime/oom-killed-unified-memory.md) — gotcha · JP all · no VRAM, one budget; GUI off ~800MB, NVMe swap over zram; CUDA allocations can't page out
 - [Move a running Jetson's rootfs from SD to NVMe without reflashing — copy rootfs, point extlinux.conf root= at /dev/nvme0n1p1](runtime/rootfs-redirect-sd-to-nvme.md) — recipe · JP 4.x–6.x · rsync -ax to SSD, edit root= on the SD's extlinux.conf; kernel updates still land on SD /boot
+- [nvidia-smi 'No devices were found' on AGX Thor — GSP firmware init fails when the open/SBSA GPU driver wasn't applied](runtime/thor-nvidia-smi-no-devices-gsp-openrm.md) — fix · JP 7.x · RmInitAdapter GSP errors in dmesg; re-apply_binaries.sh --openrm and reflash
+- [Jetson power-mode envelopes vs supply sizing — Orin Nano/NX/AGX Orin/Thor wattage tables, MAXN caveats, devkit adapter limits](runtime/power-mode-envelopes-supply-sizing.md) — matrix · JP 6.x–7.x · mode wattage tables; MAXN is uncapped and self-throttles; Thor devkit 168W enforced limit
 
 ## sdk-dev
 - [CUDA gencode/arch flags per Jetson module — Orin is sm_87, Xavier is sm_72 (wrong arch = no kernel image)](sdk-dev/cuda-arch-gencode-flags-per-module.md) — matrix · JP all · sm table + CMake/OpenCV flags; missing arch fails at first kernel launch
@@ -36,6 +40,8 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [Python wheels on Jetson (aarch64) — piwheels doesn't serve you, cp-tag mismatches, and pip's silent source builds](sdk-dev/python-wheels-aarch64-no-piwheels.md) — gotcha · JP all · piwheels is 32-bit-only; wheels are cp-tag specific; no match = hours-long source build
 - [cannot find -lnvbuf_utils — linking against the Jetson Multimedia API (tegra/nvidia lib dirs, JP5 NvBufSurface migration)](sdk-dev/multimedia-api-linking-nvbuf-utils.md) — fix · JP 4.x–6.x · -L the tegra/nvidia lib dir; nvbuf_utils removed in JP 5.1.2, port to NvBufSurface
 - [Shipping Jetson apps as containers — since JetPack 5, l4t-base no longer mounts CUDA from the host (l4t.csv mounts BSP only)](sdk-dev/l4t-base-container-csv-mounts.md) — gotcha · JP 4.x–6.x · JP5+ needs CUDA in the image (l4t-cuda/l4t-jetpack); l4t.csv mounts BSP libs only
+- [nvcc fatal: Unsupported gpu architecture 'compute_110' — Thor is sm_110 and needs CUDA 13-era toolchains](sdk-dev/cuda13-thor-compute-110-unsupported-arch.md) — fix · JP 7.x · sm_101→sm_110 rename in CUDA 13; cu130 wheels / Isaac ROS 4.0; gencode compute_110
+- [JetPack 7 aligns Jetson with SBSA — one CUDA 13 Arm toolkit for Thor and Arm servers, but Orin (sm_87) stays on the old path](sdk-dev/jetpack7-sbsa-unified-cuda-toolkit.md) — gotcha · JP 7.x · build once on Arm servers, deploy to Thor; Orin keeps the Jetson-specific CUDA path
 
 ## setup
 - [Jetson in forced recovery mode not detected by host lsusb (cable, port, VM passthrough)](setup/recovery-mode-device-not-detected-lsusb.md) — fix · JP all · USB-C flashing port, data cable, no VMs; expect 0955:xxxx APX
@@ -44,6 +50,10 @@ One line per entry. Format: `- [title](domain/slug.md) — type · JP range · h
 - [JetPack 6 SD image stuck at first boot / End-user configuration on Orin Nano — QSPI firmware too old](setup/jetpack6-first-boot-hang-qspi-firmware.md) — fix · JP 6.x · firmware <36.0 can't boot JP6; JP5.1.3 bridge + qspi-updater or full flash
 - [Correct board-config names for flashing Orin devkits on L4T r36.x (stale names break boot)](setup/orin-flash-board-config-names.md) — matrix · JP 6.x · jetson-orin-nano-devkit covers Orin NX too; r35-era names flash but don't boot
 - [Recover an unbootable Jetson after a failed apt/OTA upgrade (forced recovery + reflash)](setup/recover-unbootable-after-apt-ota-upgrade.md) — recipe · JP all · forced recovery always works; reflash matching BSP, apt-mark hold to prevent
+- [JetPack 7.x support matrix — 7.0/7.1 are Thor-only (L4T 38.x), Orin joins at JetPack 7.2 (L4T 39.2)](setup/jetpack7-support-matrix-thor-orin.md) — matrix · JP 6.x–7.x · JP 7.0/7.1 = Thor only; JP 7.2/L4T 39.2 brings Ubuntu 24.04 + CUDA 13 to Orin; majors need reflash
+- [Flash the Jetson AGX Thor devkit — unified initrd flashing only (l4t_initrd_flash.sh + apply_binaries.sh --openrm)](setup/thor-devkit-unified-initrd-flash.md) — recipe · JP 7.x · no flash.sh path; --openrm rootfs prep; device parks in initrd after flash, reset to boot
+- [Enable secure boot on Jetson Orin — PKC/SBK fuse burning with odmfuse.sh: dry-run first, fuses are write-once](setup/secure-boot-pkc-fuse-burning-orin.md) — recipe · JP 6.x · tegrasign_v3 pubkeyhash + fuse XML; --test before burn; SecurityMode blocks all later fuse writes
+- [Encrypt the Jetson rootfs with LUKS — ROOTFS_ENC=1 flashing, EKB-derived per-device keys, and the unencrypted /boot split](setup/disk-encryption-rootfs-enc-luks.md) — recipe · JP 6.x–7.x · APP/APP_ENC split; OP-TEE derives per-device passphrase from ECID; shipped eks keys are test-only
 
 ## vision
 - [nvarguscamerasrc 'No cameras available' with IMX219/IMX477 — apply CSI overlay with jetson-io](vision/nvarguscamerasrc-no-cameras-available-jetson-io.md) — fix · JP 5.x–6.x · JP6 needs jetson-io overlay; i2c -121 means reseat the ribbon

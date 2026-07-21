@@ -468,9 +468,19 @@ optimize · debug
      — do not edit by hand. */
   /*__IOTBRAIN_DATA_START__*/
   const FALLBACK = {
-    "stats": {"entries": 39, "skills": 21, "domains": 6, "platforms": 5},
+    "stats": {"entries": 49, "skills": 21, "domains": 6, "platforms": 5},
     "updates": [
+      {"title": "Enable secure boot on Jetson Orin — PKC/SBK fuse burning with odmfuse.sh: dry-run first, fuses are write-once", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-21"},
+      {"title": "Encrypt the Jetson rootfs with LUKS — ROOTFS_ENC=1 flashing, EKB-derived per-device keys, and the unencrypted /boot split", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-21"},
+      {"title": "Flash the Jetson AGX Thor devkit — unified initrd flashing only (l4t_initrd_flash.sh + apply_binaries.sh --openrm)", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-21"},
+      {"title": "Image-based OTA on fused Jetsons — build the payload with the same PKC/SBK keys the device was fused with", "type": "gotcha", "domain": "iot", "company": "nvidia", "date": "2026-07-21"},
+      {"title": "JetPack 7 aligns Jetson with SBSA — one CUDA 13 Arm toolkit for Thor and Arm servers, but Orin (sm_87) stays on the old path", "type": "gotcha", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-21"},
+      {"title": "JetPack 7.x support matrix — 7.0/7.1 are Thor-only (L4T 38.x), Orin joins at JetPack 7.2 (L4T 39.2)", "type": "matrix", "domain": "setup", "company": "nvidia", "date": "2026-07-21"},
+      {"title": "Jetson power-mode envelopes vs supply sizing — Orin Nano/NX/AGX Orin/Thor wattage tables, MAXN caveats, devkit adapter limits", "type": "matrix", "domain": "runtime", "company": "nvidia", "date": "2026-07-21"},
+      {"title": "Run vLLM on Jetson AGX Thor — use the NVIDIA Thor containers; old images fail with 'no kernel image' or missing model support", "type": "config", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-21"},
       {"title": "iot-connect — Use for edge-device connectivity and fleet work — MQTT (mosquitto, paho, AWS…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
+      {"title": "nvcc fatal: Unsupported gpu architecture 'compute_110' — Thor is sm_110 and needs CUDA 13-era toolchains", "type": "fix", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-21"},
+      {"title": "nvidia-smi 'No devices were found' on AGX Thor — GSP firmware init fails when the open/SBSA GPU driver wasn't applied", "type": "fix", "domain": "runtime", "company": "nvidia", "date": "2026-07-21"},
       {"title": "sdk-build — Use for building, compiling, and packaging software for edge targets — native…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
       {"title": "vision-pipeline — Use for camera and vision-pipeline work on ANY edge device — sensor bring-up…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
       {"title": "Change the Jetson Orin fan profile (quiet vs cool) — edit /etc/nvfancontrol.conf AND delete /var/lib/nvfancontrol/status", "type": "config", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},
@@ -519,17 +529,7 @@ optimize · debug
       {"title": "RTSP streaming from a Jetson camera with the hardware encoder (nvv4l2h264enc + gst-rtsp-server test-launch)", "type": "recipe", "domain": "vision", "company": "nvidia", "date": "2026-07-17"},
       {"title": "Recover an unbootable Jetson after a failed apt/OTA upgrade (forced recovery + reflash)", "type": "recipe", "domain": "setup", "company": "nvidia", "date": "2026-07-17"},
       {"title": "RuntimeError: operator torchvision::nms does not exist — torch/torchvision pairing on Jetson", "type": "matrix", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "SDK Manager hangs at 'Determining the IP address of the target' — OEM configuration not completed", "type": "fix", "domain": "setup", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "Shipping Jetson apps as containers — since JetPack 5, l4t-base no longer mounts CUDA from the host (l4t.csv mounts BSP only)", "type": "gotcha", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "TensorRT engine plan files are not portable — rebuild per device and per TensorRT version", "type": "gotcha", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "Wi-Fi drops on an idle Jetson and never reconnects — disable wifi.powersave / iw power_save", "type": "fix", "domain": "iot", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "brain-distill — Use after an edge-IoT learning has been VERIFIED on real hardware — a fix…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-17"},
-      {"title": "cannot find -lnvbuf_utils — linking against the Jetson Multimedia API (tegra/nvidia lib dirs, JP5 NvBufSurface migration)", "type": "fix", "domain": "sdk-dev", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "jetson-containers — prebuilt CUDA ML containers as the escape hatch for on-device dependency hell", "type": "recipe", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "nvarguscamerasrc 'No cameras available' with IMX219/IMX477 — apply CSI overlay with jetson-io", "type": "fix", "domain": "vision", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "nvarguscamerasrc in Docker: mount /tmp/argus_socket — and remount after any nvargus-daemon restart", "type": "fix", "domain": "vision", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "onnxruntime-gpu wheels for Jetson — PyPI installs are CPU-only, use Jetson AI Lab / Jetson Zoo wheels", "type": "config", "domain": "ml-stack", "company": "nvidia", "date": "2026-07-17"},
-      {"title": "v4l2-ctl captures frames but nvarguscamerasrc/Argus fails — the ISP path needs more than a working V4L2 driver", "type": "gotcha", "domain": "vision", "company": "nvidia", "date": "2026-07-17"}
+      {"title": "SDK Manager hangs at 'Determining the IP address of the target' — OEM configuration not completed", "type": "fix", "domain": "setup", "company": "nvidia", "date": "2026-07-17"}
     ]
   };
   /*__IOTBRAIN_DATA_END__*/
