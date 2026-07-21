@@ -8,6 +8,8 @@ keys:
   - "/usr/src/jetson_multimedia_api"
   - "NvBufSurface"
   - "link_directories(/usr/lib/aarch64-linux-gnu/tegra)"
+  - "multimedia api link error"
+  - "cannot link nvbuf utils"
 platform_versions: ["JetPack 4.x", "JetPack 5.x", "JetPack 6.x", "L4T 32.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified

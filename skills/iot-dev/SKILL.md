@@ -58,13 +58,19 @@ device's vendor.
 If `~/.iotbrain/local/` is missing, initialize it first:
 `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/init_overlay.py"`.
 
-1. Read `brain/INDEX.md` — scan for entries matching the task.
-2. Grep both stores for task keywords, package names, and (when debugging)
+1. Scan `brain/KEYWORDS.md` FIRST — the generated keyword → entry map is the
+   cheapest lookup. Grep it for error strings and symptom phrases; each hit
+   line names the entry file(s) to read:
+```bash
+grep -i "<error string or symptom phrase>" "${CLAUDE_PLUGIN_ROOT}/brain/KEYWORDS.md"
+```
+2. Read `brain/INDEX.md` — scan for entries matching the task.
+3. Grep both stores for task keywords, package names, and (when debugging)
    VERBATIM error strings:
 ```bash
 grep -ril "<verbatim error or keyword>" "${CLAUDE_PLUGIN_ROOT}/brain/" ~/.iotbrain/local/ 2>/dev/null
 ```
-3. Read every hit's full entry before acting.
+4. Read every hit's full entry before acting.
 
 ## Step 3 — Filter by applicability
 

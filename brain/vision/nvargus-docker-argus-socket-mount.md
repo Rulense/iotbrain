@@ -7,6 +7,8 @@ keys:
   - "Failed to create CameraProvider"
   - "/tmp/argus_socket"
   - "nvarguscamerasrc"
+  - "camera fails inside docker"
+  - "camera broken in container"
 platform_versions: ["all"]
 devices: [all]
 status: verified

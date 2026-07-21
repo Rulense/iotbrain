@@ -8,6 +8,8 @@ keys:
   - "l4t-base"
   - "l4t-jetpack"
   - "--runtime nvidia"
+  - "cuda missing in container"
+  - "container image lacks cuda"
 platform_versions: ["JetPack 4.x", "JetPack 5.x", "JetPack 6.x", "L4T 32.x", "L4T 34.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified

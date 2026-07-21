@@ -8,6 +8,8 @@ keys:
   - "sudo apt upgrade"
   - "0955:7e19"
   - "APX"
+  - "unbootable after apt upgrade"
+  - "recover a bricked device"
 platform_versions: ["all"]
 devices: [all]
 status: verified

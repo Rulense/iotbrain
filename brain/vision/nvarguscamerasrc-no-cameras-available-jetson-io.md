@@ -8,6 +8,8 @@ keys:
   - "imx219_board_setup: error during i2c read probe (-121)"
   - "jetson-io.py"
   - "nvarguscamerasrc"
+  - "camera not detected"
+  - "csi camera not found"
 platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [orin-nano, orin-nx, xavier-nx]
 status: verified

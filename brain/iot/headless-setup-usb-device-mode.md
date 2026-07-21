@@ -7,6 +7,8 @@ keys:
   - "l4tbr0"
   - "/dev/ttyACM0"
   - "nv-l4t-usb-device-mode"
+  - "headless setup without monitor"
+  - "first boot no display"
 platform_versions: ["all"]
 devices: [all]
 status: verified

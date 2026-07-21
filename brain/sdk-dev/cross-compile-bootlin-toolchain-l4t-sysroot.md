@@ -8,6 +8,8 @@ keys:
   - "aarch64--glibc--stable-2022.08-1"
   - "TARGET_ROOTFS"
   - "--sysroot"
+  - "cross compile for jetson"
+  - "build aarch64 on x86 host"
 platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified

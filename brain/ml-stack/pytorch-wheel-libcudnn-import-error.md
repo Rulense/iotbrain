@@ -6,6 +6,8 @@ keys:
   - "ImportError: libcudnn.so.8: cannot open shared object file"
   - "ImportError: libcudnn.so.9: cannot open shared object file"
   - "pip install torch"
+  - "torch import fails"
+  - "pytorch cannot find cudnn"
 platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified

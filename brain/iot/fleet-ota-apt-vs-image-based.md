@@ -7,6 +7,8 @@ keys:
   - "nvidia-l4t-apt-source.list"
   - "apt dist-upgrade"
   - "l4t_generate_ota_package.sh"
+  - "choosing an ota update strategy"
+  - "update a fleet remotely"
 platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified

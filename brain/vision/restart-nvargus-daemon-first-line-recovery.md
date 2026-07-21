@@ -8,6 +8,8 @@ keys:
   - "(Argus) Error InvalidState: CaptureProvider destroyed"
   - "(Argus) Error Timeout: (propagating from src/rpc/socket/client/ClientSocketManager.cpp, function send(), line 137)"
   - "enableCamInfiniteTimeout"
+  - "camera stopped working"
+  - "camera open times out"
 platform_versions: ["all"]
 devices: [all]
 status: verified

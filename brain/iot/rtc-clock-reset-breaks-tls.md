@@ -8,6 +8,8 @@ keys:
   - "hctosys"
   - "certificate is not yet valid"
   - "is not valid yet (invalid for another"
+  - "clock wrong after reboot"
+  - "system time resets on boot"
 platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [agx-orin, orin-nx, orin-nano]
 status: verified

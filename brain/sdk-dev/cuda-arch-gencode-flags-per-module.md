@@ -9,6 +9,8 @@ keys:
   - "named symbol not found"
   - "CMAKE_CUDA_ARCHITECTURES"
   - "CUDA_ARCH_BIN"
+  - "cuda kernel fails to launch"
+  - "wrong cuda arch flags"
 platform_versions: ["all"]
 devices: [all]
 status: verified

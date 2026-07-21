@@ -8,6 +8,8 @@ keys:
   - "v4l2-ctl --list-devices"
   - "No cameras available"
   - "nvargus-daemon"
+  - "camera works only with v4l2"
+  - "isp pipeline fails"
 platform_versions: ["all"]
 devices: [all]
 status: verified

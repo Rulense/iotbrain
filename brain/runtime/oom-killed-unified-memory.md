@@ -7,6 +7,8 @@ keys:
   - "invoked oom-killer"
   - "nvzramconfig"
   - "systemctl set-default multi-user.target"
+  - "process killed loading model"
+  - "runs out of memory loading model"
 platform_versions: ["all"]
 devices: [all]
 status: unverified

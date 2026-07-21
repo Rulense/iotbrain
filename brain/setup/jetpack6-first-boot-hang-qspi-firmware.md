@@ -7,6 +7,8 @@ keys:
   - "oem-config"
   - "nvidia-l4t-jetson-orin-nano-qspi-updater"
   - "nv-l4t-bootloader-config"
+  - "boot hangs after flash"
+  - "stuck at first boot"
 platform_versions: ["JetPack 6.x", "L4T 36.x"]
 devices: [orin-nano]
 status: verified

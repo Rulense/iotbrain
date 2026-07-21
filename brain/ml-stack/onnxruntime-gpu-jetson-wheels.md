@@ -7,6 +7,8 @@ keys:
   - "CUDAExecutionProvider"
   - "TensorrtExecutionProvider"
   - "pip install onnxruntime"
+  - "onnxruntime not using gpu"
+  - "onnx inference runs on cpu"
 platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified

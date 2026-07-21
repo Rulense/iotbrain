@@ -7,6 +7,8 @@ keys:
   - "please rebuild"
   - "Using an engine plan file across different models of devices is not recommended"
   - "trtexec --saveEngine"
+  - "engine fails on another device"
+  - "tensorrt engine version mismatch"
 platform_versions: ["all"]
 devices: [all]
 status: verified

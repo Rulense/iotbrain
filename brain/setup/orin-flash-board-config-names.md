@@ -8,6 +8,8 @@ keys:
   - "jetson-agx-orin-devkit"
   - "jetson-orin-nano-devkit-nvme"
   - "flash.sh"
+  - "which board config to flash"
+  - "flashed but will not boot"
 platform_versions: ["JetPack 6.x", "L4T 36.x"]
 devices: [orin-nano, orin-nx, agx-orin]
 status: verified

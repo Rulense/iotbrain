@@ -8,6 +8,8 @@ keys:
   - "rtph264pay name=pay0 pt=96"
   - "rtsp://127.0.0.1:8554/test"
   - "gst-rtsp-server"
+  - "stream camera over rtsp"
+  - "hardware encoded video stream"
 platform_versions: ["JetPack 4.x", "JetPack 5.x", "JetPack 6.x", "L4T 32.x", "L4T 35.x", "L4T 36.x"]
 devices: [nano, xavier-nx, agx-xavier, orin-nx, agx-orin]
 status: verified

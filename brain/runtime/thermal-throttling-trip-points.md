@@ -7,6 +7,8 @@ keys:
   - "cpu-thermal"
   - "gpu-thermal"
   - "thermal_zone"
+  - "slows down when hot"
+  - "thermal throttling under load"
 platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [orin-nano, orin-nx, agx-orin]
 status: verified

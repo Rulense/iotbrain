@@ -12,6 +12,7 @@ VALID = textwrap.dedent("""\
     company: nvidia
     keys:
       - "ImportError: libexample.so.1"
+      - "example library import fails"
     platform_versions: ["JetPack 6.1", "L4T 36.x"]
     devices: [orin-nano]
     status: verified
@@ -86,11 +87,49 @@ def test_verified_requires_verified_on(tmp_path):
     assert any("verified_on" in e for e in errs)
 
 
+KEYS_BLOCK = 'keys:\n  - "ImportError: libexample.so.1"\n  - "example library import fails"'
+
+
 def test_empty_keys_fails(tmp_path):
-    text = VALID.replace('keys:\n  - "ImportError: libexample.so.1"', "keys: []")
+    text = VALID.replace(KEYS_BLOCK, "keys: []")
     p = write(tmp_path / "brain" / "ml-stack" / "bad.md", text)
     errs = validate_entry(parse_entry(p), p)
     assert any("keys" in e for e in errs)
+
+
+def test_single_key_fails_floor(tmp_path):
+    # ≥2 keys required: verbatim machine strings + a symptom phrase.
+    text = VALID.replace(KEYS_BLOCK, 'keys:\n  - "ImportError: libexample.so.1"')
+    p = write(tmp_path / "brain" / "ml-stack" / "bad.md", text)
+    errs = validate_entry(parse_entry(p), p)
+    assert any("at least 2" in e and "symptom" in e for e in errs)
+
+
+def test_two_keys_pass_floor(tmp_path):
+    p = write(tmp_path / "brain" / "ml-stack" / "good.md", VALID)
+    assert validate_entry(parse_entry(p), p) == []
+
+
+def test_check_index_ignores_keywords_md(tmp_path):
+    # brain/KEYWORDS.md is generated (like INDEX.md) — never flagged as
+    # missing an index line.
+    brain = tmp_path / "brain"
+    write(brain / "ml-stack" / "example.md", VALID)
+    write(brain / "KEYWORDS.md", "# Keyword → entry map\nk → ml-stack/example.md\n")
+    write(brain / "INDEX.md",
+          "- [Example fix entry](ml-stack/example.md) — fix · JP 6.1 · example\n")
+    assert check_index(brain) == []
+
+
+def test_real_brain_passes_with_key_floor():
+    # Every committed entry must carry ≥2 keys (verbatim + symptom phrase).
+    brain = Path(__file__).resolve().parent.parent / "brain"
+    assert main([str(brain)]) == 0
+    entries = [p for p in brain.rglob("*.md")
+               if p.name not in ("INDEX.md", "KEYWORDS.md")]
+    assert len(entries) == 39
+    for p in entries:
+        assert len(parse_entry(p)["keys"]) >= 2, p
 
 
 def test_index_missing_entry_fails(tmp_path):

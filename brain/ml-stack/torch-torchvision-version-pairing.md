@@ -6,6 +6,8 @@ keys:
   - "RuntimeError: operator torchvision::nms does not exist"
   - "operator torchvision::nms does not exist"
   - "torchvision"
+  - "torchvision import error"
+  - "torch and torchvision mismatch"
 platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified

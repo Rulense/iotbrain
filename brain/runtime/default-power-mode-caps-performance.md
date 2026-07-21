@@ -6,6 +6,8 @@ keys:
   - "nvpmodel"
   - "jetson_clocks"
   - "slow inference jetson"
+  - "inference slower than expected"
+  - "device feels slow"
 platform_versions: ["all"]
 devices: [all]
 status: verified

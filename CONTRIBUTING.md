@@ -13,8 +13,9 @@ Filename: short kebab-case slug, e.g. `pytorch-wheel-libcudnn-import-error.md`.
 title: <one line, specific, includes key terms>
 type: recipe | config | matrix | gotcha | fix     # pick ONE
 company: nvidia             # device vendor: nvidia | raspberry-pi | qualcomm | nxp | ...
-keys:                       # verbatim grep targets — error strings, package names, element names
-  - "<exact string an agent would search for>"
+keys:                       # BOTH kinds required (≥2 keys, lint-enforced):
+  - "<exact string an agent would search for>"    # verbatim — error strings, package names, element names
+  - "<plain-language symptom phrase>"             # how a human/agent would describe it, lowercase, 2-6 words
 platform_versions: ["JetPack 6.1", "L4T 36.x"]   # platform/SDK version scope, or ["all"]
 devices: [orin-nano]        # orin-nano | orin-nx | agx-orin | xavier-nx | agx-xavier | nano | agx-thor | all
 status: verified | unverified | outdated
@@ -50,7 +51,7 @@ After adding an entry, add one line to `brain/INDEX.md`:
 A PR is mergeable when the entry:
 
 1. **Worked on real hardware — or doc-verified** — `status: verified` means you (or the cited thread's author, with the resolution confirmed) ran it on a physical Jetson, OR the behavior is stated by current official NVIDIA documentation — in that case cite the doc page in `sources` and use a `verified_on` of the form `"doc checked <YYYY-MM-DD>"`. Otherwise use `status: unverified` — the honest fallback.
-2. **Has verbatim keys** — copy-paste the exact error text / package / element names. Paraphrased keys break grep retrieval.
+2. **Has both kinds of keys** — every entry carries BOTH verbatim machine strings (copy-paste the exact error text / package / element names — paraphrased keys break grep retrieval) AND at least one plain-language symptom phrase as a human or agent would describe the problem ("camera not detected", "build runs out of memory", "boot hangs after flash"): lowercase, 2-6 words, genuinely searchable, not a duplicate of a verbatim key. Minimum 2 keys per entry (lint-enforced).
 3. **Is version-scoped** — `platform_versions`, `devices` filled honestly. Each `platform_versions` string is `"<Ecosystem> <range>"` (e.g. `"JetPack 6.x"`, `"ESP-IDF 5.3"`, `"Zephyr 3.7"`). "Works everywhere" claims need `["all"]` and a reason in Context.
 4. **Cites sources** — forum thread, GitHub issue, doc page, or "verified locally" plus your `verified_on`.
 5. **Is public-safe** — no internal info, secrets, private paths, hostnames, or proprietary code.
@@ -60,7 +61,25 @@ A PR is mergeable when the entry:
 - [ ] `python3 scripts/lint_brain.py brain` passes locally
 - [ ] Entry is in the correct domain directory
 - [ ] INDEX.md line added
-- [ ] Keys are verbatim, not paraphrased
+- [ ] Keys: verbatim strings (not paraphrased) plus at least one symptom phrase
 - [ ] Sources linked
 
-CI runs the same lint on every PR.
+CI runs the same lint on every PR. `brain/KEYWORDS.md` is generated from the
+entries' keys by `scripts/gen_updates.py` — rerun it after adding or editing
+an entry so the committed map stays fresh (CI checks staleness).
+
+## Scaling the INDEX
+
+`brain/INDEX.md` is deliberately a single flat file — cheapest possible scan
+for agents. That holds up to roughly 250 entries; past that, scanning cost and
+merge-conflict rate outweigh the one-file convenience.
+`scripts/gen_updates.py --check` prints a WARNING (CI stays green) once the
+entry count crosses 250. When it trips, execute this split:
+
+1. Create `brain/<domain>/INDEX.md` per domain, moving each domain's lines
+   over unchanged (same one-line format).
+2. Reduce the top-level `brain/INDEX.md` to a table of contents: one line per
+   domain linking its INDEX plus the domain's entry count.
+3. Teach `check_index` in `scripts/lint_brain.py` to read the per-domain
+   INDEX files, and update the INDEX instructions here and in the
+   `iot-dev` / `brain-distill` skills.

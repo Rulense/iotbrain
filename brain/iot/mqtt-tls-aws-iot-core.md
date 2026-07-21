@@ -9,6 +9,8 @@ keys:
   - "mosquitto_pub"
   - "certificate verify failed"
   - "[Errno 104] Connection reset by peer"
+  - "cannot connect to aws iot"
+  - "mqtt connection keeps dropping"
 platform_versions: ["all"]
 devices: [all]
 status: unverified

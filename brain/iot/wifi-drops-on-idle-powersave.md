@@ -8,6 +8,8 @@ keys:
   - "iw dev wlan0 set power_save off"
   - "Power save: on"
   - "authentication with"
+  - "wifi keeps disconnecting"
+  - "wifi drops when idle"
 platform_versions: ["all"]
 devices: [all]
 status: unverified

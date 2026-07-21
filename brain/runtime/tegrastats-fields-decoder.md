@@ -8,6 +8,8 @@ keys:
   - "EMC_FREQ"
   - "lfb"
   - "VDD_CPU_GPU_CV"
+  - "what tegrastats fields mean"
+  - "decode tegrastats output"
 platform_versions: ["all"]
 devices: [all]
 status: verified

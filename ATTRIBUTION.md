@@ -3,6 +3,11 @@
 This repository vendors third-party content. This file records provenance, licensing, and
 exactly what was included or excluded.
 
+> **Machine-read:** `scripts/check_drift.py` (weekly CI) parses each upstream's
+> `- **Upstream repository:** https://github.com/<owner>/<repo>` and
+> `- **Pinned commit:** ` `` `<sha>` `` bullets below to detect upstream drift.
+> Keep that exact bullet format when adding or re-pinning an upstream.
+
 ## NVIDIA jetson-device-skills
 
 - **Upstream repository:** https://github.com/NVIDIA-AI-IOT/jetson-device-skills

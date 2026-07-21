@@ -7,6 +7,8 @@ keys:
   - "FAN_DEFAULT_PROFILE"
   - "/var/lib/nvfancontrol/status"
   - "jetson_clocks --fan"
+  - "fan too loud"
+  - "fan settings ignored"
 platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [orin-nano, orin-nx, agx-orin]
 status: verified

@@ -8,6 +8,8 @@ keys:
   - "manylinux2014_aarch64"
   - "linux_aarch64.whl"
   - "Building wheel for"
+  - "pip builds from source forever"
+  - "no wheel for aarch64"
 platform_versions: ["all"]
 devices: [all]
 status: verified

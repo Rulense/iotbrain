@@ -9,6 +9,8 @@ keys:
   - "NVIDIA Corp. APX"
   - "device is not in recovery mode"
   - "lsusb"
+  - "recovery mode not detected"
+  - "host cannot see device"
 platform_versions: ["all"]
 devices: [all]
 status: verified

@@ -8,6 +8,8 @@ keys:
   - "--external-device nvme0n1p1"
   - "jetson-orin-nano-devkit"
   - "l4t_flash_prerequisites.sh"
+  - "flash directly to nvme ssd"
+  - "install os on nvme"
 platform_versions: ["JetPack 6.x", "L4T 36.x"]
 devices: [orin-nano, orin-nx]
 status: verified

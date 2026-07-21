@@ -6,6 +6,8 @@ keys:
   - "pypi.jetson-ai-lab"
   - "torch jetpack 6"
   - "cu126"
+  - "which pytorch wheel works"
+  - "install pytorch on jetson"
 platform_versions: ["JetPack 6.0", "JetPack 6.1", "JetPack 6.2", "L4T 36.x"]
 devices: [orin-nano, orin-nx, agx-orin]
 status: verified

@@ -6,6 +6,8 @@ keys:
   - "jetson-containers"
   - "autotag"
   - "l4t-pytorch"
+  - "ml dependency hell on device"
+  - "prebuilt cuda ml containers"
 platform_versions: ["JetPack 6.x", "JetPack 7.x", "L4T 36.x", "L4T 38.x"]
 devices: [orin-nano, orin-nx, agx-orin, agx-thor]
 status: verified

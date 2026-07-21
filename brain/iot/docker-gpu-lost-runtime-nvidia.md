@@ -7,6 +7,8 @@ keys:
   - "unknown or invalid runtime name: nvidia"
   - "nvidia-ctk runtime configure --runtime=docker"
   - '"default-runtime": "nvidia"'
+  - "docker container cannot use gpu"
+  - "gpu missing inside container"
 platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: unverified

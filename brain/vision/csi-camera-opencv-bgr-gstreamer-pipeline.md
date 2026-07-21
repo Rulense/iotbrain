@@ -8,6 +8,8 @@ keys:
   - "format=BGRx ! videoconvert"
   - "appsink"
   - "cv2.CAP_GSTREAMER"
+  - "camera frames into opencv"
+  - "csi camera with opencv"
 platform_versions: ["all"]
 devices: [all]
 status: verified

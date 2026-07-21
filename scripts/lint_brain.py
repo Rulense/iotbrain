@@ -18,6 +18,11 @@ STATUSES = {"verified", "unverified", "outdated"}
 LIST_FIELDS = ("keys", "platform_versions", "devices", "sources", "reproduced_by")
 REQUIRED = ("title", "type", "keys", "company", "platform_versions", "devices", "status", "sources")
 INDEX_LINK = re.compile(r"\]\(([^)]+\.md)\)")
+# Every entry needs BOTH verbatim machine strings AND at least one
+# plain-language symptom phrase (see CONTRIBUTING.md), so the floor is 2.
+MIN_KEYS = 2
+# Generated / structural files in brain/ that are not entries.
+NON_ENTRY_FILES = {"INDEX.md", "KEYWORDS.md"}
 
 
 class LintError(Exception):
@@ -56,6 +61,11 @@ def validate_entry(meta: dict, path: Path) -> list[str]:
         val = meta.get(field)
         if field in meta and (not isinstance(val, list) or len(val) == 0):
             errs.append(f"{path}: '{field}' must be a non-empty list")
+    keys = meta.get("keys")
+    if isinstance(keys, list) and 0 < len(keys) < MIN_KEYS:
+        errs.append(
+            f"{path}: 'keys' needs at least {MIN_KEYS} items — verbatim machine "
+            f"strings plus at least one plain-language symptom phrase")
     return errs
 
 
@@ -70,7 +80,7 @@ def check_index(brain_dir: Path) -> list[str]:
     actual = {
         str(p.relative_to(brain_dir))
         for p in brain_dir.rglob("*.md")
-        if p.name != "INDEX.md"
+        if p.name not in NON_ENTRY_FILES
     }
     for missing in sorted(actual - indexed):
         errs.append(f"{index}: no index line for {missing}")
@@ -86,7 +96,7 @@ def main(argv: list[str]) -> int:
     brain_dir = Path(argv[0])
     errs: list[str] = []
     for p in sorted(brain_dir.rglob("*.md")):
-        if p.name == "INDEX.md":
+        if p.name in NON_ENTRY_FILES:
             continue
         domain = p.relative_to(brain_dir).parts[0]
         if domain not in DOMAINS:

@@ -6,6 +6,8 @@ keys:
   - "Illegal instruction (core dumped)"
   - "OPENBLAS_CORETYPE=ARMV8"
   - "numpy==1.19.5"
+  - "crash importing numpy"
+  - "python crashes on import"
 platform_versions: ["JetPack 4.x", "L4T 32.x"]
 devices: [nano, xavier-nx, agx-xavier]
 status: verified

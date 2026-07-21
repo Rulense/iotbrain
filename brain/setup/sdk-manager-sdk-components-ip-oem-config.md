@@ -8,6 +8,8 @@ keys:
   - "192.168.55.1"
   - "Install SDK components"
   - "OEM Configuration"
+  - "sdk manager hangs at ip"
+  - "cannot install sdk components"
 platform_versions: ["all"]
 devices: [all]
 status: verified

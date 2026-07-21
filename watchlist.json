@@ -1,0 +1,22 @@
+{
+  "comment": "Ecosystems whose latest releases should have brain coverage. scripts/check_freshness.py resolves the latest version per entry and reports ecosystems where the newest major.minor has zero covering brain entries (matched against platform_versions strings like '<Ecosystem> <range>').",
+  "watchlist": [
+    {
+      "ecosystem": "JetPack",
+      "source": {"type": "pinned", "latest": "7.0"},
+      "comment": "No reliable public API exposes the latest JetPack release, so maintainers bump source.latest by hand when NVIDIA ships a new JetPack (watch https://developer.nvidia.com/embedded/jetpack and the JetPack release notes)."
+    },
+    {
+      "ecosystem": "ESP-IDF",
+      "source": {"type": "github-release", "repo": "espressif/esp-idf"}
+    },
+    {
+      "ecosystem": "Zephyr",
+      "source": {"type": "github-release", "repo": "zephyrproject-rtos/zephyr"}
+    },
+    {
+      "ecosystem": "MicroPython",
+      "source": {"type": "github-release", "repo": "micropython/micropython"}
+    }
+  ]
+}

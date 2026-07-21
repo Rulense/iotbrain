@@ -23,7 +23,8 @@ boundary noted in its Gotchas) instead of creating a duplicate.
 Use the exact template from CONTRIBUTING.md (plugin root). Choose ONE `type`:
 `recipe` | `config` | `matrix` | `gotcha` | `fix`. Requirements:
 - `keys`: VERBATIM strings — exact error text, package names, GStreamer element
-  names. Never paraphrase.
+  names. Never paraphrase. PLUS at least one plain-language symptom phrase
+  (lowercase, 2-6 words) as a user would say it, e.g. "camera not detected".
 - `company`: the device vendor — `nvidia` for Jetson work.
 - `platform_versions`/`devices`: from the device facts collected this session.
 - `status: verified` + `verified_on: "<device>, JetPack <ver>, <today>"` — this

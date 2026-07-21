@@ -1,0 +1,52 @@
+name: freshness
+on:
+  schedule:
+    - cron: "23 6 * * 1" # weekly, Monday 06:23 UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 -m pip install pyyaml
+      - name: Build freshness report
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/check_freshness.py | tee report.txt
+      - name: Create or update tracking issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: "Freshness: platform releases lacking brain coverage"
+          INTRO: >-
+            Weekly freshness check: these watched ecosystems shipped a release
+            whose major.minor series has zero covering brain entries.
+            Add or extend entries (see CONTRIBUTING.md), or bump
+            `watchlist.json` if a pin is stale.
+        run: bash .github/scripts/upsert_issue.sh report.txt
+
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build drift report
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/check_drift.py | tee report.txt
+      - name: Create or update tracking issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: "Drift: vendored skills behind upstream"
+          INTRO: >-
+            Weekly drift check: these vendored upstreams' default-branch HEAD
+            moved past the commit pinned in ATTRIBUTION.md. Review upstream
+            changes and re-vendor + re-pin (update ATTRIBUTION.md), or confirm
+            the pin is intentionally held.
+        run: bash .github/scripts/upsert_issue.sh report.txt

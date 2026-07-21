@@ -8,6 +8,8 @@ keys:
   - "sudo systemctl disable nvzramconfig"
   - "fallocate -l 16G"
   - "jetson_clocks"
+  - "build runs out of memory"
+  - "compiler killed during build"
 platform_versions: ["all"]
 devices: [all]
 status: verified

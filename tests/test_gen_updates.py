@@ -1,16 +1,44 @@
 # tests/test_gen_updates.py
+import textwrap
+
 import pytest
 
 from scripts.gen_updates import (
+    KEYWORDS_HEADER,
     UPDATES_CAP,
     build_stats,
     build_updates,
+    collect_keyword_map,
     first_sentence,
+    index_scale_warning,
     main,
     patch_readme,
+    render_keywords,
     render_readme_stats,
     skill_company,
 )
+
+ENTRY_TMPL = textwrap.dedent("""\
+    ---
+    title: %(title)s
+    type: fix
+    company: nvidia
+    keys:
+    %(keys)s
+    platform_versions: ["JetPack 6.1"]
+    devices: [orin-nano]
+    status: unverified
+    sources: ["https://example.com"]
+    ---
+    body
+    """)
+
+
+def entry_text(title, keys):
+    return ENTRY_TMPL % {
+        "title": title,
+        "keys": "\n".join('  - "%s"' % k for k in keys),
+    }
 
 
 def row(title, date, **over):
@@ -146,6 +174,78 @@ def test_unmapped_skill_fails(tmp_path, capsys):
     (tmp_path / "brain").mkdir()
     assert main(["--check", "--repo-root", str(tmp_path)]) == 1
     assert "mystery-skill" in capsys.readouterr().err
+
+
+def _write_entry(repo, rel, title, keys):
+    p = repo / "brain" / rel
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(entry_text(title, keys))
+
+
+def test_collect_keyword_map_and_collisions(tmp_path):
+    repo = _mini_repo(tmp_path)
+    _write_entry(repo, "vision/a.md", "A", ["No cameras available", "camera not detected"])
+    _write_entry(repo, "setup/b.md", "B", ["No cameras available", "boot hangs after flash"])
+    mapping = collect_keyword_map(repo)
+    assert mapping["camera not detected"] == ["vision/a.md"]
+    # collision: one key, both targets
+    assert mapping["No cameras available"] == ["setup/b.md", "vision/a.md"]
+
+
+def test_render_keywords_sorted_one_line_per_key():
+    text = render_keywords({
+        "zeta key": ["iot/z.md"],
+        "No cameras available": ["vision/a.md", "setup/b.md"],
+    })
+    assert text.startswith(KEYWORDS_HEADER)
+    lines = text[len(KEYWORDS_HEADER):].splitlines()
+    assert lines == [
+        "No cameras available → setup/b.md · vision/a.md",
+        "zeta key → iot/z.md",
+    ]
+
+
+def test_keywords_md_written_and_ignored_as_entry(tmp_path):
+    repo = _mini_repo(tmp_path)
+    _write_entry(repo, "vision/a.md", "A", ["k1", "camera not detected"])
+    assert main(["--repo-root", str(repo)]) == 0
+    kw = repo / "brain" / "KEYWORDS.md"
+    assert "camera not detected → vision/a.md" in kw.read_text()
+    # regenerating is idempotent: KEYWORDS.md itself is never treated as an
+    # entry or fed back into the map
+    assert main(["--check", "--repo-root", str(repo)]) == 0
+
+
+def test_check_flags_stale_keywords(tmp_path, capsys):
+    repo = _mini_repo(tmp_path)
+    _write_entry(repo, "vision/a.md", "A", ["k1", "camera not detected"])
+    assert main(["--repo-root", str(repo)]) == 0
+    assert main(["--check", "--repo-root", str(repo)]) == 0
+    # new entry (new keys) without regeneration → KEYWORDS.md is stale
+    _write_entry(repo, "setup/b.md", "B", ["k2", "boot hangs after flash"])
+    capsys.readouterr()
+    assert main(["--check", "--repo-root", str(repo)]) == 1
+    assert "KEYWORDS.md" in capsys.readouterr().out
+
+
+def test_index_scale_warning_thresholds():
+    assert index_scale_warning(250) is None
+    warning = index_scale_warning(251)
+    assert warning is not None
+    assert warning.startswith("WARNING")
+    assert "Scaling the INDEX" in warning and "251" in warning
+    assert index_scale_warning(3, threshold=2) is not None
+
+
+def test_check_warns_not_fails_over_threshold(tmp_path, capsys, monkeypatch):
+    repo = _mini_repo(tmp_path)
+    _write_entry(repo, "vision/a.md", "A", ["k1", "camera not detected"])
+    _write_entry(repo, "setup/b.md", "B", ["k2", "boot hangs after flash"])
+    assert main(["--repo-root", str(repo)]) == 0
+    monkeypatch.setattr("scripts.gen_updates.INDEX_SPLIT_THRESHOLD", 1)
+    capsys.readouterr()
+    assert main(["--check", "--repo-root", str(repo)]) == 0  # warning ≠ failure
+    assert "WARNING" in capsys.readouterr().out
 
 
 def test_check_clean_on_real_repo():

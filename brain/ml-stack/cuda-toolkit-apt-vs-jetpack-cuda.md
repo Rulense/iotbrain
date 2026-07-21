@@ -7,6 +7,8 @@ keys:
   - "nvcc: command not found"
   - "/usr/local/cuda"
   - "nvidia-jetpack"
+  - "cuda missing after apt install"
+  - "wrong cuda toolkit installed"
 platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: unverified

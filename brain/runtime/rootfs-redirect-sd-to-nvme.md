@@ -7,6 +7,8 @@ keys:
   - "/boot/extlinux/extlinux.conf"
   - "APPEND ${cbootargs}"
   - "rootwait"
+  - "move rootfs to ssd"
+  - "boot from nvme without reflash"
 platform_versions: ["JetPack 4.x", "JetPack 5.x", "JetPack 6.x", "L4T 32.x", "L4T 35.x", "L4T 36.x"]
 devices: [orin-nano, orin-nx, xavier-nx, agx-xavier]
 status: unverified
