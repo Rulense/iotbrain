@@ -8,8 +8,7 @@ keys:
   - "(Argus) Error InvalidState: CaptureProvider destroyed"
   - "(Argus) Error Timeout: (propagating from src/rpc/socket/client/ClientSocketManager.cpp, function send(), line 137)"
   - "enableCamInfiniteTimeout"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "Orin Nano Super devkit, JetPack 6.2.1 (L4T 36.4.4), 2025-12-04 (forum-confirmed: daemon restart restored capture)"

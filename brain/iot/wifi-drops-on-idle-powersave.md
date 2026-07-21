@@ -8,8 +8,7 @@ keys:
   - "iw dev wlan0 set power_save off"
   - "Power save: on"
   - "authentication with"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: unverified
 sources:

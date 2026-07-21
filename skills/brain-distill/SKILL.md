@@ -13,8 +13,9 @@ into one entry.
 Grep the shipped brain (`${CLAUDE_PLUGIN_ROOT}/brain/` — `${CLAUDE_PLUGIN_ROOT}`
 is the env var Claude Code sets to the plugin's install root) and the local overlay
 (`~/.iotbrain/local/`) for the entry's would-be keys. If an existing entry
-covers the same knowledge, prepare an UPDATE to that file (extend `jetpack`
-ranges, revise steps, or set the old entry `status: outdated` with the version
+covers the same knowledge, prepare an UPDATE to that file (extend
+`platform_versions` ranges, revise steps, or set the old entry
+`status: outdated` with the version
 boundary noted in its Gotchas) instead of creating a duplicate.
 
 ## Step 2 — Draft the entry
@@ -24,7 +25,7 @@ Use the exact template from CONTRIBUTING.md (plugin root). Choose ONE `type`:
 - `keys`: VERBATIM strings — exact error text, package names, GStreamer element
   names. Never paraphrase.
 - `company`: the device vendor — `nvidia` for Jetson work.
-- `jetpack`/`l4t`/`devices`: from the device facts collected this session.
+- `platform_versions`/`devices`: from the device facts collected this session.
 - `status: verified` + `verified_on: "<device>, JetPack <ver>, <today>"` — this
   skill only runs for verified learnings.
 - `sources`: URLs used, or "verified locally" context in the body.
@@ -61,7 +62,7 @@ gh repo fork <brain-repo-url> --clone -- "$workdir/iotbrain" \
 cd "$workdir/iotbrain"
 git checkout -b brain/<domain>-<slug>
 # copy entry to brain/<domain>/<slug>.md
-# add the INDEX.md line: - [<title>](<domain>/<slug>.md) — <type> · JP <range> · <hook>
+# add the INDEX.md line: - [<title>](<domain>/<slug>.md) — <type> · <version scope> · <hook>
 python3 scripts/lint_brain.py brain        # must pass before committing
 git add brain/
 git commit -m "brain(<domain>): <title>"
@@ -71,7 +72,7 @@ gh pr create --title "brain(<domain>): <title>" \
 ## New brain entry
 <one-paragraph summary from the entry's Context>
 
-- Type: <type> · JetPack: <range> · Devices: <list>
+- Type: <type> · Platform versions: <range> · Devices: <list>
 - Verified on: <verified_on>
 - [ ] Lint passes (`python3 scripts/lint_brain.py brain`)
 EOF

@@ -7,8 +7,7 @@ keys:
   - "invoked oom-killer"
   - "nvzramconfig"
   - "systemctl set-default multi-user.target"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: unverified
 sources:

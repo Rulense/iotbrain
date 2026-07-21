@@ -6,8 +6,7 @@ keys:
   - "jetson-containers"
   - "autotag"
   - "l4t-pytorch"
-jetpack: ["6.x", "7.x"]
-l4t: ["36.x", "38.x"]
+platform_versions: ["JetPack 6.x", "JetPack 7.x", "L4T 36.x", "L4T 38.x"]
 devices: [orin-nano, orin-nx, agx-orin, agx-thor]
 status: verified
 verified_on: "Orin family, JetPack 6.2 (repo-documented tested/supported config), docs checked 2026-07-17"

@@ -7,8 +7,7 @@ keys:
   - "please rebuild"
   - "Using an engine plan file across different models of devices is not recommended"
   - "trtexec --saveEngine"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "all Jetson (TensorRT Developer Guide, Engine Compatibility section), doc checked 2026-07-17"

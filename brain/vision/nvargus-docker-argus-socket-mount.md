@@ -7,8 +7,7 @@ keys:
   - "Failed to create CameraProvider"
   - "/tmp/argus_socket"
   - "nvarguscamerasrc"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "Orin Nano, JetPack 5.x era (version not stated in thread), 2023-11-01 (poster confirmed fix)"

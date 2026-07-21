@@ -6,8 +6,7 @@ keys:
   - "nvpmodel"
   - "jetson_clocks"
   - "slow inference jetson"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "Orin Nano, JetPack 6.1, 2026-07-17"

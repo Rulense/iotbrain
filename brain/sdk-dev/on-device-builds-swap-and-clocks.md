@@ -8,8 +8,7 @@ keys:
   - "sudo systemctl disable nvzramconfig"
   - "fallocate -l 16G"
   - "jetson_clocks"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "AGX Orin / Orin Nano, JetPack 6.x (Jetson AI Lab RAM-optimization tutorial publishes these exact commands for Orin), doc checked 2026-07-17"

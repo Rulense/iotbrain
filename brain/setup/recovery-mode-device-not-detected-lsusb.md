@@ -9,8 +9,7 @@ keys:
   - "NVIDIA Corp. APX"
   - "device is not in recovery mode"
   - "lsusb"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "Orin Nano devkit, host Ubuntu 22.04, 2024-03 (forum thread confirmed detection after fix)"

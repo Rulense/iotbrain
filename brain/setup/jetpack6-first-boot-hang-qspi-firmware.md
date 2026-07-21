@@ -7,8 +7,7 @@ keys:
   - "oem-config"
   - "nvidia-l4t-jetson-orin-nano-qspi-updater"
   - "nv-l4t-bootloader-config"
-jetpack: ["6.x"]
-l4t: ["36.x"]
+platform_versions: ["JetPack 6.x", "L4T 36.x"]
 devices: [orin-nano]
 status: verified
 verified_on: "Orin Nano devkit, JetPack 6.x update path (official NVIDIA firmware-update doc), doc checked 2026-07-17"

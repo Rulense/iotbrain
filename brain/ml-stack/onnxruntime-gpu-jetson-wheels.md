@@ -7,8 +7,7 @@ keys:
   - "CUDAExecutionProvider"
   - "TensorrtExecutionProvider"
   - "pip install onnxruntime"
-jetpack: ["5.x", "6.x"]
-l4t: ["35.x", "36.x"]
+platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified
 verified_on: "Orin Nano, JetPack 6.2, 2025-03 (forum thread solved: jp6/cu126 onnxruntime_gpu 1.20.2 wheel exposed CUDA/TensorRT providers)"

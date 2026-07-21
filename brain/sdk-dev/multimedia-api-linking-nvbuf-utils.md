@@ -8,8 +8,7 @@ keys:
   - "/usr/src/jetson_multimedia_api"
   - "NvBufSurface"
   - "link_directories(/usr/lib/aarch64-linux-gnu/tegra)"
-jetpack: ["4.x", "5.x", "6.x"]
-l4t: ["32.x", "35.x", "36.x"]
+platform_versions: ["JetPack 4.x", "JetPack 5.x", "JetPack 6.x", "L4T 32.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified
 verified_on: "AGX Xavier, JetPack 4.4.1, 2021 (forum thread marked solved: link_directories(/usr/lib/aarch64-linux-gnu/tegra) before add_executable fixed the link)"

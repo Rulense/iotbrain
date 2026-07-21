@@ -49,7 +49,7 @@ grep -ril "<verbatim error or keyword>" "${CLAUDE_PLUGIN_ROOT}/brain/" ~/.iotbra
 ## Step 3 — Filter by applicability
 
 - Entry's `company` matches the device's vendor AND its version/device fields
-  (e.g. `jetpack`/`devices` for Jetson entries) match the device facts → trust
+  (`platform_versions`/`devices`) match the device facts → trust
   it; apply as written.
 - Entry's `company` is a different vendor → skip it; knowledge does not
   transfer across vendors.

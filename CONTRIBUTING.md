@@ -15,11 +15,11 @@ type: recipe | config | matrix | gotcha | fix     # pick ONE
 company: nvidia             # device vendor: nvidia | raspberry-pi | qualcomm | nxp | ...
 keys:                       # verbatim grep targets — error strings, package names, element names
   - "<exact string an agent would search for>"
-jetpack: ["6.1"]            # applicable JetPack versions, or ["all"]
-l4t: ["36.x"]               # applicable L4T versions, or ["all"]
+platform_versions: ["JetPack 6.1", "L4T 36.x"]   # platform/SDK version scope, or ["all"]
 devices: [orin-nano]        # orin-nano | orin-nx | agx-orin | xavier-nx | agx-xavier | nano | agx-thor | all
 status: verified | unverified | outdated
 verified_on: "<device>, JetPack <ver>, <YYYY-MM-DD>"   # required when status: verified
+reproduced_by: ["<who/context>, <device>, <version>, <YYYY-MM-DD>"]   # optional second confirmations
 sources: ["https://..."]    # forum threads, docs, release notes
 ---
 ## Context
@@ -39,8 +39,11 @@ Near-miss variants, what makes it recur. (Optional but encouraged.)
 After adding an entry, add one line to `brain/INDEX.md`:
 
 ```
-- [<title>](<domain>/<slug>.md) — <type> · JP <range> · <one-hook summary>
+- [<title>](<domain>/<slug>.md) — <type> · <version scope> · <one-hook summary>
 ```
+
+`<version scope>` is a shorthand of the entry's `platform_versions` (e.g.
+`JP 6.x` for JetPack entries, `ESP-IDF 5.3`, or `all`).
 
 ## The verification bar
 
@@ -48,7 +51,7 @@ A PR is mergeable when the entry:
 
 1. **Worked on real hardware — or doc-verified** — `status: verified` means you (or the cited thread's author, with the resolution confirmed) ran it on a physical Jetson, OR the behavior is stated by current official NVIDIA documentation — in that case cite the doc page in `sources` and use a `verified_on` of the form `"doc checked <YYYY-MM-DD>"`. Otherwise use `status: unverified` — the honest fallback.
 2. **Has verbatim keys** — copy-paste the exact error text / package / element names. Paraphrased keys break grep retrieval.
-3. **Is version-scoped** — `jetpack`, `l4t`, `devices` filled honestly. "Works everywhere" claims need `["all"]` and a reason in Context.
+3. **Is version-scoped** — `platform_versions`, `devices` filled honestly. Each `platform_versions` string is `"<Ecosystem> <range>"` (e.g. `"JetPack 6.x"`, `"ESP-IDF 5.3"`, `"Zephyr 3.7"`). "Works everywhere" claims need `["all"]` and a reason in Context.
 4. **Cites sources** — forum thread, GitHub issue, doc page, or "verified locally" plus your `verified_on`.
 5. **Is public-safe** — no internal info, secrets, private paths, hostnames, or proprietary code.
 

@@ -6,8 +6,7 @@ keys:
   - "Illegal instruction (core dumped)"
   - "OPENBLAS_CORETYPE=ARMV8"
   - "numpy==1.19.5"
-jetpack: ["4.x"]
-l4t: ["32.x"]
+platform_versions: ["JetPack 4.x", "L4T 32.x"]
 devices: [nano, xavier-nx, agx-xavier]
 status: verified
 verified_on: "TX2 / Xavier / Nano, JetPack 4.4.1-4.5.1, 2021-01 (forum thread: multiple users confirmed both fixes)"

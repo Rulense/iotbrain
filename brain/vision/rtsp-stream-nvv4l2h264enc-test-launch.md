@@ -8,8 +8,7 @@ keys:
   - "rtph264pay name=pay0 pt=96"
   - "rtsp://127.0.0.1:8554/test"
   - "gst-rtsp-server"
-jetpack: ["4.x", "5.x", "6.x"]
-l4t: ["32.x", "35.x", "36.x"]
+platform_versions: ["JetPack 4.x", "JetPack 5.x", "JetPack 6.x", "L4T 32.x", "L4T 35.x", "L4T 36.x"]
 devices: [nano, xavier-nx, agx-xavier, orin-nx, agx-orin]
 status: verified
 verified_on: "Jetson Nano, JetPack 4.2.x, 2019-10-21 (poster confirmed 'it is streaming')"

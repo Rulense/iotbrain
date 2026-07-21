@@ -9,8 +9,7 @@ keys:
   - "mosquitto_pub"
   - "certificate verify failed"
   - "[Errno 104] Connection reset by peer"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: unverified
 sources:

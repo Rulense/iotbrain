@@ -15,8 +15,8 @@ import yaml
 DOMAINS = {"setup", "ml-stack", "vision", "iot", "sdk-dev", "runtime"}
 TYPES = {"recipe", "config", "matrix", "gotcha", "fix"}
 STATUSES = {"verified", "unverified", "outdated"}
-LIST_FIELDS = ("keys", "jetpack", "l4t", "devices", "sources")
-REQUIRED = ("title", "type", "keys", "company", "jetpack", "l4t", "devices", "status", "sources")
+LIST_FIELDS = ("keys", "platform_versions", "devices", "sources", "reproduced_by")
+REQUIRED = ("title", "type", "keys", "company", "platform_versions", "devices", "status", "sources")
 INDEX_LINK = re.compile(r"\]\(([^)]+\.md)\)")
 
 

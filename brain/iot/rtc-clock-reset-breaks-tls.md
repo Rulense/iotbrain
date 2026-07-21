@@ -8,8 +8,7 @@ keys:
   - "hctosys"
   - "certificate is not yet valid"
   - "is not valid yet (invalid for another"
-jetpack: ["5.x", "6.x"]
-l4t: ["35.x", "36.x"]
+platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [agx-orin, orin-nx, orin-nano]
 status: verified
 verified_on: "AGX Orin devkit, JetPack 5.1.1 (L4T 35.3.1), 2023 (forum thread self-answered: hwclock -s systemd service held across reboots and power cycles)"

@@ -8,8 +8,7 @@ keys:
   - "l4t-base"
   - "l4t-jetpack"
   - "--runtime nvidia"
-jetpack: ["4.x", "5.x", "6.x"]
-l4t: ["32.x", "34.x", "35.x", "36.x"]
+platform_versions: ["JetPack 4.x", "JetPack 5.x", "JetPack 6.x", "L4T 32.x", "L4T 34.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified
 verified_on: "Orin/Xavier family, JetPack 5.0+ (NGC l4t-base catalog page states the r34.1 behavior change), doc checked 2026-07-17"

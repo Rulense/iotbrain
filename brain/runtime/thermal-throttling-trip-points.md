@@ -7,8 +7,7 @@ keys:
   - "cpu-thermal"
   - "gpu-thermal"
   - "thermal_zone"
-jetpack: ["5.x", "6.x"]
-l4t: ["35.x", "36.x"]
+platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [orin-nano, orin-nx, agx-orin]
 status: verified
 verified_on: "Trip temperatures per NVIDIA L4T r36.5 Developer Guide (Platform Power and Performance, Orin series: throttle 99.0 C, software shutdown 104.5 C, hardware shutdown 105.0 C); doc retrieved 2026-07-18"

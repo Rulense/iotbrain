@@ -8,8 +8,7 @@ keys:
   - "192.168.55.1"
   - "Install SDK components"
   - "OEM Configuration"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "AGX Xavier devkit, JetPack 5.0.2, 2022-08 (forum thread: install completed via device IP after first-boot setup)"

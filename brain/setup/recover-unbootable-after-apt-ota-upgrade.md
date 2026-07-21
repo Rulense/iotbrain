@@ -8,8 +8,7 @@ keys:
   - "sudo apt upgrade"
   - "0955:7e19"
   - "APX"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "Xavier NX devkit, JetPack 5.0 DP, 2022-07-20 (forum thread marked solved via SDK Manager manual reflash)"

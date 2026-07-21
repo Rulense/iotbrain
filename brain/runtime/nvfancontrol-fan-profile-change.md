@@ -7,8 +7,7 @@ keys:
   - "FAN_DEFAULT_PROFILE"
   - "/var/lib/nvfancontrol/status"
   - "jetson_clocks --fan"
-jetpack: ["5.x", "6.x"]
-l4t: ["35.x", "36.x"]
+platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [orin-nano, orin-nx, agx-orin]
 status: verified
 verified_on: "Procedure per NVIDIA L4T r36.5 Developer Guide (Platform Power and Performance, Orin series); same steps discussed on Orin Nano forum thread 304599; docs retrieved 2026-07-18"

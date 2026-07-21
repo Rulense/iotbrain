@@ -8,8 +8,7 @@ keys:
   - "EMC_FREQ"
   - "lfb"
   - "VDD_CPU_GPU_CV"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "Field definitions per NVIDIA L4T r36.5 and r35.6.2 Developer Guide (Tegrastats Utility); docs retrieved 2026-07-18"

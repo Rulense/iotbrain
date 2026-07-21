@@ -8,8 +8,7 @@ keys:
   - "aarch64--glibc--stable-2022.08-1"
   - "TARGET_ROOTFS"
   - "--sysroot"
-jetpack: ["5.x", "6.x"]
-l4t: ["35.x", "36.x"]
+platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified
 verified_on: "Orin family, JetPack 6.x (L4T r36.x Developer Guide 'Jetson Linux Toolchain' + Multimedia API cross-platform support doc), docs checked 2026-07-17"

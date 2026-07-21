@@ -8,8 +8,7 @@ keys:
   - "manylinux2014_aarch64"
   - "linux_aarch64.whl"
   - "Building wheel for"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "Xavier NX, JetPack 4.6.1, 2022 (forum thread: cp36 wheel refused by conda Python 3.7; resolved by installing under the JetPack default Python)"

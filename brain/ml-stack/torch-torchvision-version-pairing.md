@@ -6,8 +6,7 @@ keys:
   - "RuntimeError: operator torchvision::nms does not exist"
   - "operator torchvision::nms does not exist"
   - "torchvision"
-jetpack: ["5.x", "6.x"]
-l4t: ["35.x", "36.x"]
+platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified
 verified_on: "AGX Orin, JetPack 6.1, 2024-11 (forum thread solved by installing matched jp6/cu126 torch 2.5.0 + torchvision 0.20.0 pair)"

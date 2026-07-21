@@ -8,8 +8,7 @@ keys:
   - "jetson-agx-orin-devkit"
   - "jetson-orin-nano-devkit-nvme"
   - "flash.sh"
-jetpack: ["6.x"]
-l4t: ["36.x"]
+platform_versions: ["JetPack 6.x", "L4T 36.x"]
 devices: [orin-nano, orin-nx, agx-orin]
 status: verified
 verified_on: "Orin Nano/NX/AGX Orin devkits, JetPack 6.2 (L4T r36.4.3 official Quick Start table), doc checked 2026-07-17"

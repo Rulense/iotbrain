@@ -12,8 +12,7 @@ VALID = textwrap.dedent("""\
     company: nvidia
     keys:
       - "ImportError: libexample.so.1"
-    jetpack: ["6.1"]
-    l4t: ["36.x"]
+    platform_versions: ["JetPack 6.1", "L4T 36.x"]
     devices: [orin-nano]
     status: verified
     verified_on: "Orin Nano, JetPack 6.1, 2026-07-01"
@@ -56,6 +55,28 @@ def test_missing_company_fails(tmp_path):
     p = write(tmp_path / "brain" / "ml-stack" / "bad.md", text)
     errs = validate_entry(parse_entry(p), p)
     assert any("company" in e for e in errs)
+
+
+def test_missing_platform_versions_fails(tmp_path):
+    text = VALID.replace('platform_versions: ["JetPack 6.1", "L4T 36.x"]\n', "")
+    p = write(tmp_path / "brain" / "ml-stack" / "bad.md", text)
+    errs = validate_entry(parse_entry(p), p)
+    assert any("platform_versions" in e for e in errs)
+
+
+def test_reproduced_by_must_be_list(tmp_path):
+    text = VALID.replace(
+        "status: verified\n",
+        'reproduced_by: "not a list"\nstatus: verified\n')
+    p = write(tmp_path / "brain" / "ml-stack" / "bad.md", text)
+    errs = validate_entry(parse_entry(p), p)
+    assert any("reproduced_by" in e for e in errs)
+    ok = VALID.replace(
+        "status: verified\n",
+        'reproduced_by: ["forum user, Orin NX, JetPack 6.1, 2026-07-10"]\n'
+        "status: verified\n")
+    p2 = write(tmp_path / "brain" / "ml-stack" / "good.md", ok)
+    assert validate_entry(parse_entry(p2), p2) == []
 
 
 def test_verified_requires_verified_on(tmp_path):

@@ -8,8 +8,7 @@ keys:
   - "format=BGRx ! videoconvert"
   - "appsink"
   - "cv2.CAP_GSTREAMER"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "AGX Orin, JetPack 5.x, 2023-02-09 (forum thread: BGRx→videoconvert→BGR pipeline working on hardware, constraint confirmed by NVIDIA)"

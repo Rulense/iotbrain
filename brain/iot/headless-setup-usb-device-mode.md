@@ -7,8 +7,7 @@ keys:
   - "l4tbr0"
   - "/dev/ttyACM0"
   - "nv-l4t-usb-device-mode"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "AGX Orin devkit, JetPack 5.x-6.x (official devkit user guide documents 192.168.55.1 virtual ethernet + headless oem-config UART), doc checked 2026-07-17"

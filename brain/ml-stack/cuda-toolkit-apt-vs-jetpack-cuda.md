@@ -7,8 +7,7 @@ keys:
   - "nvcc: command not found"
   - "/usr/local/cuda"
   - "nvidia-jetpack"
-jetpack: ["5.x", "6.x"]
-l4t: ["35.x", "36.x"]
+platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: unverified
 sources:

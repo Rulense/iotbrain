@@ -6,8 +6,7 @@ keys:
   - "ImportError: libcudnn.so.8: cannot open shared object file"
   - "ImportError: libcudnn.so.9: cannot open shared object file"
   - "pip install torch"
-jetpack: ["5.x", "6.x"]
-l4t: ["35.x", "36.x"]
+platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified
 verified_on: "AGX Orin, JetPack 6.1, 2026-07-17"

@@ -7,8 +7,7 @@ keys:
   - "System throttled due to over-current"
   - "oc1_event_cnt"
   - "/sys/class/hwmon/hwmon*/oc*_event_cnt"
-jetpack: ["5.x", "6.x"]
-l4t: ["35.x", "36.x"]
+platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [orin-nano, orin-nx, agx-orin]
 status: unverified
 sources:

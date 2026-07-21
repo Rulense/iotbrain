@@ -6,8 +6,7 @@ keys:
   - "pypi.jetson-ai-lab"
   - "torch jetpack 6"
   - "cu126"
-jetpack: ["6.0", "6.1", "6.2"]
-l4t: ["36.x"]
+platform_versions: ["JetPack 6.0", "JetPack 6.1", "JetPack 6.2", "L4T 36.x"]
 devices: [orin-nano, orin-nx, agx-orin]
 status: verified
 verified_on: "Orin Nano, JetPack 6.2, 2026-07-17"

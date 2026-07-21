@@ -7,8 +7,7 @@ keys:
   - "/boot/extlinux/extlinux.conf"
   - "APPEND ${cbootargs}"
   - "rootwait"
-jetpack: ["4.x", "5.x", "6.x"]
-l4t: ["32.x", "35.x", "36.x"]
+platform_versions: ["JetPack 4.x", "JetPack 5.x", "JetPack 6.x", "L4T 32.x", "L4T 35.x", "L4T 36.x"]
 devices: [orin-nano, orin-nx, xavier-nx, agx-xavier]
 status: unverified
 sources:

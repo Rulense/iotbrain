@@ -7,8 +7,7 @@ keys:
   - "nvidia-l4t-apt-source.list"
   - "apt dist-upgrade"
   - "l4t_generate_ota_package.sh"
-jetpack: ["5.x", "6.x"]
-l4t: ["35.x", "36.x"]
+platform_versions: ["JetPack 5.x", "JetPack 6.x", "L4T 35.x", "L4T 36.x"]
 devices: [all]
 status: verified
 verified_on: "Orin family, L4T r36.5 Developer Guide (Software Packages and the Update Mechanism), doc checked 2026-07-17"

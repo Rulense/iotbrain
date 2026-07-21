@@ -8,8 +8,7 @@ keys:
   - "v4l2-ctl --list-devices"
   - "No cameras available"
   - "nvargus-daemon"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "Jetson Nano (custom Bayer sensor driver), JetPack 4.x, 2020-06-30 (forum thread solved: missing DT properties)"

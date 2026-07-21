@@ -9,8 +9,7 @@ keys:
   - "named symbol not found"
   - "CMAKE_CUDA_ARCHITECTURES"
   - "CUDA_ARCH_BIN"
-jetpack: ["all"]
-l4t: ["all"]
+platform_versions: ["all"]
 devices: [all]
 status: verified
 verified_on: "Orin Nano Super, JetPack 6.2, 2025 (GitHub issue: PyPI aarch64 wheel built for sm75/80/90 failed at first kernel launch; source build with compute capability 87 fixed it)"
