@@ -269,7 +269,7 @@ footer{padding-bottom:48px}
           <div class="row-ex">A shared-library import failure → the exact resolution, per platform</div>
         </div>
       </div>
-      <p class="body-p" style="margin-top:32px;font-size:15px">The skills put it to work: a main <span class="inline-code">iot-dev</span> skill consults the brain for any task, the <span class="inline-code">brain-distill</span> skill grows it, and domain packs for the major workflows arrive in v0.2.</p>
+      <p class="body-p" style="margin-top:32px;font-size:15px">The skills put it to work: a main <span class="inline-code">iot-dev</span> skill consults the brain for any task, the <span class="inline-code">brain-distill</span> skill grows it, and domain skills — <span class="inline-code">vision-pipeline</span>, <span class="inline-code">iot-connect</span>, <span class="inline-code">sdk-build</span> — carry the playbooks for the major workflows.</p>
     </section>
 
     <section id="loop" class="wrap sec">
@@ -350,7 +350,7 @@ optimize · debug
       <div class="inside-grid">
         <div>
           <h2 class="h2" style="max-width:14ch;text-wrap:balance">What&rsquo;s inside</h2>
-          <p class="inside-p"><span class="inline-code">skills/</span> is how the agent works — the companion, the distiller, and the domain packs arriving in v0.2. <span class="inline-code">brain/</span> is what it knows — organized by domain, mapped by a one-line-per-entry INDEX.</p>
+          <p class="inside-p"><span class="inline-code">skills/</span> is how the agent works — the companion, the distiller, and the domain skills for the major workflows. <span class="inline-code">brain/</span> is what it knows — organized by domain, mapped by a one-line-per-entry INDEX.</p>
           <p class="inside-p">Entries carry a <span class="inline-code">company</span> field today — nvidia first. Knowledge that can&rsquo;t go public lives in the <span class="inline-code">~/.iotbrain/local/</span> overlay on your machine, consulted right beside the shared brain. Platform trees are the growth path: as entries land from more vendors, the brain splits by platform — so a Jetson entry never pollutes a Pi session.</p>
         </div>
         <div class="mono tree">iotbrain/
@@ -358,9 +358,9 @@ optimize · debug
 │   ├── iot-dev/          brain consultation, any task
 │   ├── brain-distill/    learnings → entries + PRs
 │   ├── …                 vendored NVIDIA device skills arriving
-│   ├── vision-pipeline/  cameras, capture, inference (v0.2)
-│   ├── iot-connect/      MQTT, cloud, fleet deployment (v0.2)
-│   └── sdk-build/        cross-compiling, packaging (v0.2)
+│   ├── vision-pipeline/  cameras, capture, inference
+│   ├── iot-connect/      MQTT, cloud, fleet deployment
+│   └── sdk-build/        cross-compiling, packaging
 └── brain/
     ├── INDEX.md          one line per entry
     ├── setup/            flashing, recovery, first boot
@@ -384,8 +384,8 @@ optimize · debug
           <p class="roadmap-p">Plugin scaffold, iot-dev + distiller skills, brain seeded across six domains with battle-tested entries on the first platform.</p>
         </div>
         <div>
-          <div class="mono roadmap-label">V0.2 — DOMAIN SKILLS</div>
-          <p class="roadmap-p">Vision pipeline, connectivity, and SDK-building skills wired into the brain.</p>
+          <div class="mono roadmap-label">V0.2 — DOMAIN SKILLS · SHIPPED</div>
+          <p class="roadmap-p">Vision pipeline, connectivity, and SDK-building skills, shipped and wired into the brain — consulted before and during every task.</p>
         </div>
         <div>
           <div class="mono roadmap-label">V1.0 — COMMUNITY SCALE</div>
@@ -468,8 +468,11 @@ optimize · debug
      — do not edit by hand. */
   /*__IOTBRAIN_DATA_START__*/
   const FALLBACK = {
-    "stats": {"entries": 39, "skills": 18, "domains": 6, "platforms": 5},
+    "stats": {"entries": 39, "skills": 21, "domains": 6, "platforms": 5},
     "updates": [
+      {"title": "iot-connect — Use for edge-device connectivity and fleet work — MQTT (mosquitto, paho, AWS…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
+      {"title": "sdk-build — Use for building, compiling, and packaging software for edge targets — native…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
+      {"title": "vision-pipeline — Use for camera and vision-pipeline work on ANY edge device — sensor bring-up…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
       {"title": "Change the Jetson Orin fan profile (quiet vs cool) — edit /etc/nvfancontrol.conf AND delete /var/lib/nvfancontrol/status", "type": "config", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},
       {"title": "Jetson Orin thermal throttling under sustained load — clocks drop near 99°C, soft shutdown at 104.5°C (thermal_zone temps)", "type": "gotcha", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},
       {"title": "Move a running Jetson's rootfs from SD to NVMe without reflashing — copy rootfs, point extlinux.conf root= at /dev/nvme0n1p1", "type": "recipe", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},

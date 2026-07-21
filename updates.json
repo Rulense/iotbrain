@@ -1,6 +1,9 @@
 {
-  "stats": {"entries": 39, "skills": 18, "domains": 6, "platforms": 5},
+  "stats": {"entries": 39, "skills": 21, "domains": 6, "platforms": 5},
   "updates": [
+    {"title": "iot-connect — Use for edge-device connectivity and fleet work — MQTT (mosquitto, paho, AWS…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
+    {"title": "sdk-build — Use for building, compiling, and packaging software for edge targets — native…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
+    {"title": "vision-pipeline — Use for camera and vision-pipeline work on ANY edge device — sensor bring-up…", "type": "skill", "domain": "skills", "company": "all", "date": "2026-07-21"},
     {"title": "Change the Jetson Orin fan profile (quiet vs cool) — edit /etc/nvfancontrol.conf AND delete /var/lib/nvfancontrol/status", "type": "config", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},
     {"title": "Jetson Orin thermal throttling under sustained load — clocks drop near 99°C, soft shutdown at 104.5°C (thermal_zone temps)", "type": "gotcha", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},
     {"title": "Move a running Jetson's rootfs from SD to NVMe without reflashing — copy rootfs, point extlinux.conf root= at /dev/nvme0n1p1", "type": "recipe", "domain": "runtime", "company": "nvidia", "date": "2026-07-18"},

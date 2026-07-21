@@ -15,7 +15,7 @@ Install it into Claude Code and your agent starts every edge-IoT task with what 
 </div>
 
 <!-- IOTBRAIN_STATS_START -->
-**39** brain entries · **18** skills · **6** domains · **5** platforms — last updated 2026-07-18
+**39** brain entries · **21** skills · **6** domains · **5** platforms — last updated 2026-07-21
 <!-- IOTBRAIN_STATS_END -->
 
 ## Why
@@ -38,7 +38,7 @@ iotbrain is a **Claude Code plugin** with two parts:
 | `gotcha` | A trap to avoid proactively | nvarguscamerasrc quirk on JP6.0 that silently drops frames |
 | `fix` | An error and its verified solution | `libcudnn.so.8` import failure → exact resolution |
 
-**The Skills** — how the agent puts the brain to work: a main `iot-dev` companion skill that identifies the device and vendor, then consults the brain for *any* edge-IoT task (NVIDIA Jetson today; Raspberry Pi, ESP32, and other boards as the brain grows), and a `brain-distill` skill that grows the brain. Domain skills for the major workflows (vision pipelines, IoT/edge connectivity, SDK and library development) arrive in v0.2.
+**The Skills** — how the agent puts the brain to work: a main `iot-dev` companion skill that identifies the device and vendor, then consults the brain for *any* edge-IoT task (NVIDIA Jetson today; Raspberry Pi, ESP32, and other boards as the brain grows), and a `brain-distill` skill that grows the brain. Domain skills for the major workflows — `vision-pipeline`, `iot-connect`, and `sdk-build` — carry the procedural playbooks and consult the brain before and during every task.
 
 ## The loop — for every task, not just broken ones
 
@@ -79,6 +79,7 @@ That loads:
 
 - **`iot-dev`** — the companion: identifies the device and vendor, consults the brain before any edge-IoT task, applies version-matched knowledge.
 - **`brain-distill`** — the distiller: turns hardware-verified session learnings into brain entries and community PRs.
+- **`vision-pipeline`, `iot-connect`, `sdk-build`** — the domain skills: procedural playbooks for vision pipelines, connectivity/fleet, and building/packaging, each wired into the brain.
 - **16 vendored device skills** — nine NVIDIA Jetson skills plus seven from Seeed, D-Robotics, Espressif, and the Zephyr ecosystem.
 
 Skills load lazily: until one is used, only its name and one-line description sit in the agent's context. Works whether Claude Code runs on the device itself or on a host machine reaching the device over SSH.
@@ -127,9 +128,9 @@ iotbrain/
 │   ├── brain-distill/         # turns verified learnings into brain entries + PRs
 │   ├── jetson-* (9)           # vendored NVIDIA device skills — see ATTRIBUTION.md
 │   ├── … (7 more)             # vendored skills from Seeed, D-Robotics, Espressif, Zephyr
-│   ├── vision-pipeline/       # (v0.2 — coming) cameras, GStreamer, DeepStream
-│   ├── iot-connect/           # (v0.2 — coming) MQTT, cloud backends, fleet/edge deployment
-│   └── sdk-build/             # (v0.2 — coming) building libraries & SDKs for edge targets
+│   ├── vision-pipeline/       # cameras, GStreamer, DeepStream
+│   ├── iot-connect/           # MQTT, cloud backends, fleet/edge deployment
+│   └── sdk-build/             # building libraries & SDKs for edge targets
 └── brain/
     ├── INDEX.md               # one line per entry — the map of what the brain knows
     ├── setup/                 # flashing, boot, OS install, recovery
@@ -151,7 +152,7 @@ The brain only gets smarter if verified knowledge flows back. [`CONTRIBUTING.md`
 ## Roadmap
 
 - **v0.1 — the core.** Plugin scaffold, iot-dev + distiller skills, brain seeded across all six domains with battle-tested entries on the first platform (NVIDIA Jetson).
-- **v0.2 — domain skills.** Vision pipeline, IoT connectivity, and SDK-building skills wired into the brain.
+- **v0.2 — domain skills (shipped).** Vision pipeline (`vision-pipeline`), IoT connectivity (`iot-connect`), and SDK-building (`sdk-build`) skills wired into the brain.
 - **v1.0 — community scale.** Contribution tooling, entry lifecycle automation (outdated-marking on new platform releases), coverage across vendors and device families.
 
 ---

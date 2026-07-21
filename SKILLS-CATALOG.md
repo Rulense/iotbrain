@@ -9,6 +9,9 @@ iotbrain's own skills:
 
 - **iot-dev** — the companion: identifies the device and vendor, consults the brain before any edge-IoT task, applies version-matched knowledge, distills learnings back — iotbrain (this repo).
 - **brain-distill** — turns a hardware-verified session learning into a brain entry and (with approval) a community PR — iotbrain (this repo).
+- **vision-pipeline** — domain skill: camera/vision pipelines on edge devices — sensor bring-up, V4L2/libcamera/Argus capture, GStreamer construction, inference integration, RTSP out; consults the brain's `vision/` and `ml-stack/` domains — iotbrain (this repo).
+- **iot-connect** — domain skill: connectivity and fleet — MQTT/TLS and cloud brokers, provisioning and certs, headless/remote access, OTA strategy, container fleets, time-sync/RTC; consults the brain's `iot/` domain — iotbrain (this repo).
+- **sdk-build** — domain skill: building and packaging for edge targets — native vs cross, toolchains/sysroots, arch flags, ARM Python wheels, containers, on-device build survival; consults the brain's `sdk-dev/` and `runtime/` domains — iotbrain (this repo).
 
 Vendored NVIDIA device skills (from [NVIDIA-AI-IOT/jetson-device-skills](https://github.com/NVIDIA-AI-IOT/jetson-device-skills) @ `0a803703`; see `ATTRIBUTION.md`):
 

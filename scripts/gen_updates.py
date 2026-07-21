@@ -36,14 +36,14 @@ except ImportError:  # run directly: python3 scripts/gen_updates.py
     from lint_brain import LintError, parse_entry
 
 # --- Skill → company map ------------------------------------------------------
-# Company attribution for skills. Our own companion skills (iot-dev,
-# brain-distill) are vendor-neutral and carry the special company value "all",
-# which is EXCLUDED from the distinct-platforms stat. Vendored skills named
-# jetson-* are NVIDIA's; every OTHER vendored skill MUST have an explicit entry
-# below. `gen_updates.py --check` (run in CI) fails and lists any
-# skills/<name>/ directory that has no mapping, so add new vendored skills here
-# when you vendor them.
-OUR_SKILLS = {"iot-dev", "brain-distill"}
+# Company attribution for skills. Our own skills (iot-dev, brain-distill, and
+# the v0.2 domain skills) are vendor-neutral and carry the special company
+# value "all", which is EXCLUDED from the distinct-platforms stat. Vendored
+# skills named jetson-* are NVIDIA's; every OTHER vendored skill MUST have an
+# explicit entry below. `gen_updates.py --check` (run in CI) fails and lists
+# any skills/<name>/ directory that has no mapping, so add new vendored skills
+# here when you vendor them.
+OUR_SKILLS = {"iot-dev", "brain-distill", "vision-pipeline", "iot-connect", "sdk-build"}
 OUR_SKILLS_COMPANY = "all"
 VENDOR_COMPANY = {
     "ee-datasheet-master": "seeed",
